@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexoNurse - Clinical Command Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen p-6">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="mb-6">
+                <h1 class="text-3xl font-bold text-gray-900">NexoNurse Command Center</h1>
+                <p class="text-gray-600 mt-1">Your unified workspace - One place for everything</p>
+            </div>
+
+            <!-- Alert Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div class="bg-red-50 border-2 border-red-300 rounded-lg p-4">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        <div>
+                            <div class="font-semibold text-red-900">Critical Tasks Today</div>
+                            <div class="text-2xl font-bold text-red-600">3</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-orange-50 border-2 border-orange-300 rounded-lg p-4">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        <div>
+                            <div class="font-semibold text-orange-900">Staffing Gaps</div>
+                            <div class="text-2xl font-bold text-orange-600">Short 1 RN</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 border-2 border-blue-300 rounded-lg p-4">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <div>
+                            <div class="font-semibold text-blue-900">Workload Today</div>
+                            <div class="text-2xl font-bold text-blue-600">175 min</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workload Status -->
+            <div class="bg-white rounded-lg shadow p-6 mb-6">
+                <h3 class="font-semibold text-lg mb-4">Your Workload Status</h3>
+                <div class="flex items-center gap-4">
+                    <div class="flex-1">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-sm text-gray-600">Estimated workload vs available time</span>
+                            <span class="text-sm font-medium">36% of day</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div class="h-3 rounded-full bg-orange-500" style="width: 36%"></div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-sm text-gray-600">Burnout Risk</div>
+                        <div class="text-2xl font-bold text-orange-600">3/5</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top 5 Priorities -->
+            <div class="bg-white rounded-lg shadow p-6 mb-6">
+                <h3 class="font-semibold text-lg mb-4">Your Top 5 Priorities Right Now</h3>
+                <div class="space-y-3" id="taskList">
+                    <!-- Task 1 -->
+                    <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                        <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">1</div>
+                        <div class="flex-1">
+                            <div class="font-medium text-gray-900">Diabetic A1C outreach - 15 patients overdue</div>
+                            <div class="text-sm text-gray-600">Due: Today • 45 min</div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full text-xs font-medium border bg-red-100 text-red-800 border-red-300">critical</span>
+                        <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm transition">Complete</button>
+                    </div>
+
+                    <!-- Task 2 -->
+                    <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                        <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">2</div>
+                        <div class="flex-1">
+                            <div class="font-medium text-gray-900">Medication prior authorizations pending (12)</div>
+                            <div class="text-sm text-gray-600">Due: Today • 90 min</div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full text-xs font-medium border bg-red-100 text-red-800 border-red-300">critical</span>
+                        <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm transition">Complete</button>
+                    </div>
+
+                    <!-- Task 3 -->
+                    <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                        <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">3</div>
+                        <div class="flex-1">
+                            <div class="font-medium text-gray-900">PM shift coverage gap - 1 RN needed</div>
+                            <div class="text-sm text-gray-600">Due: Today • 20 min</div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full text-xs font-medium border bg-red-100 text-red-800 border-red-300">critical</span>
+                        <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm transition">Complete</button>
+                    </div>
+
+                    <!-- Task 4 -->
+                    <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                        <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">4</div>
+                        <div class="flex-1">
+                            <div class="font-medium text-gray-900">Post-discharge follow-up calls (8 patients)</div>
+                            <div class="text-sm text-gray-600">Due: Today • 60 min</div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full text-xs font-medium border bg-orange-100 text-orange-800 border-orange-300">high</span>
+                        <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm transition">Complete</button>
+                    </div>
+
+                    <!-- Task 5 -->
+                    <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                        <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">5</div>
+                        <div class="flex-1">
+                            <div class="font-medium text-gray-900">CGM training completion report due</div>
+                            <div class="text-sm text-gray-600">Due: Today • 20 min</div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full text-xs font-medium border bg-orange-100 text-orange-800 border-orange-300">high</span>
+                        <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm transition">Complete</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quality Metrics -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <h3 class="font-semibold text-lg mb-4">Quality Metrics At-a-Glance</h3>
+                <p class="text-sm text-gray-600 mb-4">Consolidated view - No more jumping between Tableau, PowerBI, and Insight</p>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="text-center p-4 rounded-lg border-2 border-gray-200">
+                        <div class="text-xs text-gray-600 mb-1">Diabetic A1C Testing</div>
+                        <div class="text-2xl font-bold text-red-600">68%</div>
+                        <div class="text-xs text-gray-500 mt-1">Target: 80%</div>
+                        <div class="text-xs text-red-600 font-medium mt-1">↓ Needs Attention</div>
+                    </div>
+                    <div class="text-center p-4 rounded-lg border-2 border-gray-200">
+                        <div class="text-xs text-gray-600 mb-1">Post-Discharge Follow-up</div>
+                        <div class="text-2xl font-bold text-blue-600">85%</div>
+                        <div class="text-xs text-gray-500 mt-1">Target: 90%</div>
+                        <div class="text-xs text-blue-600 font-medium mt-1">↑ On Track</div>
+                    </div>
+                    <div class="text-center p-4 rounded-lg border-2 border-gray-200">
+                        <div class="text-xs text-gray-600 mb-1">Medication Adherence</div>
+                        <div class="text-2xl font-bold text-red-600">72%</div>
+                        <div class="text-xs text-gray-500 mt-1">Target: 85%</div>
+                        <div class="text-xs text-red-600 font-medium mt-1">↓ Needs Attention</div>
+                    </div>
+                    <div class="text-center p-4 rounded-lg border-2 border-gray-200">
+                        <div class="text-xs text-gray-600 mb-1">Preventive Care</div>
+                        <div class="text-2xl font-bold text-green-600">91%</div>
+                        <div class="text-xs text-gray-500 mt-1">Target: 90%</div>
+                        <div class="text-xs text-green-600 font-medium mt-1">↑ Exceeds Target</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="mt-8 text-center text-sm text-gray-500">
+                <p>NexoNurse - Prototype v1.0 | Powered by your feedback</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function completeTask(button) {
+            const taskDiv = button.closest('.bg-gray-50');
+            taskDiv.style.opacity = '0.5';
+            taskDiv.style.transition = 'opacity 0.3s';
+            button.innerHTML = '✓ Completed';
+            button.disabled = true;
+            button.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+            button.classList.add('bg-green-600', 'cursor-not-allowed');
+            
+            // Show a subtle success message
+            const successMsg = document.createElement('div');
+            successMsg.className = 'fixed top-4 right-4 bg-green-100 border-2 border-green-400 text-green-800 px-6 py-3 rounded-lg shadow-lg';
+            successMsg.innerHTML = '✓ Task marked as complete!';
+            document.body.appendChild(successMsg);
+            
+            setTimeout(() => {
+                successMsg.style.opacity = '0';
+                successMsg.style.transition = 'opacity 0.5s';
+                setTimeout(() => successMsg.remove(), 500);
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
