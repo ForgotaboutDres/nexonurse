@@ -9,196 +9,247 @@
 <body class="bg-gray-50">
     <div class="min-h-screen p-6">
         <div class="max-w-7xl mx-auto">
-            <!-- Header -->
             <div class="mb-6">
                 <h1 class="text-3xl font-bold text-gray-900">NexoNurse Command Center</h1>
                 <p class="text-gray-600 mt-1">Your unified workspace - One place for everything</p>
             </div>
-
-            <!-- Alert Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div class="bg-red-50 border-2 border-red-300 rounded-lg p-4">
-                    <div class="flex items-center gap-3">
-                        <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="12" y1="8" x2="12" y2="12"></line>
-                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                        </svg>
-                        <div>
-                            <div class="font-semibold text-red-900">Critical Tasks Today</div>
-                            <div class="text-2xl font-bold text-red-600">3</div>
+            <div class="flex gap-2 mb-6 border-b border-gray-200 overflow-x-auto">
+                <button onclick="showTab('dashboard')" id="tab-dashboard" class="tab-button px-4 py-2 border-b-2 border-blue-600 text-blue-600 font-medium whitespace-nowrap">Dashboard</button>
+                <button onclick="showTab('tasks')" id="tab-tasks" class="tab-button px-4 py-2 border-b-2 border-transparent text-gray-600 whitespace-nowrap">Priority Queue</button>
+                <button onclick="showTab('metrics')" id="tab-metrics" class="tab-button px-4 py-2 border-b-2 border-transparent text-gray-600 whitespace-nowrap">Quality Metrics</button>
+                <button onclick="showTab('staffing')" id="tab-staffing" class="tab-button px-4 py-2 border-b-2 border-transparent text-gray-600 whitespace-nowrap">Staffing</button>
+                <button onclick="showTab('initiatives')" id="tab-initiatives" class="tab-button px-4 py-2 border-b-2 border-transparent text-gray-600 whitespace-nowrap">Initiatives</button>
+            </div>
+            <div id="content-dashboard" class="tab-content">
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-red-50 border-2 border-red-300 rounded-lg p-4">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                <div>
+                                    <div class="font-semibold text-red-900">Critical Tasks Today</div>
+                                    <div class="text-2xl font-bold text-red-600">3</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-orange-50 border-2 border-orange-300 rounded-lg p-4">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                                <div>
+                                    <div class="font-semibold text-orange-900">Staffing Gaps</div>
+                                    <div class="text-2xl font-bold text-orange-600">Short 1 RN</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-blue-50 border-2 border-blue-300 rounded-lg p-4">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                <div>
+                                    <div class="font-semibold text-blue-900">Workload Today</div>
+                                    <div class="text-2xl font-bold text-blue-600">175 min</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="bg-orange-50 border-2 border-orange-300 rounded-lg p-4">
-                    <div class="flex items-center gap-3">
-                        <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                        <div>
-                            <div class="font-semibold text-orange-900">Staffing Gaps</div>
-                            <div class="text-2xl font-bold text-orange-600">Short 1 RN</div>
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <h3 class="font-semibold text-lg mb-4">Your Workload Status</h3>
+                        <div class="flex items-center gap-4">
+                            <div class="flex-1">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-sm text-gray-600">Estimated workload vs available time</span>
+                                    <span class="text-sm font-medium">36% of day</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-3">
+                                    <div class="h-3 rounded-full bg-orange-500" style="width: 36%"></div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-sm text-gray-600">Burnout Risk</div>
+                                <div class="text-2xl font-bold text-orange-600">3/5</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="bg-blue-50 border-2 border-blue-300 rounded-lg p-4">
-                    <div class="flex items-center gap-3">
-                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12 6 12 12 16 14"></polyline>
-                        </svg>
-                        <div>
-                            <div class="font-semibold text-blue-900">Workload Today</div>
-                            <div class="text-2xl font-bold text-blue-600">175 min</div>
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <h3 class="font-semibold text-lg mb-4">Your Top 5 Priorities Right Now</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                                <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">1</div>
+                                <div class="flex-1">
+                                    <div class="font-medium text-gray-900">Diabetic A1C outreach - 15 patients overdue</div>
+                                    <div class="text-sm text-gray-600">Due: Today • 45 min</div>
+                                </div>
+                                <span class="px-3 py-1 rounded-full text-xs font-medium border bg-red-100 text-red-800 border-red-300">critical</span>
+                                <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Complete</button>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                                <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">2</div>
+                                <div class="flex-1">
+                                    <div class="font-medium text-gray-900">Medication prior authorizations pending (12)</div>
+                                    <div class="text-sm text-gray-600">Due: Today • 90 min</div>
+                                </div>
+                                <span class="px-3 py-1 rounded-full text-xs font-medium border bg-red-100 text-red-800 border-red-300">critical</span>
+                                <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Complete</button>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                                <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">3</div>
+                                <div class="flex-1">
+                                    <div class="font-medium text-gray-900">PM shift coverage gap - 1 RN needed</div>
+                                    <div class="text-sm text-gray-600">Due: Today • 20 min</div>
+                                </div>
+                                <span class="px-3 py-1 rounded-full text-xs font-medium border bg-red-100 text-red-800 border-red-300">critical</span>
+                                <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Complete</button>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                                <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">4</div>
+                                <div class="flex-1">
+                                    <div class="font-medium text-gray-900">Post-discharge follow-up calls (8 patients)</div>
+                                    <div class="text-sm text-gray-600">Due: Today • 60 min</div>
+                                </div>
+                                <span class="px-3 py-1 rounded-full text-xs font-medium border bg-orange-100 text-orange-800 border-orange-300">high</span>
+                                <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Complete</button>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                                <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">5</div>
+                                <div class="flex-1">
+                                    <div class="font-medium text-gray-900">CGM training completion report due</div>
+                                    <div class="text-sm text-gray-600">Due: Today • 20 min</div>
+                                </div>
+                                <span class="px-3 py-1 rounded-full text-xs font-medium border bg-orange-100 text-orange-800 border-orange-300">high</span>
+                                <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Complete</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <h3 class="font-semibold text-lg mb-4">Quality Metrics At-a-Glance</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                            <div class="text-center p-3 rounded-lg border-2 border-gray-200">
+                                <div class="text-xs text-gray-600 mb-1">Diabetic A1C</div>
+                                <div class="text-2xl font-bold text-red-600">68%</div>
+                                <div class="text-xs text-gray-500">Target: 80%</div>
+                            </div>
+                            <div class="text-center p-3 rounded-lg border-2 border-gray-200">
+                                <div class="text-xs text-gray-600 mb-1">Post-Discharge</div>
+                                <div class="text-2xl font-bold text-blue-600">85%</div>
+                                <div class="text-xs text-gray-500">Target: 90%</div>
+                            </div>
+                            <div class="text-center p-3 rounded-lg border-2 border-gray-200">
+                                <div class="text-xs text-gray-600 mb-1">Med Adherence</div>
+                                <div class="text-2xl font-bold text-red-600">72%</div>
+                                <div class="text-xs text-gray-500">Target: 85%</div>
+                            </div>
+                            <div class="text-center p-3 rounded-lg border-2 border-gray-200">
+                                <div class="text-xs text-gray-600 mb-1">Preventive Care</div>
+                                <div class="text-2xl font-bold text-green-600">91%</div>
+                                <div class="text-xs text-gray-500">Target: 90%</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Workload Status -->
-            <div class="bg-white rounded-lg shadow p-6 mb-6">
-                <h3 class="font-semibold text-lg mb-4">Your Workload Status</h3>
-                <div class="flex items-center gap-4">
-                    <div class="flex-1">
-                        <div class="flex justify-between mb-2">
-                            <span class="text-sm text-gray-600">Estimated workload vs available time</span>
-                            <span class="text-sm font-medium">36% of day</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-3">
-                            <div class="h-3 rounded-full bg-orange-500" style="width: 36%"></div>
+            <div id="content-tasks" class="tab-content hidden">
+                <div class="space-y-6">
+                    <div class="bg-white rounded-lg shadow p-4">
+                        <div class="flex gap-4 flex-wrap">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Timeframe</label>
+                                <div class="flex gap-2">
+                                    <button onclick="filterTimeframe('today')" id="filter-today" class="filter-btn px-4 py-2 rounded-lg text-sm font-medium bg-blue-600 text-white">Today</button>
+                                    <button onclick="filterTimeframe('week')" id="filter-week" class="filter-btn px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 text-gray-700">This Week</button>
+                                    <button onclick="filterTimeframe('all')" id="filter-all" class="filter-btn px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 text-gray-700">All</button>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Priority</label>
+                                <div class="flex gap-2">
+                                    <button onclick="filterPriority('all')" id="priority-all" class="priority-btn px-4 py-2 rounded-lg text-sm font-medium bg-blue-600 text-white">All</button>
+                                    <button onclick="filterPriority('critical')" id="priority-critical" class="priority-btn px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 text-gray-700">Critical</button>
+                                    <button onclick="filterPriority('high')" id="priority-high" class="priority-btn px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 text-gray-700">High</button>
+                                    <button onclick="filterPriority('medium')" id="priority-medium" class="priority-btn px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 text-gray-700">Medium</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="text-right">
-                        <div class="text-sm text-gray-600">Burnout Risk</div>
-                        <div class="text-2xl font-bold text-orange-600">3/5</div>
+                    <div class="bg-white rounded-lg shadow">
+                        <div class="p-4 border-b border-gray-200">
+                            <h3 class="font-semibold text-lg">Priority Queue (8 tasks)</h3>
+                            <p class="text-sm text-gray-600">Automatically sorted by urgency, impact, and due date</p>
+                        </div>
+                        <div class="divide-y divide-gray-200">
+                            <div class="p-4"><div class="flex items-start gap-4"><div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">1</div><div class="flex-1"><h4 class="font-medium text-gray-900 mb-1">Diabetic A1C outreach - 15 patients overdue</h4><div class="flex gap-4 text-sm text-gray-600"><span>Due: 2026-01-16</span><span>Time: 45 min</span><span>Impact: high</span></div></div><span class="px-3 py-1 rounded-full text-xs font-medium border bg-red-100 text-red-800 border-red-300">critical</span><button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Complete</button></div></div>
+                            <div class="p-4"><div class="flex items-start gap-4"><div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">2</div><div class="flex-1"><h4 class="font-medium text-gray-900 mb-1">Medication prior authorizations pending (12)</h4><div class="flex gap-4 text-sm text-gray-600"><span>Due: 2026-01-16</span><span>Time: 90 min</span><span>Impact: high</span></div></div><span class="px-3 py-1 rounded-full text-xs font-medium border bg-red-100 text-red-800 border-red-300">critical</span><button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Complete</button></div></div>
+                            <div class="p-4"><div class="flex items-start gap-4"><div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">3</div><div class="flex-1"><h4 class="font-medium text-gray-900 mb-1">PM shift coverage gap - 1 RN needed</h4><div class="flex gap-4 text-sm text-gray-600"><span>Due: 2026-01-16</span><span>Time: 20 min</span><span>Impact: critical</span></div></div><span class="px-3 py-1 rounded-full text-xs font-medium border bg-red-100 text-red-800 border-red-300">critical</span><button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Complete</button></div></div>
+                            <div class="p-4"><div class="flex items-start gap-4"><div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">4</div><div class="flex-1"><h4 class="font-medium text-gray-900 mb-1">Post-discharge follow-up calls (8 patients)</h4><div class="flex gap-4 text-sm text-gray-600"><span>Due: 2026-01-16</span><span>Time: 60 min</span><span>Impact: high</span></div></div><span class="px-3 py-1 rounded-full text-xs font-medium border bg-orange-100 text-orange-800 border-orange-300">high</span><button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Complete</button></div></div>
+                            <div class="p-4"><div class="flex items-start gap-4"><div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">5</div><div class="flex-1"><h4 class="font-medium text-gray-900 mb-1">2 call-outs for tomorrow - find coverage</h4><div class="flex gap-4 text-sm text-gray-600"><span>Due: 2026-01-17</span><span>Time: 30 min</span><span>Impact: high</span></div></div><span class="px-3 py-1 rounded-full text-xs font-medium border bg-orange-100 text-orange-800 border-orange-300">high</span><button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Complete</button></div></div>
+                            <div class="p-4"><div class="flex items-start gap-4"><div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">6</div><div class="flex-1"><h4 class="font-medium text-gray-900 mb-1">Weekly huddle preparation</h4><div class="flex gap-4 text-sm text-gray-600"><span>Due: 2026-01-17</span><span>Time: 45 min</span><span>Impact: medium</span></div></div><span class="px-3 py-1 rounded-full text-xs font-medium border bg-yellow-100 text-yellow-800 border-yellow-300">medium</span><button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Complete</button></div></div>
+                            <div class="p-4"><div class="flex items-start gap-4"><div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">7</div><div class="flex-1"><h4 class="font-medium text-gray-900 mb-1">CGM training completion report due</h4><div class="flex gap-4 text-sm text-gray-600"><span>Due: 2026-01-16</span><span>Time: 20 min</span><span>Impact: medium</span></div></div><span class="px-3 py-1 rounded-full text-xs font-medium border bg-orange-100 text-orange-800 border-orange-300">high</span><button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Complete</button></div></div>
+                            <div class="p-4"><div class="flex items-start gap-4"><div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">8</div><div class="flex-1"><h4 class="font-medium text-gray-900 mb-1">RSV vaccine workflow rollout communication</h4><div class="flex gap-4 text-sm text-gray-600"><span>Due: 2026-01-17</span><span>Time: 40 min</span><span>Impact: high</span></div></div><span class="px-3 py-1 rounded-full text-xs font-medium border bg-orange-100 text-orange-800 border-orange-300">high</span><button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Complete</button></div></div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Top 5 Priorities -->
-            <div class="bg-white rounded-lg shadow p-6 mb-6">
-                <h3 class="font-semibold text-lg mb-4">Your Top 5 Priorities Right Now</h3>
-                <div class="space-y-3" id="taskList">
-                    <!-- Task 1 -->
-                    <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">1</div>
-                        <div class="flex-1">
-                            <div class="font-medium text-gray-900">Diabetic A1C outreach - 15 patients overdue</div>
-                            <div class="text-sm text-gray-600">Due: Today • 45 min</div>
-                        </div>
-                        <span class="px-3 py-1 rounded-full text-xs font-medium border bg-red-100 text-red-800 border-red-300">critical</span>
-                        <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm transition">Complete</button>
-                    </div>
-
-                    <!-- Task 2 -->
-                    <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">2</div>
-                        <div class="flex-1">
-                            <div class="font-medium text-gray-900">Medication prior authorizations pending (12)</div>
-                            <div class="text-sm text-gray-600">Due: Today • 90 min</div>
-                        </div>
-                        <span class="px-3 py-1 rounded-full text-xs font-medium border bg-red-100 text-red-800 border-red-300">critical</span>
-                        <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm transition">Complete</button>
-                    </div>
-
-                    <!-- Task 3 -->
-                    <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">3</div>
-                        <div class="flex-1">
-                            <div class="font-medium text-gray-900">PM shift coverage gap - 1 RN needed</div>
-                            <div class="text-sm text-gray-600">Due: Today • 20 min</div>
-                        </div>
-                        <span class="px-3 py-1 rounded-full text-xs font-medium border bg-red-100 text-red-800 border-red-300">critical</span>
-                        <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm transition">Complete</button>
-                    </div>
-
-                    <!-- Task 4 -->
-                    <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">4</div>
-                        <div class="flex-1">
-                            <div class="font-medium text-gray-900">Post-discharge follow-up calls (8 patients)</div>
-                            <div class="text-sm text-gray-600">Due: Today • 60 min</div>
-                        </div>
-                        <span class="px-3 py-1 rounded-full text-xs font-medium border bg-orange-100 text-orange-800 border-orange-300">high</span>
-                        <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm transition">Complete</button>
-                    </div>
-
-                    <!-- Task 5 -->
-                    <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">5</div>
-                        <div class="flex-1">
-                            <div class="font-medium text-gray-900">CGM training completion report due</div>
-                            <div class="text-sm text-gray-600">Due: Today • 20 min</div>
-                        </div>
-                        <span class="px-3 py-1 rounded-full text-xs font-medium border bg-orange-100 text-orange-800 border-orange-300">high</span>
-                        <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm transition">Complete</button>
+            <div id="content-metrics" class="tab-content hidden">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="font-semibold text-lg mb-4">Consolidated Quality Metrics</h3>
+                    <p class="text-sm text-gray-600 mb-6">All your metrics in one place - no more jumping between Tableau, PowerBI, and Insight</p>
+                    <div class="space-y-4">
+                        <div class="border-2 border-gray-200 rounded-lg p-4"><div class="flex items-center justify-between mb-3"><h4 class="font-medium text-gray-900">Diabetic A1C Testing</h4><span class="px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">Needs Attention</span></div><div class="flex items-center gap-4"><div class="flex-1"><div class="flex justify-between text-sm mb-2"><span class="text-gray-600">Current: 68%</span><span class="text-gray-600">Target: 80%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="h-3 rounded-full bg-red-500" style="width: 68%"></div></div></div><div class="text-right"><div class="text-xs text-gray-500">Trend</div><div class="text-sm font-medium text-red-600">↓ Declining</div></div></div></div>
+                        <div class="border-2 border-gray-200 rounded-lg p-4"><div class="flex items-center justify-between mb-3"><h4 class="font-medium text-gray-900">Post-Discharge Follow-up</h4><span class="px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">On Track</span></div><div class="flex items-center gap-4"><div class="flex-1"><div class="flex justify-between text-sm mb-2"><span class="text-gray-600">Current: 85%</span><span class="text-gray-600">Target: 90%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="h-3 rounded-full bg-blue-500" style="width: 85%"></div></div></div><div class="text-right"><div class="text-xs text-gray-500">Trend</div><div class="text-sm font-medium text-green-600">↑ Improving</div></div></div></div>
+                        <div class="border-2 border-gray-200 rounded-lg p-4"><div class="flex items-center justify-between mb-3"><h4 class="font-medium text-gray-900">Medication Adherence</h4><span class="px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">Needs Attention</span></div><div class="flex items-center gap-4"><div class="flex-1"><div class="flex justify-between text-sm mb-2"><span class="text-gray-600">Current: 72%</span><span class="text-gray-600">Target: 85%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="h-3 rounded-full bg-red-500" style="width: 72%"></div></div></div><div class="text-right"><div class="text-xs text-gray-500">Trend</div><div class="text-sm font-medium text-gray-600">→ Stable</div></div></div></div>
+                        <div class="border-2 border-gray-200 rounded-lg p-4"><div class="flex items-center justify-between mb-3"><h4 class="font-medium text-gray-900">Preventive Care Completion</h4><span class="px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">Exceeds Target</span></div><div class="flex items-center gap-4"><div class="flex-1"><div class="flex justify-between text-sm mb-2"><span class="text-gray-600">Current: 91%</span><span class="text-gray-600">Target: 90%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="h-3 rounded-full bg-green-500" style="width: 91%"></div></div></div><div class="text-right"><div class="text-xs text-gray-500">Trend</div><div class="text-sm font-medium text-green-600">↑ Improving</div></div></div></div>
+                        <div class="border-2 border-gray-200 rounded-lg p-4"><div class="flex items-center justify-between mb-3"><h4 class="font-medium text-gray-900">In-basket Response Time</h4><span class="px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">Needs Attention</span></div><div class="flex items-center gap-4"><div class="flex-1"><div class="flex justify-between text-sm mb-2"><span class="text-gray-600">Current: 78%</span><span class="text-gray-600">Target: 95%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="h-3 rounded-full bg-red-500" style="width: 78%"></div></div></div><div class="text-right"><div class="text-xs text-gray-500">Trend</div><div class="text-sm font-medium text-red-600">↓ Declining</div></div></div></div>
                     </div>
                 </div>
             </div>
-
-            <!-- Quality Metrics -->
-            <div class="bg-white rounded-lg shadow p-6">
-                <h3 class="font-semibold text-lg mb-4">Quality Metrics At-a-Glance</h3>
-                <p class="text-sm text-gray-600 mb-4">Consolidated view - No more jumping between Tableau, PowerBI, and Insight</p>
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <div class="text-center p-4 rounded-lg border-2 border-gray-200">
-                        <div class="text-xs text-gray-600 mb-1">Diabetic A1C Testing</div>
-                        <div class="text-2xl font-bold text-red-600">68%</div>
-                        <div class="text-xs text-gray-500 mt-1">Target: 80%</div>
-                        <div class="text-xs text-red-600 font-medium mt-1">↓ Needs Attention</div>
-                    </div>
-                    <div class="text-center p-4 rounded-lg border-2 border-gray-200">
-                        <div class="text-xs text-gray-600 mb-1">Post-Discharge Follow-up</div>
-                        <div class="text-2xl font-bold text-blue-600">85%</div>
-                        <div class="text-xs text-gray-500 mt-1">Target: 90%</div>
-                        <div class="text-xs text-blue-600 font-medium mt-1">↑ On Track</div>
-                    </div>
-                    <div class="text-center p-4 rounded-lg border-2 border-gray-200">
-                        <div class="text-xs text-gray-600 mb-1">Medication Adherence</div>
-                        <div class="text-2xl font-bold text-red-600">72%</div>
-                        <div class="text-xs text-gray-500 mt-1">Target: 85%</div>
-                        <div class="text-xs text-red-600 font-medium mt-1">↓ Needs Attention</div>
-                    </div>
-                    <div class="text-center p-4 rounded-lg border-2 border-gray-200">
-                        <div class="text-xs text-gray-600 mb-1">Preventive Care</div>
-                        <div class="text-2xl font-bold text-green-600">91%</div>
-                        <div class="text-xs text-gray-500 mt-1">Target: 90%</div>
-                        <div class="text-xs text-green-600 font-medium mt-1">↑ Exceeds Target</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Footer -->
-            <div class="mt-8 text-center text-sm text-gray-500">
-                <p>NexoNurse - Prototype v1.0 | Powered by your feedback</p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function completeTask(button) {
-            const taskDiv = button.closest('.bg-gray-50');
-            taskDiv.style.opacity = '0.5';
-            taskDiv.style.transition = 'opacity 0.3s';
-            button.innerHTML = '✓ Completed';
-            button.disabled = true;
-            button.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-            button.classList.add('bg-green-600', 'cursor-not-allowed');
-            
-            // Show a subtle success message
-            const successMsg = document.createElement('div');
-            successMsg.className = 'fixed top-4 right-4 bg-green-100 border-2 border-green-400 text-green-800 px-6 py-3 rounded-lg shadow-lg';
-            successMsg.innerHTML = '✓ Task marked as complete!';
-            document.body.appendChild(successMsg);
-            
-            setTimeout(() => {
-                successMsg.style.opacity = '0';
-                successMsg.style.transition = 'opacity 0.5s';
-                setTimeout(() => successMsg.remove(), 500);
-            }, 2000);
-        }
-    </script>
+            <div id="content-staffing" class="tab-content hidden">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="font-semibold text-lg mb-4">Today's Staffing Snapshot</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                        <div class="text-center p-4 bg-blue-50 rounded-lg"><div class="text-2xl font-bold text-blue-600">12</div><div class="text-sm text-gray-600">Scheduled</div></div>
+                        <div class="text-center p-4 bg-red-50 rounded-lg"><div class="text-2xl font-bold text-red-600">2</div><div class="text-sm text-gray-600">Call-Outs</div></div>
+                        <div class="text-center p-4 bg-orange-50 rounded-lg"><div class="text-2xl font-bold text-orange-600">10</div><div class="text-sm text-gray-600">Actual Coverage</div></div>
+<div class="text-center p-4 bg-green-50 rounded-lg"><div class="text-2xl font-bold text-green-600">11</div><div class="text-sm text-gray-600">Needed</div></div>
+</div>
+<div class="p-4 rounded-lg mb-6 bg-red-50 border-2 border-red-300">
+<div class="flex items-center gap-3">
+<svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+<div>
+<div class="font-semibold text-red-900">Staffing Alert: Short 1 RN</div>
+<div class="text-sm text-gray-700">Immediate action needed - Check float pool or adjust schedules</div>
+</div>
+</div>
+</div>
+<h4 class="font-medium mb-3">Coverage by Shift</h4>
+<div class="space-y-3">
+<div class="flex items-center gap-4 p-3 bg-gray-50 rounded-lg"><div class="w-32 font-medium text-gray-900">AM (7a-3p)</div><div class="flex-1"><div class="flex justify-between text-sm mb-1"><span>Coverage: 3/4</span><span class="text-red-600 font-medium">Short 1</span></div><div class="w-full bg-gray-200 rounded-full h-2"><div class="h-2 rounded-full bg-red-500" style="width: 75%"></div></div></div></div>
+<div class="flex items-center gap-4 p-3 bg-gray-50 rounded-lg"><div class="w-32 font-medium text-gray-900">PM (3p-11p)</div><div class="flex-1"><div class="flex justify-between text-sm mb-1"><span>Coverage: 3/4</span><span class="text-red-600 font-medium">Short 1</span></div><div class="w-full bg-gray-200 rounded-full h-2"><div class="h-2 rounded-full bg-red-500" style="width: 75%"></div></div></div></div>
+<div class="flex items-center gap-4 p-3 bg-gray-50 rounded-lg"><div class="w-32 font-medium text-gray-900">Night (11p-7a)</div><div class="flex-1"><div class="flex justify-between text-sm mb-1"><span>Coverage: 4/3</span><span class="text-green-600 font-medium">OK</span></div><div class="w-full bg-gray-200 rounded-full h-2"><div class="h-2 rounded-full bg-green-500" style="width: 100%"></div></div></div></div>
+</div>
+</div>
+</div>
+<div id="content-initiatives" class="tab-content hidden">
+<div class="bg-white rounded-lg shadow p-6">
+<h3 class="font-semibold text-lg mb-4">Current Initiatives and Rollouts</h3>
+<p class="text-sm text-gray-600 mb-6">Your weekly rollup - no more surprises on day 2 of a 13-week journey</p>
+<div class="space-y-3">
+<div class="border-2 border-gray-200 rounded-lg p-4"><div class="flex items-center justify-between mb-2"><h4 class="font-medium text-gray-900">13-Week Service Journey</h4><span class="px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">Behind</span></div><div class="text-sm text-gray-600">Started: 2026-01-14</div></div>
+<div class="border-2 border-gray-200 rounded-lg p-4"><div class="flex items-center justify-between mb-2"><h4 class="font-medium text-gray-900">Strong Start Program</h4><span class="px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">On Track</span></div><div class="text-sm text-gray-600">Started: 2026-01-10</div></div>
+<div class="border-2 border-gray-200 rounded-lg p-4"><div class="flex items-center justify-between mb-2"><h4 class="font-medium text-gray-900">RSV Vaccine Rollout</h4><span class="px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">On Track</span></div><div class="text-sm text-gray-600">Started: 2026-01-08</div></div>
+<div class="border-2 border-gray-200 rounded-lg p-4"><div class="flex items-center justify-between mb-2"><h4 class="font-medium text-gray-900">CGM Training Completion</h4><span class="px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">Not Started</span></div><div class="text-sm text-gray-600">Due: 2026-01-20</div></div>
+<div class="border-2 border-gray-200 rounded-lg p-4"><div class="flex items-center justify-between mb-2"><h4 class="font-medium text-gray-900">Q1 Quality Symposium Prep</h4><span class="px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">Not Started</span></div><div class="text-sm text-gray-600">Due: 2026-02-01</div></div>
+</div>
+</div>
+</div>
+<div class="mt-8 text-center text-sm text-gray-500">
+<p>NexoNurse - Prototype v1.0 | Powered by your feedback</p>
+</div>
+</div>
+</div>
+<script>
+function showTab(t){document.querySelectorAll('.tab-content').forEach(c=>c.classList.add('hidden'));document.querySelectorAll('.tab-button').forEach(b=>{b.classList.remove('border-blue-600','text-blue-600','font-medium');b.classList.add('border-transparent','text-gray-600')});document.getElementById('content-'+t).classList.remove('hidden');const a=document.getElementById('tab-'+t);a.classList.add('border-blue-600','text-blue-600','font-medium');a.classList.remove('border-transparent','text-gray-600')}
+function filterTimeframe(t){document.querySelectorAll('.filter-btn').forEach(b=>{b.classList.remove('bg-blue-600','text-white');b.classList.add('bg-gray-100','text-gray-700')});document.getElementById('filter-'+t).classList.add('bg-blue-600','text-white');document.getElementById('filter-'+t).classList.remove('bg-gray-100','text-gray-700')}
+function filterPriority(p){document.querySelectorAll('.priority-btn').forEach(b=>{b.classList.remove('bg-blue-600','text-white');b.classList.add('bg-gray-100','text-gray-700')});document.getElementById('priority-'+p).classList.add('bg-blue-600','text-white');document.getElementById('priority-'+p).classList.remove('bg-gray-100','text-gray-700')}
+function completeTask(b){const d=b.closest('.bg-gray-50')||b.closest('.p-4');if(d){d.style.opacity='0.5';d.style.transition='opacity 0.3s'}b.innerHTML='✓ Completed';b.disabled=true;b.classList.remove('bg-blue-600','hover:bg-blue-700');b.classList.add('bg-green-600','cursor-not-allowed');const m=document.createElement('div');m.className='fixed top-4 right-4 bg-green-100 border-2 border-green-400 text-green-800 px-6 py-3 rounded-lg shadow-lg z-50';m.innerHTML='✓ Task marked as complete!';document.body.appendChild(m);setTimeout(()=>{m.style.opacity='0';m.style.transition='opacity 0.5s';setTimeout(()=>m.remove(),500)},2000)}
+</script>
 </body>
 </html>
+````
