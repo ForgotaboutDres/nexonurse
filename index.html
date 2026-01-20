@@ -16,18 +16,19 @@
             <div class="flex gap-2 mb-6 border-b border-gray-200 overflow-x-auto">
                 <button onclick="showTab('dashboard')" id="tab-dashboard" class="tab-button px-4 py-2 border-b-2 border-blue-600 text-blue-600 font-medium whitespace-nowrap">Dashboard</button>
                 <button onclick="showTab('tasks')" id="tab-tasks" class="tab-button px-4 py-2 border-b-2 border-transparent text-gray-600 whitespace-nowrap">Priority Queue</button>
+                <button onclick="showTab('inventory')" id="tab-inventory" class="tab-button px-4 py-2 border-b-2 border-transparent text-gray-600 whitespace-nowrap">Inventory</button>
                 <button onclick="showTab('metrics')" id="tab-metrics" class="tab-button px-4 py-2 border-b-2 border-transparent text-gray-600 whitespace-nowrap">Quality Metrics</button>
                 <button onclick="showTab('staffing')" id="tab-staffing" class="tab-button px-4 py-2 border-b-2 border-transparent text-gray-600 whitespace-nowrap">Staffing</button>
                 <button onclick="showTab('initiatives')" id="tab-initiatives" class="tab-button px-4 py-2 border-b-2 border-transparent text-gray-600 whitespace-nowrap">Initiatives</button>
             </div>
             <div id="content-dashboard" class="tab-content">
                 <div class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                         <div class="bg-red-50 border-2 border-red-300 rounded-lg p-4">
                             <div class="flex items-center gap-3">
                                 <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
                                 <div>
-                                    <div class="font-semibold text-red-900">Critical Tasks Today</div>
+                                    <div class="font-semibold text-red-900">Critical Tasks</div>
                                     <div class="text-2xl font-bold text-red-600">3</div>
                                 </div>
                             </div>
@@ -47,6 +48,15 @@
                                 <div>
                                     <div class="font-semibold text-blue-900">Workload Today</div>
                                     <div class="text-2xl font-bold text-blue-600">175 min</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-4">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
+                                <div>
+                                    <div class="font-semibold text-yellow-900">Expiring Items</div>
+                                    <div class="text-2xl font-bold text-yellow-600">7</div>
                                 </div>
                             </div>
                         </div>
@@ -187,26 +197,251 @@
                     </div>
                 </div>
             </div>
-            <div id="content-metrics" class="tab-content hidden">
-                <div class="bg-white rounded-lg shadow p-6">
-                    <h3 class="font-semibold text-lg mb-4">Consolidated Quality Metrics</h3>
-                    <p class="text-sm text-gray-600 mb-6">All your metrics in one place - no more jumping between Tableau, PowerBI, and Insight</p>
-                    <div class="space-y-4">
-                        <div class="border-2 border-gray-200 rounded-lg p-4"><div class="flex items-center justify-between mb-3"><h4 class="font-medium text-gray-900">Diabetic A1C Testing</h4><span class="px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">Needs Attention</span></div><div class="flex items-center gap-4"><div class="flex-1"><div class="flex justify-between text-sm mb-2"><span class="text-gray-600">Current: 68%</span><span class="text-gray-600">Target: 80%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="h-3 rounded-full bg-red-500" style="width: 68%"></div></div></div><div class="text-right"><div class="text-xs text-gray-500">Trend</div><div class="text-sm font-medium text-red-600">↓ Declining</div></div></div></div>
-                        <div class="border-2 border-gray-200 rounded-lg p-4"><div class="flex items-center justify-between mb-3"><h4 class="font-medium text-gray-900">Post-Discharge Follow-up</h4><span class="px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">On Track</span></div><div class="flex items-center gap-4"><div class="flex-1"><div class="flex justify-between text-sm mb-2"><span class="text-gray-600">Current: 85%</span><span class="text-gray-600">Target: 90%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="h-3 rounded-full bg-blue-500" style="width: 85%"></div></div></div><div class="text-right"><div class="text-xs text-gray-500">Trend</div><div class="text-sm font-medium text-green-600">↑ Improving</div></div></div></div>
-                        <div class="border-2 border-gray-200 rounded-lg p-4"><div class="flex items-center justify-between mb-3"><h4 class="font-medium text-gray-900">Medication Adherence</h4><span class="px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">Needs Attention</span></div><div class="flex items-center gap-4"><div class="flex-1"><div class="flex justify-between text-sm mb-2"><span class="text-gray-600">Current: 72%</span><span class="text-gray-600">Target: 85%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="h-3 rounded-full bg-red-500" style="width: 72%"></div></div></div><div class="text-right"><div class="text-xs text-gray-500">Trend</div><div class="text-sm font-medium text-gray-600">→ Stable</div></div></div></div>
-                        <div class="border-2 border-gray-200 rounded-lg p-4"><div class="flex items-center justify-between mb-3"><h4 class="font-medium text-gray-900">Preventive Care Completion</h4><span class="px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">Exceeds Target</span></div><div class="flex items-center gap-4"><div class="flex-1"><div class="flex justify-between text-sm mb-2"><span class="text-gray-600">Current: 91%</span><span class="text-gray-600">Target: 90%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="h-3 rounded-full bg-green-500" style="width: 91%"></div></div></div><div class="text-right"><div class="text-xs text-gray-500">Trend</div><div class="text-sm font-medium text-green-600">↑ Improving</div></div></div></div>
-                        <div class="border-2 border-gray-200 rounded-lg p-4"><div class="flex items-center justify-between mb-3"><h4 class="font-medium text-gray-900">In-basket Response Time</h4><span class="px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">Needs Attention</span></div><div class="flex items-center gap-4"><div class="flex-1"><div class="flex justify-between text-sm mb-2"><span class="text-gray-600">Current: 78%</span><span class="text-gray-600">Target: 95%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="h-3 rounded-full bg-red-500" style="width: 78%"></div></div></div><div class="text-right"><div class="text-xs text-gray-500">Trend</div><div class="text-sm font-medium text-red-600">↓ Declining</div></div></div></div>
+            <div id="content-inventory" class="tab-content hidden">
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-red-50 border-2 border-red-300 rounded-lg p-4">
+                            <div class="text-center">
+                                <div class="text-sm font-medium text-red-900 mb-1">Expired</div>
+                                <div class="text-3xl font-bold text-red-600">3</div>
+                                <div class="text-xs text-red-700 mt-1">Items</div>
+                            </div>
+                        </div>
+                        <div class="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-4">
+                            <div class="text-center">
+                                <div class="text-sm font-medium text-yellow-900 mb-1">Expiring This Week</div>
+                                <div class="text-3xl font-bold text-yellow-600">7</div>
+                                <div class="text-xs text-yellow-700 mt-1">Items</div>
+                            </div>
+                        </div>
+                        <div class="bg-blue-50 border-2 border-blue-300 rounded-lg p-4">
+                            <div class="text-center">
+                                <div class="text-sm font-medium text-blue-900 mb-1">Total Items</div>
+                                <div class="text-3xl font-bold text-blue-600">47</div>
+                                <div class="text-xs text-blue-700 mt-1">Tracked</div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div id="content-staffing" class="tab-content hidden">
-                <div class="bg-white rounded-lg shadow p-6">
-                    <h3 class="font-semibold text-lg mb-4">Today's Staffing Snapshot</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                        <div class="text-center p-4 bg-blue-50 rounded-lg"><div class="text-2xl font-bold text-blue-600">12</div><div class="text-sm text-gray-600">Scheduled</div></div>
-                        <div class="text-center p-4 bg-red-50 rounded-lg"><div class="text-2xl font-bold text-red-600">2</div><div class="text-sm text-gray-600">Call-Outs</div></div>
-                        <div class="text-center p-4 bg-orange-50 rounded-lg"><div class="text-2xl font-bold text-orange-600">10</div><div class="text-sm text-gray-600">Actual Coverage</div></div>
+                    <div class="bg-white rounded-lg shadow">
+                        <div class="p-4 border-b border-gray-200">
+                            <h3 class="font-semibold text-lg">Medications</h3>
+                            <p class="text-sm text-gray-600">Expiring medications requiring action</p>
+                        </div>
+                        <div class="divide-y divide-gray-200">
+                            <div class="p-4">
+                                <div class="flex items-start gap-4">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-12 h-12 rounded-lg bg-red-100 flex items-center justify-center">
+                                            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <h4 class="font-medium text-gray-900">Flu Vaccine (Quadrivalent)</h4>
+                                            <span class="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">Expired</span>
+                                        </div>
+                                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-600 mt-2">
+                                            <div><span class="font-medium">Quantity:</span> 15 doses</div>
+                                            <div><span class="font-medium">Exp Date:</span> 2026-01-15</div>
+                                            <div><span class="font-medium">Location:</span> Fridge A-2</div>
+                                            <div><span class="font-medium">Last Order:</span> 2025-09-12</div>
+                                        </div>
+                                        <div class="flex gap-2 mt-3">
+                                            <button onclick="handleInventory(this,'reorder')" class="px-3 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700">Reorder</button>
+                                            <button onclick="handleInventory(this,'discard')" class="px-3 py-1.5 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700">Discard</button>
+                                            <button onclick="handleInventory(this,'review')" class="px-3 py-1.5 bg-gray-600 text-white text-sm rounded-lg hover:bg-gray-700">Mark Reviewed</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-start gap-4">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-12 h-12 rounded-lg bg-yellow-100 flex items-center justify-center">
+                                            <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center gap-2 mb-Jan 191">
+<h4 class="font-medium text-gray-900">Insulin Glargine 100units/mL</h4>
+<span class="px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">Expires in 3 days</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-600 mt-2">
+<div><span class="font-medium">Quantity:</span> 8 vials</div>
+<div><span class="font-medium">Exp Date:</span> 2026-01-19</div>
+<div><span class="font-medium">Location:</span> Fridge B-1</div>
+<div><span class="font-medium">Last Order:</span> 2025-11-20</div>
+</div>
+<div class="flex gap-2 mt-3">
+<button onclick="handleInventory(this,'reorder')" class="px-3 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700">Reorder</button>
+<button onclick="handleInventory(this,'discard')" class="px-3 py-1.5 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700">Discard</button>
+<button onclick="handleInventory(this,'review')" class="px-3 py-1.5 bg-gray-600 text-white text-sm rounded-lg hover:bg-gray-700">Mark Reviewed</button>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4">
+<div class="flex items-start gap-4">
+<div class="flex-shrink-0">
+<div class="w-12 h-12 rounded-lg bg-yellow-100 flex items-center justify-center">
+<svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<h4 class="font-medium text-gray-900">RSV Vaccine (Abrysvo)</h4>
+<span class="px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">Expires in 5 days</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-600 mt-2">
+<div><span class="font-medium">Quantity:</span> 12 doses</div>
+<div><span class="font-medium">Exp Date:</span> 2026-01-21</div>
+<div><span class="font-medium">Location:</span> Fridge A-3</div>
+<div><span class="font-medium">Last Order:</span> 2025-12-15</div>
+</div>
+<div class="flex gap-2 mt-3">
+<button onclick="handleInventory(this,'reorder')" class="px-3 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700">Reorder</button>
+<button onclick="handleInventory(this,'discard')" class="px-3 py-1.5 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700">Discard</button>
+<button onclick="handleInventory(this,'review')" class="px-3 py-1.5 bg-gray-600 text-white text-sm rounded-lg hover:bg-gray-700">Mark Reviewed</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow">
+<div class="p-4 border-b border-gray-200">
+<h3 class="font-semibold text-lg">Medical Supplies</h3>
+<p class="text-sm text-gray-600">Expiring supplies requiring action</p>
+</div>
+<div class="divide-y divide-gray-200">
+<div class="p-4">
+<div class="flex items-start gap-4">
+<div class="flex-shrink-0">
+<div class="w-12 h-12 rounded-lg bg-red-100 flex items-center justify-center">
+<svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<h4 class="font-medium text-gray-900">Sterile Gloves (Size M)</h4>
+<span class="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">Expired</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-600 mt-2">
+<div><span class="font-medium">Quantity:</span> 2 boxes (50/box)</div>
+<div><span class="font-medium">Exp Date:</span> 2026-01-10</div>
+<div><span class="font-medium">Location:</span> Supply Room 3A</div>
+<div><span class="font-medium">Last Order:</span> 2024-10-05</div>
+</div>
+<div class="flex gap-2 mt-3">
+<button onclick="handleInventory(this,'reorder')" class="px-3 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700">Reorder</button>
+<button onclick="handleInventory(this,'discard')" class="px-3 py-1.5 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700">Discard</button>
+<button onclick="handleInventory(this,'review')" class="px-3 py-1.5 bg-gray-600 text-white text-sm rounded-lg hover:bg-gray-700">Mark Reviewed</button>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4">
+<div class="flex items-start gap-4">
+<div class="flex-shrink-0">
+<div class="w-12 h-12 rounded-lg bg-yellow-100 flex items-center justify-center">
+<svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<h4 class="font-medium text-gray-900">Glucose Test Strips</h4>
+<span class="px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">Expires in 4 days</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-600 mt-2">
+<div><span class="font-medium">Quantity:</span> 3 bottles (50/bottle)</div>
+<div><span class="font-medium">Exp Date:</span> 2026-01-20</div>
+<div><span class="font-medium">Location:</span> Exam Room Cabinet</div>
+<div><span class="font-medium">Last Order:</span> 2025-07-22</div>
+</div>
+<div class="flex gap-2 mt-3">
+<button onclick="handleInventory(this,'reorder')" class="px-3 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700">Reorder</button>
+<button onclick="handleInventory(this,'discard')" class="px-3 py-1.5 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700">Discard</button>
+<button onclick="handleInventory(this,'review')" class="px-3 py-1.5 bg-gray-600 text-white text-sm rounded-lg hover:bg-gray-700">Mark Reviewed</button>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4">
+<div class="flex items-start gap-4">
+<div class="flex-shrink-0">
+<div class="w-12 h-12 rounded-lg bg-red-100 flex items-center justify-center">
+<svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<h4 class="font-medium text-gray-900">Alcohol Prep Pads</h4>
+<span class="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">Expired</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-600 mt-2">
+<div><span class="font-medium">Quantity:</span> 5 boxes (200/box)</div>
+<div><span class="font-medium">Exp Date:</span> 2026-01-12</div>
+<div><span class="font-medium">Location:</span> Supply Room 1B</div>
+<div><span class="font-medium">Last Order:</span> 2024-08-18</div>
+</div>
+<div class="flex gap-2 mt-3">
+<button onclick="handleInventory(this,'reorder')" class="px-3 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700">Reorder</button>
+<button onclick="handleInventory(this,'discard')" class="px-3 py-1.5 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700">Discard</button>
+<button onclick="handleInventory(this,'review')" class="px-3 py-1.5 bg-gray-600 text-white text-sm rounded-lg hover:bg-gray-700">Mark Reviewed</button>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4">
+<div class="flex items-start gap-4">
+<div class="flex-shrink-0">
+<div class="w-12 h-12 rounded-lg bg-yellow-100 flex items-center justify-center">
+<svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<h4 class="font-medium text-gray-900">Bandages (Assorted Sizes)</h4>
+<span class="px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">Expires in 6 days</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-600 mt-2">
+<div><span class="font-medium">Quantity:</span> 8 boxes (100/box)</div>
+<div><span class="font-medium">Exp Date:</span> 2026-01-22</div>
+<div><span class="font-medium">Location:</span> Supply Room 2C</div>
+<div><span class="font-medium">Last Order:</span> 2025-04-30</div>
+</div>
+<div class="flex gap-2 mt-3">
+<button onclick="handleInventory(this,'reorder')" class="px-3 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700">Reorder</button>
+<button onclick="handleInventory(this,'discard')" class="px-3 py-1.5 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700">Discard</button>
+<button onclick="handleInventory(this,'review')" class="px-3 py-1.5 bg-gray-600 text-white text-sm rounded-lg hover:bg-gray-700">Mark Reviewed</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="content-metrics" class="tab-content hidden">
+<div class="bg-white rounded-lg shadow p-6">
+<h3 class="font-semibold text-lg mb-4">Consolidated Quality Metrics</h3>
+<p class="text-sm text-gray-600 mb-6">All your metrics in one place - no more jumping between Tableau, PowerBI, and Insight</p>
+<div class="space-y-4">
+<div class="border-2 border-gray-200 rounded-lg p-4"><div class="flex items-center justify-between mb-3"><h4 class="font-medium text-gray-900">Diabetic A1C Testing</h4><span class="px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">Needs Attention</span></div><div class="flex items-center gap-4"><div class="flex-1"><div class="flex justify-between text-sm mb-2"><span class="text-gray-600">Current: 68%</span><span class="text-gray-600">Target: 80%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="h-3 rounded-full bg-red-500" style="width: 68%"></div></div></div><div class="text-right"><div class="text-xs text-gray-500">Trend</div><div class="text-sm font-medium text-red-600">↓ Declining</div></div></div></div>
+<div class="border-2 border-gray-200 rounded-lg p-4"><div class="flex items-center justify-between mb-3"><h4 class="font-medium text-gray-900">Post-Discharge Follow-up</h4><span class="px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">On Track</span></div><div class="flex items-center gap-4"><div class="flex-1"><div class="flex justify-between text-sm mb-2"><span class="text-gray-600">Current: 85%</span><span class="text-gray-600">Target: 90%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="h-3 rounded-full bg-blue-500" style="width: 85%"></div></div></div><div class="text-right"><div class="text-xs text-gray-500">Trend</div><div class="text-sm font-medium text-green-600">↑ Improving</div></div></div></div>
+<div class="border-2 border-gray-200 rounded-lg p-4"><div class="flex items-center justify-between mb-3"><h4 class="font-medium text-gray-900">Medication Adherence</h4><span class="px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">Needs Attention</span></div><div class="flex items-center gap-4"><div class="flex-1"><div class="flex justify-between text-sm mb-2"><span class="text-gray-600">Current: 72%</span><span class="text-gray-600">Target: 85%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="h-3 rounded-full bg-red-500" style="width: 72%"></div></div></div><div class="text-right"><div class="text-xs text-gray-500">Trend</div><div class="text-sm font-medium text-gray-600">→ Stable</div></div></div></div>
+<div class="border-2 border-gray-200 rounded-lg p-4"><div class="flex items-center justify-between mb-3"><h4 class="font-medium text-gray-900">Preventive Care Completion</h4><span class="px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">Exceeds Target</span></div><div class="flex items-center gap-4"><div class="flex-1"><div class="flex justify-between text-sm mb-2"><span class="text-gray-600">Current: 91%</span><span class="text-gray-600">Target: 90%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="h-3 rounded-full bg-green-500" style="width: 91%"></div></div></div><div class="text-right"><div class="text-xs text-gray-500">Trend</div><div class="text-sm font-medium text-green-600">↑ Improving</div></div></div></div>
+<div class="border-2 border-gray-200 rounded-lg p-4"><div class="flex items-center justify-between mb-3"><h4 class="font-medium text-gray-900">In-basket Response Time</h4><span class="px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">Needs Attention</span></div><div class="flex items-center gap-4"><div class="flex-1"><div class="flex justify-between text-sm mb-2"><span class="text-gray-600">Current: 78%</span><span class="text-gray-600">Target: 95%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="h-3 rounded-full bg-red-500" style="width: 78%"></div></div></div><div class="text-right"><div class="text-xs text-gray-500">Trend</div><div class="text-sm font-medium text-red-600">↓ Declining</div></div></div></div>
+</div>
+</div>
+</div>
+<div id="content-staffing" class="tab-content hidden">
+<div class="bg-white rounded-lg shadow p-6">
+<h3 class="font-semibold text-lg mb-4">Today's Staffing Snapshot</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+<div class="text-center p-4 bg-blue-50 rounded-lg"><div class="text-2xl font-bold text-blue-600">12</div><div class="text-sm text-gray-600">Scheduled</div></div>
+<div class="text-center p-4 bg-red-50 rounded-lg"><div class="text-2xl font-bold text-red-600">2</div><div class="text-sm text-gray-600">Call-Outs</div></div>
+<div class="text-center p-4 bg-orange-50 rounded-lg"><div class="text-2xl font-bold text-orange-600">10</div><div class="text-sm text-gray-600">Actual Coverage</div></div>
 <div class="text-center p-4 bg-green-50 rounded-lg"><div class="text-2xl font-bold text-green-600">11</div><div class="text-sm text-gray-600">Needed</div></div>
 </div>
 <div class="p-4 rounded-lg mb-6 bg-red-50 border-2 border-red-300">
@@ -240,7 +475,7 @@
 </div>
 </div>
 <div class="mt-8 text-center text-sm text-gray-500">
-<p>NexoNurse - Prototype v1.0 | Powered by your feedback</p>
+<p>NexoNurse - Prototype v1.1 | Powered by your feedback</p>
 </div>
 </div>
 </div>
@@ -248,7 +483,8 @@
 function showTab(t){document.querySelectorAll('.tab-content').forEach(c=>c.classList.add('hidden'));document.querySelectorAll('.tab-button').forEach(b=>{b.classList.remove('border-blue-600','text-blue-600','font-medium');b.classList.add('border-transparent','text-gray-600')});document.getElementById('content-'+t).classList.remove('hidden');const a=document.getElementById('tab-'+t);a.classList.add('border-blue-600','text-blue-600','font-medium');a.classList.remove('border-transparent','text-gray-600')}
 function filterTimeframe(t){document.querySelectorAll('.filter-btn').forEach(b=>{b.classList.remove('bg-blue-600','text-white');b.classList.add('bg-gray-100','text-gray-700')});document.getElementById('filter-'+t).classList.add('bg-blue-600','text-white');document.getElementById('filter-'+t).classList.remove('bg-gray-100','text-gray-700')}
 function filterPriority(p){document.querySelectorAll('.priority-btn').forEach(b=>{b.classList.remove('bg-blue-600','text-white');b.classList.add('bg-gray-100','text-gray-700')});document.getElementById('priority-'+p).classList.add('bg-blue-600','text-white');document.getElementById('priority-'+p).classList.remove('bg-gray-100','text-gray-700')}
-function completeTask(b){const d=b.closest('.bg-gray-50')||b.closest('.p-4');if(d){d.style.opacity='0.5';d.style.transition='opacity 0.3s'}b.innerHTML='✓ Completed';b.disabled=true;b.classList.remove('bg-blue-600','hover:bg-blue-700');b.classList.add('bg-green-600','cursor-not-allowed');const m=document.createElement('div');m.className='fixed top-4 right-4 bg-green-100 border-2 border-green-400 text-green-800 px-6 py-3 rounded-lg shadow-lg z-50';m.innerHTML='✓ Task marked as complete!';document.body.appendChild(m);setTimeout(()=>{m.style.opacity='0';m.style.transition='opacity 0.5s';setTimeout(()=>m.remove(),500)},2000)}
+function completeTask(b){const d=b.closest('.bg-gray-50')||b.closest('.p-4');if(d){d.style.opacity='0.5';d.style.transition='opacity 0.3s'}b.innerHTML='✓ Completed';b.disabled=true;b.classList.remove('bg-blue-600','hover:bg-blue-700');b.classList.add('bg-green-600','cursor-not-allowed');const m=document.createElement('div');m.className='fixed top-4 right-4 bg-2:01 PMgreen-100 border-2 border-green-400 text-green-800 px-6 py-3 rounded-lg shadow-lg z-50';m.innerHTML='✓ Task marked as complete!';document.body.appendChild(m);setTimeout(()=>{m.style.opacity='0';m.style.transition='opacity 0.5s';setTimeout(()=>m.remove(),500)},2000)}
+function handleInventory(b,action){const item=b.closest('.p-4');const itemName=item.querySelector('h4').textContent;let msg='';let color='green';if(action==='reorder'){msg=✓ ${itemName} added to reorder queue;color='blue'}else if(action==='discard'){msg=✓ ${itemName} marked for disposal;color='red'}else{msg=✓ ${itemName} marked as reviewed;color='gray'}item.style.opacity='0.5';item.style.transition='opacity 0.3s';b.disabled=true;b.classList.add('cursor-not-allowed','opacity-50');const m=document.createElement('div');m.className=fixed top-4 right-4 bg-${color}-100 border-2 border-${color}-400 text-${color}-800 px-6 py-3 rounded-lg shadow-lg z-50;m.innerHTML=msg;document.body.appendChild(m);setTimeout(()=>{m.style.opacity='0';m.style.transition='opacity 0.5s';setTimeout(()=>m.remove(),500)},2000)}
 </script>
 </body>
 </html>
