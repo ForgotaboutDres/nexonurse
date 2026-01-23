@@ -3,668 +3,1418 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexoNurse - Clinical Command Center</title>
+    <title>NexoNurse - Clinical Operations Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50">
-    <div class="min-h-screen p-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-6">
-                <h1 class="text-3xl font-bold text-gray-900">NexoNurse Command Center</h1>
-                <p class="text-gray-600 mt-1">Your unified workspace - One place for everything</p>
+    <div class="min-h-screen">
+        <!-- Header -->
+        <div class="bg-white border-b border-gray-200 sticky top-0 z-10">
+            <div class="max-w-7xl mx-auto px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900">NexoNurse</h1>
+                        <p class="text-sm text-gray-600">Clinical Operations Hub</p>
+                    </div>
+                    <div class="text-right text-sm text-gray-600">
+                        <div class="font-medium">Columbia Medical Center - 4 West</div>
+                        <div>Week of January 20, 2026</div>
+                    </div>
+                </div>
             </div>
+        </div>
 
-            <div class="mb-6 bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
-                <div class="flex items-start gap-3">
-                    <svg class="w-5 h-5 text-blue-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+        <div class="max-w-7xl mx-auto p-6">
+            
+            <!-- Leadership Weekly Priorities -->
+            <div class="mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 rounded-r-lg p-6 shadow-sm">
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                    </div>
                     <div class="flex-1">
-                        <div class="flex items-center gap-2 mb-1">
-                            <h3 class="font-semibold text-blue-900">Message from Supervisor</h3>
-                            <span class="text-xs text-blue-700">Posted 2 hours ago</span>
+                        <div class="flex items-center gap-3 mb-2">
+                            <h2 class="text-lg font-semibold text-gray-900">This Week's Priorities</h2>
+                            <span class="text-xs text-gray-600">From Director Martinez • Posted Monday 8:00 AM</span>
                         </div>
-                        <p class="text-sm text-blue-800"><strong>Recommendation for Morning Huddle:</strong> Please prioritize diabetic A1C outreach today - we're at 68% and need to reach 75% by end of week. Also, reminder that the RSV vaccines in Fridge A-3 expire in 5 days. Let's discuss coverage gaps for next week during huddle. Great work on preventive care - we exceeded our target! 🎉</p>
+                        <div class="space-y-3 text-gray-800">
+                            <p class="leading-relaxed"><strong>Primary Focus:</strong> Diabetic care outreach needs our attention this week. We're at 68% A1C completion and need to reach 75% by Friday. Let's aim for 15-20 patient contacts per day across the team.</p>
+                            <p class="leading-relaxed"><strong>Urgent Reminder:</strong> RSV vaccines in Fridge A-3 expire on January 25th (Friday). Please prioritize administration or coordinate transfer with pharmacy by Wednesday EOD.</p>
+                            <p class="leading-relaxed"><strong>Staffing Note:</strong> Next week's schedule has some gaps for PM shifts (Tue/Thu). If you're available for extra shifts or know someone in the float pool, please coordinate with scheduling by Thursday.</p>
+                            <p class="text-sm text-blue-700 mt-3">Great work last week on preventive care screenings - we exceeded our target by 12%! 🎉</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="flex gap-2 mb-6 border-b border-gray-200 overflow-x-auto">
-                <button onclick="showTab('dashboard')" id="tab-dashboard" class="tab-button px-4 py-2 border-b-2 border-blue-600 text-blue-600 font-medium whitespace-nowrap">Dashboard</button>
-                <button onclick="showTab('favorites')" id="tab-favorites" class="tab-button px-4 py-2 border-b-2 border-transparent text-gray-600 whitespace-nowrap">Favorites</button>
-                <button onclick="showTab('tasks')" id="tab-tasks" class="tab-button px-4 py-2 border-b-2 border-transparent text-gray-600 whitespace-nowrap">Priority Queue</button>
-                <button onclick="showTab('inventory')" id="tab-inventory" class="tab-button px-4 py-2 border-b-2 border-transparent text-gray-600 whitespace-nowrap">Inventory</button>
-                <button onclick="showTab('metrics')" id="tab-metrics" class="tab-button px-4 py-2 border-b-2 border-transparent text-gray-600 whitespace-nowrap">Quality Metrics</button>
-                <button onclick="showTab('staffing')" id="tab-staffing" class="tab-button px-4 py-2 border-b-2 border-transparent text-gray-600 whitespace-nowrap">Staffing</button>
+            <!-- Tab Navigation -->
+            <div class="flex gap-2 mb-6 border-b border-gray-200 overflow-x-auto bg-white rounded-t-lg px-2 pt-2">
+                <button onclick="showTab('overview')" id="tab-overview" class="tab-button px-4 py-3 border-b-2 border-blue-600 text-blue-600 font-medium whitespace-nowrap">Overview</button>
+                <button onclick="showTab('planning')" id="tab-planning" class="tab-button px-4 py-3 border-b-2 border-transparent text-gray-600 whitespace-nowrap">Weekly Planning</button>
+                <button onclick="showTab('staffing')" id="tab-staffing" class="tab-button px-4 py-3 border-b-2 border-transparent text-gray-600 whitespace-nowrap">Staffing</button>
+                <button onclick="showTab('compliance')" id="tab-compliance" class="tab-button px-4 py-3 border-b-2 border-transparent text-gray-600 whitespace-nowrap">Monthly Checklist</button>
+                <button onclick="showTab('quality')" id="tab-quality" class="tab-button px-4 py-3 border-b-2 border-transparent text-gray-600 whitespace-nowrap">Quality Metrics</button>
+                <button onclick="showTab('links')" id="tab-links" class="tab-button px-4 py-3 border-b-2 border-transparent text-gray-600 whitespace-nowrap">Quick Links</button>
             </div>
 
-            <div id="content-dashboard" class="tab-content">
-                <div class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                        <div class="bg-red-50 border-2 border-red-300 rounded-lg p-4">
-                            <div class="flex items-center gap-3">
-                                <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-                                <div>
-                                    <div class="font-semibold text-red-900">Critical Tasks</div>
-                                    <div class="text-2xl font-bold text-red-600">3</div>
-                                </div>
+            <!-- OVERVIEW TAB -->
+            <div id="content-overview" class="tab-content">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Critical Items Card -->
+                    <div class="bg-white rounded-lg shadow border-t-4 border-red-500 p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-900">Needs Attention</h3>
+                                <p class="text-sm text-gray-600">Immediate items</p>
                             </div>
                         </div>
-                        <div class="bg-orange-50 border-2 border-orange-300 rounded-lg p-4">
-                            <div class="flex items-center gap-3">
-                                <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                                <div>
-                                    <div class="font-semibold text-orange-900">Staffing Gaps</div>
-                                    <div class="text-2xl font-bold text-orange-600">Short 1 RN</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-blue-50 border-2 border-blue-300 rounded-lg p-4">
-                            <div class="flex items-center gap-3">
-                                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                <div>
-                                    <div class="font-semibold text-blue-900">Workload Today</div>
-                                    <div class="text-2xl font-bold text-blue-600">175 min</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-4">
-                            <div class="flex items-center gap-3">
-                                <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
-                                <div>
-                                    <div class="font-semibold text-yellow-900">Expiring Items</div>
-                                    <div class="text-2xl font-bold text-yellow-600">7</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow p-6">
-                        <h3 class="font-semibold text-lg mb-4">Your Workload Status</h3>
-                        <div class="flex items-center gap-4">
-                            <div class="flex-1">
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-sm text-gray-600">Estimated workload vs available time</span>
-                                    <span class="text-sm font-medium">36% of day</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-3">
-                                    <div class="h-3 rounded-full bg-orange-500" style="width: 36%"></div>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-sm text-gray-600">Burnout Risk</div>
-                                <div class="text-2xl font-bold text-orange-600">3/5</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow p-6">
-                        <h3 class="font-semibold text-lg mb-4">Your Top 5 Priorities Right Now</h3>
                         <div class="space-y-3">
-                            <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                                <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">1</div>
-                                <div class="flex-1">
-                                    <div class="font-medium text-gray-900">Diabetic A1C outreach - 15 patients overdue</div>
-                                    <div class="text-sm text-gray-600">Due: Today • 45 min</div>
-                                </div>
-                                <span class="px-3 py-1 rounded-full text-xs font-medium border bg-red-100 text-red-800 border-red-300">critical</span>
-                                <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Complete</button>
+                            <div class="border-l-4 border-red-500 pl-3 py-2">
+                                <div class="font-medium text-gray-900">Staffing Gap</div>
+                                <div class="text-sm text-gray-600">PM shift short 1 RN tomorrow</div>
+                                <button onclick="showTab('staffing')" class="text-xs text-blue-600 hover:text-blue-700 mt-1">View details →</button>
                             </div>
-                            <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                                <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">2</div>
-                                <div class="flex-1">
-                                    <div class="font-medium text-gray-900">Medication adherence authorizations pending (12)</div>
-                                    <div class="text-sm text-gray-600">Due: Today • 90 min</div>
-                                </div>
-                                <span class="px-3 py-1 rounded-full text-xs font-medium border bg-red-100 text-red-800 border-red-300">critical</span>
-                                <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Complete</button>
+                            <div class="border-l-4 border-orange-500 pl-3 py-2">
+                                <div class="font-medium text-gray-900">Expiring Soon</div>
+                                <div class="text-sm text-gray-600">7 items expire this week</div>
+                                <button onclick="showTab('compliance')" class="text-xs text-blue-600 hover:text-blue-700 mt-1">View checklist →</button>
                             </div>
-                            <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                                <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">3</div>
-                                <div class="flex-1">
-                                    <div class="font-medium text-gray-900">PM shift coverage gap - 1 RN needed</div>
-                                    <div class="text-sm text-gray-600">Due: Today • 20 min</div>
-                                </div>
-                                <span class="px-3 py-1 rounded-full text-xs font-medium border bg-red-100 text-red-800 border-red-300">critical</span>
-                                <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Complete</button>
+                            <div class="border-l-4 border-yellow-500 pl-3 py-2">
+                                <div class="font-medium text-gray-900">Pending Actions</div>
+                                <div class="text-sm text-gray-600">3 monthly checks due this week</div>
+                                <button onclick="showTab('compliance')" class="text-xs text-blue-600 hover:text-blue-700 mt-1">View checklist →</button>
                             </div>
-                            <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                                <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">4</div>
-                                <div class="flex-1">
-                                    <div class="font-medium text-gray-900">Post-discharge follow-up calls (8 patients)</div>
-                                    <div class="text-sm text-gray-600">Due: Today • 60 min</div>
+                        </div>
+                    </div>
+
+                    <!-- Top Actions Card -->
+                    <div class="bg-white rounded-lg shadow border-t-4 border-blue-500 p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                                    </svg>
                                 </div>
-                                <span class="px-3 py-1 rounded-full text-xs font-medium border bg-orange-100 text-orange-800 border-orange-300">high</span>
-                                <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Complete</button>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900">Your Focus Today</h3>
+                                    <p class="text-sm text-gray-600">Suggested priorities</p>
+                                </div>
                             </div>
-                            <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                                <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">5</div>
-                                <div class="flex-1">
-                                    <div class="font-medium text-gray-900">Team STEPPS training completion report due</div>
-                                    <div class="text-sm text-gray-600">Due: Today • 20 min</div>
+                            <button onclick="showTab('planning')" class="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1">
+                                <span>View Calendar</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
+                                <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">1</div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="font-medium text-gray-900 text-sm">Diabetic A1C Outreach</div>
+                                    <div class="text-xs text-gray-600 mt-0.5">15 patients overdue • ~45 min</div>
                                 </div>
-                                <span class="px-3 py-1 rounded-full text-xs font-medium border bg-orange-100 text-orange-800 border-orange-300">high</span>
-                                <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Complete</button>
+                            </div>
+                            <div class="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+                                <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">2</div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="font-medium text-gray-900 text-sm">Med Adherence Follow-ups</div>
+                                    <div class="text-xs text-gray-600 mt-0.5">12 pending authorizations • ~90 min</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+                                <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">3</div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="font-medium text-gray-900 text-sm">Post-Discharge Calls</div>
+                                    <div class="text-xs text-gray-600 mt-0.5">8 patients • ~60 min</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-gray-200">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-gray-500 italic">Estimated total: 3.25 hours of focused work</span>
+                                <span class="text-blue-600 font-medium">18 of 24 tasks completed this week (75%)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Integration Status Card -->
+                    <div class="bg-white rounded-lg shadow border-t-4 border-purple-500 p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-900">What This Shows</h3>
+                                <p class="text-sm text-gray-600">Data sources</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-sm">
+                            <div>
+                                <div class="font-medium text-gray-900 mb-1">Aggregated Here:</div>
+                                <ul class="text-gray-600 space-y-1 ml-4">
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-green-600 mt-0.5">✓</span>
+                                        <span>Weekly priorities (leadership messages)</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-green-600 mt-0.5">✓</span>
+                                        <span>Monthly compliance checklist</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-green-600 mt-0.5">✓</span>
+                                        <span>Staffing summary with context</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="pt-2 border-t border-gray-200">
+                                <div class="font-medium text-gray-900 mb-1">Linked to Source:</div>
+                                <ul class="text-gray-600 space-y-1 ml-4">
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <span>Detailed quality metrics (Tableau)</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <span>Staffing schedules (Insight)</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <span>Patient records (EPIC)</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-gray-200 text-xs text-gray-500 italic">
+                            This tool reduces the number of places you need to check, not replace everything.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WEEKLY PLANNING & CALENDAR TAB -->
+            <div id="content-planning" class="tab-content hidden">
+                <div class="space-y-6">
+                    
+                    <!-- Week Selector & Stats -->
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                            <div>
+                                <h3 class="font-semibold text-lg text-gray-900">Weekly Planning & Progress</h3>
+                                <p class="text-sm text-gray-600 mt-1">Scroll through weeks to plan and track completion</p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="flex items-center gap-2 border border-gray-300 rounded-lg p-1">
+                                    <button onclick="jumpToWeek('prev-month')" class="px-3 py-1 text-xs text-gray-600 hover:bg-gray-100 rounded transition">
+                                        ← Previous Month
+                                    </button>
+                                    <button onclick="jumpToWeek('today')" class="px-3 py-1 text-xs bg-blue-600 text-white rounded transition hover:bg-blue-700">
+                                        Today
+                                    </button>
+                                    <button onclick="jumpToWeek('next-month')" class="px-3 py-1 text-xs text-gray-600 hover:bg-gray-100 rounded transition">
+                                        Next Month →
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Enhanced Week Navigation -->
+                        <div class="flex items-center justify-center gap-4 mb-6 pb-6 border-b border-gray-200">
+                            <button onclick="changeWeek(-1)" class="p-3 hover:bg-gray-100 rounded-lg transition group">
+                                <svg class="w-6 h-6 text-gray-600 group-hover:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+                            <div class="text-center min-w-[280px]">
+                                <div class="text-2xl font-bold text-gray-900" id="current-week">Week of Jan 20 - 26, 2026</div>
+                                <div class="text-sm text-gray-500 mt-1">Week 4 of January • Current Week</div>
+                            </div>
+                            <button onclick="changeWeek(1)" class="p-3 hover:bg-gray-100 rounded-lg transition group">
+                                <svg class="w-6 h-6 text-gray-600 group-hover:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Weekly Stats -->
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                            <div class="text-center p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                <div class="text-2xl font-bold text-blue-600">24</div>
+                                <div class="text-sm text-gray-600">Planned Tasks</div>
+                            </div>
+                            <div class="text-center p-4 bg-green-50 rounded-lg border border-green-200">
+                                <div class="text-2xl font-bold text-green-600">18</div>
+                                <div class="text-sm text-gray-600">Completed</div>
+                            </div>
+                            <div class="text-center p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                                <div class="text-2xl font-bold text-yellow-600">4</div>
+                                <div class="text-sm text-gray-600">In Progress</div>
+                            </div>
+                            <div class="text-center p-4 bg-gray-50 rounded-lg border border-gray-200">
+                                <div class="text-2xl font-bold text-gray-900">75%</div>
+                                <div class="text-sm text-gray-600">Completion Rate</div>
+                            </div>
+                        </div>
+
+                        <!-- Completion Trend Chart -->
+                        <div class="border-t border-gray-200 pt-6">
+                            <h4 class="font-medium text-gray-900 mb-2">Recent Performance</h4>
+                            <p class="text-sm text-gray-600 mb-4">Track completion rates as you scroll through weeks</p>
+                            <div class="space-y-3">
+                                <div>
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-sm text-gray-600">Week of Dec 23</span>
+                                        <span class="text-sm font-medium text-gray-900">68% (17/25)</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-3">
+                                        <div class="h-3 rounded-full bg-yellow-500" style="width: 68%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-sm text-gray-600">Week of Dec 30</span>
+                                        <span class="text-sm font-medium text-gray-900">82% (23/28)</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-3">
+                                        <div class="h-3 rounded-full bg-green-500" style="width: 82%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-sm text-gray-600">Week of Jan 6</span>
+                                        <span class="text-sm font-medium text-gray-900">71% (20/28)</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-3">
+                                        <div class="h-3 rounded-full bg-yellow-500" style="width: 71%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-sm text-gray-600">Week of Jan 13</span>
+                                        <span class="text-sm font-medium text-gray-900">88% (22/25)</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-3">
+                                        <div class="h-3 rounded-full bg-green-500" style="width: 88%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-sm text-gray-600 font-medium">Week of Jan 20 (Current)</span>
+                                        <span class="text-sm font-medium text-blue-600">75% (18/24)</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-3">
+                                        <div class="h-3 rounded-full bg-blue-500" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Calendar View -->
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-semibold text-lg text-gray-900">This Week's Schedule</h3>
+                            <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-medium">
+                                + Add Task
+                            </button>
+                        </div>
+
+                        <!-- Calendar Grid -->
+                        <div class="grid grid-cols-1 lg:grid-cols-7 gap-3">
+                            
+                            <!-- Monday -->
+                            <div class="border border-gray-200 rounded-lg">
+                                <div class="bg-gray-50 px-3 py-2 border-b border-gray-200">
+                                    <div class="font-medium text-gray-900">Monday</div>
+                                    <div class="text-xs text-gray-500">Jan 20</div>
+                                </div>
+                                <div class="p-2 space-y-2 min-h-[200px]">
+                                    <div class="p-2 bg-green-50 border-l-4 border-green-500 rounded text-xs cursor-pointer hover:shadow-sm transition">
+                                        <div class="flex items-start gap-1 mb-1">
+                                            <input type="checkbox" checked class="mt-0.5">
+                                            <div class="flex-1">
+                                                <div class="font-medium text-gray-900">Morning Huddle</div>
+                                                <div class="text-gray-600">8:00 AM • 15 min</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-2 bg-green-50 border-l-4 border-green-500 rounded text-xs cursor-pointer hover:shadow-sm transition">
+                                        <div class="flex items-start gap-1 mb-1">
+                                            <input type="checkbox" checked class="mt-0.5">
+                                            <div class="flex-1">
+                                                <div class="font-medium text-gray-900">A1C Outreach</div>
+                                                <div class="text-gray-600">10:00 AM • 45 min</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-2 bg-green-50 border-l-4 border-green-500 rounded text-xs cursor-pointer hover:shadow-sm transition">
+                                        <div class="flex items-start gap-1 mb-1">
+                                            <input type="checkbox" checked class="mt-0.5">
+                                            <div class="flex-1">
+                                                <div class="font-medium text-gray-900">Chart Review</div>
+                                                <div class="text-gray-600">2:00 PM • 30 min</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tuesday -->
+                            <div class="border border-gray-200 rounded-lg">
+                                <div class="bg-gray-50 px-3 py-2 border-b border-gray-200">
+                                    <div class="font-medium text-gray-900">Tuesday</div>
+                                    <div class="text-xs text-gray-500">Jan 21</div>
+                                </div>
+                                <div class="p-2 space-y-2 min-h-[200px]">
+                                    <div class="p-2 bg-green-50 border-l-4 border-green-500 rounded text-xs cursor-pointer hover:shadow-sm transition">
+                                        <div class="flex items-start gap-1 mb-1">
+                                            <input type="checkbox" checked class="mt-0.5">
+                                            <div class="flex-1">
+                                                <div class="font-medium text-gray-900">Med Adherence Calls</div>
+                                                <div class="text-gray-600">9:00 AM • 90 min</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-2 bg-yellow-50 border-l-4 border-yellow-500 rounded text-xs cursor-pointer hover:shadow-sm transition">
+                                        <div class="flex items-start gap-1 mb-1">
+                                            <input type="checkbox" class="mt-0.5">
+                                            <div class="flex-1">
+                                                <div class="font-medium text-gray-900">Staffing Coordination</div>
+                                                <div class="text-gray-600">1:00 PM • 20 min</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-2 bg-green-50 border-l-4 border-green-500 rounded text-xs cursor-pointer hover:shadow-sm transition">
+                                        <div class="flex items-start gap-1 mb-1">
+                                            <input type="checkbox" checked class="mt-0.5">
+                                            <div class="flex-1">
+                                                <div class="font-medium text-gray-900">Safety Rounds</div>
+                                                <div class="text-gray-600">3:00 PM • 30 min</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Wednesday -->
+                            <div class="border border-gray-200 rounded-lg">
+                                <div class="bg-gray-50 px-3 py-2 border-b border-gray-200">
+                                    <div class="font-medium text-gray-900">Wednesday</div>
+                                    <div class="text-xs text-gray-500">Jan 22</div>
+                                </div>
+                                <div class="p-2 space-y-2 min-h-[200px]">
+                                    <div class="p-2 bg-green-50 border-l-4 border-green-500 rounded text-xs cursor-pointer hover:shadow-sm transition">
+                                        <div class="flex items-start gap-1 mb-1">
+                                            <input type="checkbox" checked class="mt-0.5">
+                                            <div class="flex-1">
+                                                <div class="font-medium text-gray-900">Team Meeting</div>
+                                                <div class="text-gray-600">10:00 AM • 60 min</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-2 bg-yellow-50 border-l-4 border-yellow-500 rounded text-xs cursor-pointer hover:shadow-sm transition">
+                                        <div class="flex items-start gap-1 mb-1">
+                                            <input type="checkbox" class="mt-0.5">
+                                            <div class="flex-1">
+                                                <div class="font-medium text-gray-900">RSV Vaccine Transfer</div>
+                                                <div class="text-gray-600">2:00 PM • 30 min</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-2 bg-green-50 border-l-4 border-green-500 rounded text-xs cursor-pointer hover:shadow-sm transition">
+                                        <div class="flex items-start gap-1 mb-1">
+                                            <input type="checkbox" checked class="mt-0.5">
+                                            <div class="flex-1">
+                                                <div class="font-medium text-gray-900">Discharge Follow-ups</div>
+                                                <div class="text-gray-600">11:00 AM • 60 min</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Thursday -->
+                            <div class="border border-gray-200 rounded-lg">
+                                <div class="bg-gray-50 px-3 py-2 border-b border-gray-200">
+                                    <div class="font-medium text-gray-900">Thursday</div>
+                                    <div class="text-xs text-gray-500">Jan 23</div>
+                                </div>
+                                <div class="p-2 space-y-2 min-h-[200px]">
+                                    <div class="p-2 bg-yellow-50 border-l-4 border-yellow-500 rounded text-xs cursor-pointer hover:shadow-sm transition">
+                                        <div class="flex items-start gap-1 mb-1">
+                                            <input type="checkbox" class="mt-0.5">
+                                            <div class="flex-1">
+                                                <div class="font-medium text-gray-900">A1C Outreach</div>
+                                                <div class="text-gray-600">9:00 AM • 45 min</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-2 bg-green-50 border-l-4 border-green-500 rounded text-xs cursor-pointer hover:shadow-sm transition">
+                                        <div class="flex items-start gap-1 mb-1">
+                                            <input type="checkbox" checked class="mt-0.5">
+                                            <div class="flex-1">
+                                                <div class="font-medium text-gray-900">Quality Review</div>
+                                                <div class="text-gray-600">1:00 PM • 30 min</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-2 bg-yellow-50 border-l-4 border-yellow-500 rounded text-xs cursor-pointer hover:shadow-sm transition">
+                                        <div class="flex items-start gap-1 mb-1">
+                                            <input type="checkbox" class="mt-0.5">
+                                            <div class="flex-1">
+                                                <div class="font-medium text-gray-900">STEPPS Report</div>
+                                                <div class="text-gray-600">3:00 PM • 20 min</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Friday -->
+                            <div class="border border-blue-200 rounded-lg bg-blue-50">
+                                <div class="bg-blue-100 px-3 py-2 border-b border-blue-200">
+                                    <div class="font-medium text-gray-900">Friday</div>
+                                    <div class="text-xs text-blue-700">Jan 24 • Today</div>
+                                </div>
+                                <div class="p-2 space-y-2 min-h-[200px]">
+                                    <div class="p-2 bg-white border-l-4 border-blue-500 rounded text-xs cursor-pointer hover:shadow-sm transition">
+                                        <div class="flex items-start gap-1 mb-1">
+                                            <input type="checkbox" class="mt-0.5">
+                                            <div class="flex-1">
+                                                <div class="font-medium text-gray-900">Morning Huddle</div>
+                                                <div class="text-gray-600">8:00 AM • 15 min</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-2 bg-white border-l-4 border-blue-500 rounded text-xs cursor-pointer hover:shadow-sm transition">
+                                        <div class="flex items-start gap-1 mb-1">
+                                            <input type="checkbox" class="mt-0.5">
+                                            <div class="flex-1">
+                                                <div class="font-medium text-gray-900">A1C Outreach Final Push</div>
+                                                <div class="text-gray-600">10:00 AM • 60 min</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-2 bg-white border-l-4 border-red-500 rounded text-xs cursor-pointer hover:shadow-sm transition">
+                                        <div class="flex items-start gap-1 mb-1">
+                                            <input type="checkbox" class="mt-0.5">
+                                            <div class="flex-1">
+                                                <div class="font-medium text-gray-900">RSV Vaccine Deadline</div>
+                                                <div class="text-gray-600 flex items-center gap-1">
+                                                    <span>5:00 PM • Critical</span>
+                                                    <svg class="w-3 h-3 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-2 bg-white border-l-4 border-blue-500 rounded text-xs cursor-pointer hover:shadow-sm transition">
+                                        <div class="flex items-start gap-1 mb-1">
+                                            <input type="checkbox" class="mt-0.5">
+                                            <div class="flex-1">
+                                                <div class="font-medium text-gray-900">Week Review</div>
+                                                <div class="text-gray-600">4:00 PM • 30 min</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Saturday -->
+                            <div class="border border-gray-200 rounded-lg opacity-50">
+                                <div class="bg-gray-50 px-3 py-2 border-b border-gray-200">
+                                    <div class="font-medium text-gray-900">Saturday</div>
+                                    <div class="text-xs text-gray-500">Jan 25</div>
+                                </div>
+                                <div class="p-2 space-y-2 min-h-[200px]">
+                                    <div class="text-xs text-gray-400 p-2 text-center">Weekend</div>
+                                </div>
+                            </div>
+
+                            <!-- Sunday -->
+                            <div class="border border-gray-200 rounded-lg opacity-50">
+                                <div class="bg-gray-50 px-3 py-2 border-b border-gray-200">
+                                    <div class="font-medium text-gray-900">Sunday</div>
+                                    <div class="text-xs text-gray-500">Jan 26</div>
+                                </div>
+                                <div class="p-2 space-y-2 min-h-[200px]">
+                                    <div class="text-xs text-gray-400 p-2 text-center">Weekend</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Legend -->
+                        <div class="mt-6 pt-4 border-t border-gray-200 flex items-center gap-6 text-xs">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-green-500 rounded"></div>
+                                <span class="text-gray-600">Completed</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-yellow-500 rounded"></div>
+                                <span class="text-gray-600">Pending</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-blue-500 rounded"></div>
+                                <span class="text-gray-600">Today</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-red-500 rounded"></div>
+                                <span class="text-gray-600">Critical/Deadline</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Outstanding Items Summary -->
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <h3 class="font-semibold text-lg text-gray-900 mb-4">Outstanding Items This Week</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-4 p-3 bg-red-50 border-l-4 border-red-500 rounded-lg">
+                                <input type="checkbox" class="w-5 h-5">
+                                <div class="flex-1">
+                                    <div class="font-medium text-gray-900">RSV Vaccine Coordination - CRITICAL</div>
+                                    <div class="text-sm text-gray-600 mt-1">Expires Friday 5 PM - Must administer or transfer to pharmacy</div>
+                                    <div class="text-xs text-gray-500 mt-1">Due: Jan 24 (Today)</div>
+                                </div>
+                                <span class="px-3 py-1 bg-red-100 text-red-800 text-xs font-medium rounded-full">Today</span>
+                            </div>
+
+                            <div class="flex items-center gap-4 p-3 bg-yellow-50 border-l-4 border-yellow-500 rounded-lg">
+                                <input type="checkbox" class="w-5 h-5">
+                                <div class="flex-1">
+                                    <div class="font-medium text-gray-900">A1C Outreach - Final Push</div>
+                                    <div class="text-sm text-gray-600 mt-1">Need to reach 75% by end of week (currently 68%)</div>
+                                    <div class="text-xs text-gray-500 mt-1">Due: Jan 24 (Today)</div>
+                                </div>
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">Today</span>
+                            </div>
+
+                            <div class="flex items-center gap-4 p-3 bg-yellow-50 border-l-4 border-yellow-500 rounded-lg">
+                                <input type="checkbox" class="w-5 h-5">
+                                <div class="flex-1">
+                                    <div class="font-medium text-gray-900">PM Shift Staffing Coordination</div>
+                                    <div class="text-sm text-gray-600 mt-1">Coordinate with float pool for Tuesday PM coverage</div>
+                                    <div class="text-xs text-gray-500 mt-1">Due: Jan 21 (3 days ago)</div>
+                                </div>
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">Overdue</span>
+                            </div>
+
+                            <div class="flex items-center gap-4 p-3 bg-yellow-50 border-l-4 border-yellow-500 rounded-lg">
+                                <input type="checkbox" class="w-5 h-5">
+                                <div class="flex-1">
+                                    <div class="font-medium text-gray-900">Team STEPPS Training Report</div>
+                                    <div class="text-sm text-gray-600 mt-1">Complete and submit training completion documentation</div>
+                                    <div class="text-xs text-gray-500 mt-1">Due: Jan 23 (Yesterday)</div>
+                                </div>
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">Overdue</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- STAFFING TAB -->
+            <div id="content-staffing" class="tab-content hidden">
+                <div class="space-y-6">
+                    
+                    <!-- Staffing Context Banner -->
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                        <h3 class="font-semibold text-gray-900 mb-3">Staffing Context for This Week</h3>
+                        <div class="space-y-2 text-sm text-gray-700">
+                            <p><strong>Current Situation:</strong> We're running slightly short on PM shift coverage Tuesday and Thursday due to scheduled PTO and one call-out. The AM and Night shifts are adequately covered.</p>
+                            <p><strong>Hot Pool Status:</strong> 3 RNs available in the general float pool. 2 have 4 West experience, 1 is new to the unit but trained in similar specialties.</p>
+                            <p><strong>Looking Ahead:</strong> Next week (Jan 27-31) will be tighter overall. We have 4 scheduled PTOs and flu season typically brings more call-outs. Recommend locking in float coverage early.</p>
+                            <p><strong>What We're Doing:</strong> Scheduling is reaching out to float pool today. If you're interested in picking up extra shifts this week, please respond to the scheduling email by EOD Tuesday.</p>
+                        </div>
+                    </div>
+
+                    <!-- This Week's Snapshot -->
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <h3 class="font-semibold text-lg mb-4">This Week's Staffing Snapshot</h3>
+                        
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                            <div class="text-center p-4 bg-gray-50 rounded-lg border border-gray-200">
+                                <div class="text-3xl font-bold text-gray-900">48</div>
+                                <div class="text-sm text-gray-600 mt-1">Shifts Needed</div>
+                            </div>
+                            <div class="text-center p-4 bg-green-50 rounded-lg border border-green-200">
+                                <div class="text-3xl font-bold text-green-600">44</div>
+                                <div class="text-sm text-gray-600 mt-1">Confirmed</div>
+                            </div>
+                            <div class="text-center p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                                <div class="text-3xl font-bold text-yellow-600">2</div>
+                                <div class="text-sm text-gray-600 mt-1">Float Pool</div>
+                            </div>
+                            <div class="text-center p-4 bg-red-50 rounded-lg border border-red-300">
+                                <div class="text-3xl font-bold text-red-600">2</div>
+                                <div class="text-sm text-gray-600 mt-1">Open Gaps</div>
+                            </div>
+                        </div>
+
+                        <!-- Day by Day Breakdown -->
+                        <h4 class="font-medium mb-3 text-gray-900">Coverage by Day & Shift</h4>
+                        <div class="space-y-3">
+                            <!-- Monday -->
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="font-medium text-gray-900 mb-3">Monday, Jan 20</div>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <div class="text-sm">
+                                        <div class="text-gray-600 mb-1">AM (7a-3p)</div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="h-2 rounded-full bg-green-500" style="width: 100%"></div>
+                                            </div>
+                                            <span class="text-green-600 font-medium text-xs whitespace-nowrap">4/4</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-sm">
+                                        <div class="text-gray-600 mb-1">PM (3p-11p)</div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="h-2 rounded-full bg-green-500" style="width: 100%"></div>
+                                            </div>
+                                            <span class="text-green-600 font-medium text-xs whitespace-nowrap">4/4</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-sm">
+                                        <div class="text-gray-600 mb-1">Night (11p-7a)</div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="h-2 rounded-full bg-green-500" style="width: 100%"></div>
+                                            </div>
+                                            <span class="text-green-600 font-medium text-xs whitespace-nowrap">3/3</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tuesday -->
+                            <div class="border border-red-200 rounded-lg p-4 bg-red-50">
+                                <div class="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                                    <span>Tuesday, Jan 21</span>
+                                    <span class="px-2 py-0.5 bg-red-100 text-red-700 text-xs rounded-full">Gap</span>
+                                </div>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <div class="text-sm">
+                                        <div class="text-gray-600 mb-1">AM (7a-3p)</div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="h-2 rounded-full bg-green-500" style="width: 100%"></div>
+                                            </div>
+                                            <span class="text-green-600 font-medium text-xs whitespace-nowrap">4/4</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-sm">
+                                        <div class="text-gray-600 mb-1">PM (3p-11p)</div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="h-2 rounded-full bg-red-500" style="width: 75%"></div>
+                                            </div>
+                                            <span class="text-red-600 font-medium text-xs whitespace-nowrap">3/4</span>
+                                        </div>
+                                        <div class="text-xs text-red-600 mt-1">1 PTO, float requested</div>
+                                    </div>
+                                    <div class="text-sm">
+                                        <div class="text-gray-600 mb-1">Night (11p-7a)</div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="h-2 rounded-full bg-green-500" style="width: 100%"></div>
+                                            </div>
+                                            <span class="text-green-600 font-medium text-xs whitespace-nowrap">3/3</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Wednesday -->
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="font-medium text-gray-900 mb-3">Wednesday, Jan 22</div>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <div class="text-sm">
+                                        <div class="text-gray-600 mb-1">AM (7a-3p)</div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="h-2 rounded-full bg-green-500" style="width: 100%"></div>
+                                            </div>
+                                            <span class="text-green-600 font-medium text-xs whitespace-nowrap">4/4</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-sm">
+                                        <div class="text-gray-600 mb-1">PM (3p-11p)</div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="h-2 rounded-full bg-green-500" style="width: 100%"></div>
+                                            </div>
+                                            <span class="text-green-600 font-medium text-xs whitespace-nowrap">4/4</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-sm">
+                                        <div class="text-gray-600 mb-1">Night (11p-7a)</div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="h-2 rounded-full bg-green-500" style="width: 100%"></div>
+                                            </div>
+                                            <span class="text-green-600 font-medium text-xs whitespace-nowrap">3/3</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Thursday -->
+                            <div class="border border-red-200 rounded-lg p-4 bg-red-50">
+                                <div class="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                                    <span>Thursday, Jan 23</span>
+                                    <span class="px-2 py-0.5 bg-red-100 text-red-700 text-xs rounded-full">Gap</span>
+                                </div>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <div class="text-sm">
+                                        <div class="text-gray-600 mb-1">AM (7a-3p)</div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="h-2 rounded-full bg-green-500" style="width: 100%"></div>
+                                            </div>
+                                            <span class="text-green-600 font-medium text-xs whitespace-nowrap">4/4</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-sm">
+                                        <div class="text-gray-600 mb-1">PM (3p-11p)</div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="h-2 rounded-full bg-yellow-500" style="width: 75%"></div>
+                                            </div>
+                                            <span class="text-yellow-600 font-medium text-xs whitespace-nowrap">3/4</span>
+                                        </div>
+                                        <div class="text-xs text-yellow-600 mt-1">Float confirmed from pool</div>
+                                    </div>
+                                    <div class="text-sm">
+                                        <div class="text-gray-600 mb-1">Night (11p-7a)</div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="h-2 rounded-full bg-green-500" style="width: 100%"></div>
+                                            </div>
+                                            <span class="text-green-600 font-medium text-xs whitespace-nowrap">3/3</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Friday -->
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="font-medium text-gray-900 mb-3">Friday, Jan 24</div>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <div class="text-sm">
+                                        <div class="text-gray-600 mb-1">AM (7a-3p)</div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="h-2 rounded-full bg-green-500" style="width: 100%"></div>
+                                            </div>
+                                            <span class="text-green-600 font-medium text-xs whitespace-nowrap">4/4</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-sm">
+                                        <div class="text-gray-600 mb-1">PM (3p-11p)</div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="h-2 rounded-full bg-green-500" style="width: 100%"></div>
+                                            </div>
+                                            <span class="text-green-600 font-medium text-xs whitespace-nowrap">4/4</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-sm">
+                                        <div class="text-gray-600 mb-1">Night (11p-7a)</div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="h-2 rounded-full bg-green-500" style="width: 100%"></div>
+                                            </div>
+                                            <span class="text-green-600 font-medium text-xs whitespace-nowrap">3/3</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+                            <div class="text-sm text-gray-600 flex items-start gap-2">
+                                <svg class="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span>For detailed scheduling, shift swaps, and PTO management, please use <a href="#" class="text-blue-600 hover:text-blue-700 font-medium">Insight Scheduling System →</a></span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div id="content-favorites" class="tab-content hidden">
+            <!-- MONTHLY COMPLIANCE CHECKLIST TAB -->
+            <div id="content-compliance" class="tab-content hidden">
                 <div class="bg-white rounded-lg shadow p-6">
-                    <h3 class="font-semibold text-lg mb-4">Quick Access Links</h3>
+                    <div class="mb-6">
+                        <h3 class="font-semibold text-lg text-gray-900">January 2026 Compliance Checklist</h3>
+                        <p class="text-sm text-gray-600 mt-1">Monthly recurring safety and compliance items for 4 West</p>
+                    </div>
+
+                    <!-- Progress Overview -->
+                    <div class="mb-6 grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div class="text-center p-4 bg-green-50 rounded-lg border border-green-200">
+                            <div class="text-2xl font-bold text-green-600">18</div>
+                            <div class="text-sm text-gray-600">Completed</div>
+                        </div>
+                        <div class="text-center p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                            <div class="text-2xl font-bold text-yellow-600">5</div>
+                            <div class="text-sm text-gray-600">In Progress</div>
+                        </div>
+                        <div class="text-center p-4 bg-red-50 rounded-lg border border-red-200">
+                            <div class="text-2xl font-bold text-red-600">3</div>
+                            <div class="text-sm text-gray-600">Overdue</div>
+                        </div>
+                        <div class="text-center p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <div class="text-2xl font-bold text-gray-900">26</div>
+                            <div class="text-sm text-gray-600">Total Items</div>
+                        </div>
+                    </div>
+
+                    <!-- Checklist Items -->
+                    <div class="space-y-3">
+                        
+                        <!-- Emergency Equipment Category -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="bg-gray-50 px-4 py-3 border-b border-gray-200">
+                                <h4 class="font-medium text-gray-900">Emergency Equipment</h4>
+                            </div>
+                            <div class="divide-y divide-gray-200">
+                                <div class="flex items-center gap-4 p-4 bg-red-50">
+                                    <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                    <div class="flex-1">
+                                        <div class="font-medium text-gray-900">Crash Cart Inspection</div>
+                                        <div class="text-sm text-gray-600 mt-0.5">Check seals, expiration dates, and equipment functionality</div>
+                                        <div class="flex items-center gap-4 mt-2 text-xs">
+                                            <span class="text-red-600 font-medium">Due: Jan 15 (8 days overdue)</span>
+                                            <span class="text-gray-600">Assigned: J. Martinez</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-red-100 text-red-800 text-xs font-medium rounded-full">Overdue</span>
+                                </div>
+                                
+                                <div class="flex items-center gap-4 p-4">
+                                    <input type="checkbox" checked class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                    <div class="flex-1 opacity-60">
+                                        <div class="font-medium text-gray-900">Code Cart Supplies Check</div>
+                                        <div class="text-sm text-gray-600 mt-0.5">Verify all code drugs and supplies present and in-date</div>
+                                        <div class="flex items-center gap-4 mt-2 text-xs">
+                                            <span class="text-green-600 font-medium">Completed: Jan 10</span>
+                                            <span class="text-gray-600">By: S. Chen</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Complete</span>
+                                </div>
+
+                                <div class="flex items-center gap-4 p-4 bg-yellow-50">
+                                    <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                    <div class="flex-1">
+                                        <div class="font-medium text-gray-900">Defibrillator Functionality Test</div>
+                                        <div class="text-sm text-gray-600 mt-0.5">Test all AEDs and verify battery levels</div>
+                                        <div class="flex items-center gap-4 mt-2 text-xs">
+                                            <span class="text-yellow-600 font-medium">Due: Jan 25 (2 days)</span>
+                                            <span class="text-gray-600">Assigned: R. Patel</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">Due Soon</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Medication Safety Category -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="bg-gray-50 px-4 py-3 border-b border-gray-200">
+                                <h4 class="font-medium text-gray-900">Medication Safety</h4>
+                            </div>
+                            <div class="divide-y divide-gray-200">
+                                <div class="flex items-center gap-4 p-4">
+                                    <input type="checkbox" checked class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                    <div class="flex-1 opacity-60">
+                                        <div class="font-medium text-gray-900">Pyxis Audit</div>
+                                        <div class="text-sm text-gray-600 mt-0.5">Review discrepancies and document corrections</div>
+                                        <div class="flex items-center gap-4 mt-2 text-xs">
+                                            <span class="text-green-600 font-medium">Completed: Jan 12</span>
+                                            <span class="text-gray-600">By: L. Williams</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Complete</span>
+                                </div>
+
+                                <div class="flex items-center gap-4 p-4 bg-red-50">
+                                    <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                    <div class="flex-1">
+                                        <div class="font-medium text-gray-900">Medication Fridge Temperature Log</div>
+                                        <div class="text-sm text-gray-600 mt-0.5">Verify daily temps recorded, check for out-of-range readings</div>
+                                        <div class="flex items-center gap-4 mt-2 text-xs">
+                                            <span class="text-red-600 font-medium">Due: Jan 18 (5 days overdue)</span>
+                                            <span class="text-gray-600">Assigned: A. Johnson</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-red-100 text-red-800 text-xs font-medium rounded-full">Overdue</span>
+                                </div>
+
+                                <div class="flex items-center gap-4 p-4 bg-yellow-50">
+                                    <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                    <div class="flex-1">
+                                        <div class="font-medium text-gray-900">Expiring Medications Review</div>
+                                        <div class="text-sm text-gray-600 mt-0.5">Check all med storage areas for items expiring in next 30 days</div>
+                                        <div class="flex items-center gap-4 mt-2 text-xs">
+                                            <span class="text-yellow-600 font-medium">Due: Jan 28 (5 days)</span>
+                                            <span class="text-gray-600">Assigned: M. Garcia</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">Due Soon</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Supply Management Category -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="bg-gray-50 px-4 py-3 border-b border-gray-200">
+                                <h4 class="font-medium text-gray-900">Supply Management</h4>
+                            </div>
+                            <div class="divide-y divide-gray-200">
+                                <div class="flex items-center gap-4 p-4">
+                                    <input type="checkbox" checked class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                    <div class="flex-1 opacity-60">
+                                        <div class="font-medium text-gray-900">OD Bag Inspection</div>
+                                        <div class="text-sm text-gray-600 mt-0.5">Check contents and expiration dates</div>
+                                        <div class="flex items-center gap-4 mt-2 text-xs">
+                                            <span class="text-green-600 font-medium">Completed: Jan 14</span>
+                                            <span class="text-gray-600">By: K. Davis</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Complete</span>
+                                </div>
+
+                                <div class="flex items-center gap-4 p-4">
+                                    <input type="checkbox" checked class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                    <div class="flex-1 opacity-60">
+                                        <div class="font-medium text-gray-900">Nursery Bag Check</div>
+                                        <div class="text-sm text-gray-600 mt-0.5">Verify all supplies present and functional</div>
+                                        <div class="flex items-center gap-4 mt-2 text-xs">
+                                            <span class="text-green-600 font-medium">Completed: Jan 11</span>
+                                            <span class="text-gray-600">By: T. Anderson</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Complete</span>
+                                </div>
+
+                                <div class="flex items-center gap-4 p-4 bg-yellow-50">
+                                    <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                    <div class="flex-1">
+                                        <div class="font-medium text-gray-900">Expired Supplies Audit</div>
+                                        <div class="text-sm text-gray-600 mt-0.5">Check all supply rooms, remove expired items</div>
+                                        <div class="flex items-center gap-4 mt-2 text-xs">
+                                            <span class="text-yellow-600 font-medium">Due: Jan 30 (7 days)</span>
+                                            <span class="text-gray-600">Assigned: B. Thompson</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">Due Soon</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Safety Equipment Category -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="bg-gray-50 px-4 py-3 border-b border-gray-200">
+                                <h4 class="font-medium text-gray-900">Safety Equipment</h4>
+                            </div>
+                            <div class="divide-y divide-gray-200">
+                                <div class="flex items-center gap-4 p-4 bg-red-50">
+                                    <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                    <div class="flex-1">
+                                        <div class="font-medium text-gray-900">Eyewash Station Test</div>
+                                        <div class="text-sm text-gray-600 mt-0.5">Run water for 3 minutes, check flow and temperature</div>
+                                        <div class="flex items-center gap-4 mt-2 text-xs">
+                                            <span class="text-red-600 font-medium">Due: Jan 20 (3 days overdue)</span>
+                                            <span class="text-gray-600">Assigned: N. Robinson</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-red-100 text-red-800 text-xs font-medium rounded-full">Overdue</span>
+                                </div>
+
+                                <div class="flex items-center gap-4 p-4">
+                                    <input type="checkbox" checked class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                    <div class="flex-1 opacity-60">
+                                        <div class="font-medium text-gray-900">Safety Goggle Inspection</div>
+                                        <div class="text-sm text-gray-600 mt-0.5">Check for cracks, clean lenses, verify quantities</div>
+                                        <div class="flex items-center gap-4 mt-2 text-xs">
+                                            <span class="text-green-600 font-medium">Completed: Jan 13</span>
+                                            <span class="text-gray-600">By: E. Martinez</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Complete</span>
+                                </div>
+
+                                <div class="flex items-center gap-4 p-4">
+                                    <input type="checkbox" checked class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                    <div class="flex-1 opacity-60">
+                                        <div class="font-medium text-gray-900">Patient Lift Equipment Check</div>
+                                        <div class="text-sm text-gray-600 mt-0.5">Test lifts, check slings for wear, verify weight capacity labels</div>
+                                        <div class="flex items-center gap-4 mt-2 text-xs">
+                                            <span class="text-green-600 font-medium">Completed: Jan 9</span>
+                                            <span class="text-gray-600">By: D. Lee</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Complete</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quality & Compliance Category -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="bg-gray-50 px-4 py-3 border-b border-gray-200">
+                                <h4 class="font-medium text-gray-900">Quality & Compliance</h4>
+                            </div>
+                            <div class="divide-y divide-gray-200">
+                                <div class="flex items-center gap-4 p-4">
+                                    <input type="checkbox" checked class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                    <div class="flex-1 opacity-60">
+                                        <div class="font-medium text-gray-900">Hand Hygiene Compliance Audit</div>
+                                        <div class="text-sm text-gray-600 mt-0.5">Observe 20 opportunities, record compliance rate</div>
+                                        <div class="flex items-center gap-4 mt-2 text-xs">
+                                            <span class="text-green-600 font-medium">Completed: Jan 16</span>
+                                            <span class="text-gray-600">By: C. Wilson</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Complete</span>
+                                </div>
+
+                                <div class="flex items-center gap-4 p-4 bg-yellow-50">
+                                    <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                    <div class="flex-1">
+                                        <div class="font-medium text-gray-900">Workplace Safety Rounds</div>
+                                        <div class="text-sm text-gray-600 mt-0.5">Walk unit, identify hazards, document corrective actions</div>
+                                        <div class="flex items-center gap-4 mt-2 text-xs">
+                                            <span class="text-yellow-600 font-medium">Due: Jan 27 (4 days)</span>
+                                            <span class="text-gray-600">Assigned: H. Brown</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">Due Soon</span>
+                                </div>
+
+                                <div class="flex items-center gap-4 p-4">
+                                    <input type="checkbox" checked class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                    <div class="flex-1 opacity-60">
+                                        <div class="font-medium text-gray-900">Environment of Care Checklist</div>
+                                        <div class="text-sm text-gray-600 mt-0.5">Complete monthly EOC survey, submit to safety officer</div>
+                                        <div class="flex items-center gap-4 mt-2 text-xs">
+                                            <span class="text-green-600 font-medium">Completed: Jan 8</span>
+                                            <span class="text-gray-600">By: P. Green</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Complete</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="mt-6 flex gap-3">
+                        <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
+                            Export Report
+                        </button>
+                        <button class="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 font-medium">
+                            Email Reminders
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUALITY METRICS TAB -->
+            <div id="content-quality" class="tab-content hidden">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="font-semibold text-lg mb-4">Quality Metrics Overview</h3>
+                    <p class="text-sm text-gray-600 mb-6">High-level snapshot for 4 West. For detailed metrics and trending analysis, please use the full dashboards.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="text-sm text-gray-600 mb-1">Diabetic A1C Testing</div>
+                            <div class="flex items-baseline gap-2">
+                                <div class="text-2xl font-bold text-gray-900">68%</div>
+                                <div class="text-sm text-red-600">↓ 7% vs target</div>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">Target: 75%</div>
+                        </div>
+                        
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="text-sm text-gray-600 mb-1">Preventive Care Screenings</div>
+                            <div class="flex items-baseline gap-2">
+                                <div class="text-2xl font-bold text-gray-900">87%</div>
+                                <div class="text-sm text-green-600">↑ 12% vs target</div>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">Target: 75%</div>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="text-sm text-gray-600 mb-1">Medication Adherence</div>
+                            <div class="flex items-baseline gap-2">
+                                <div class="text-2xl font-bold text-gray-900">82%</div>
+                                <div class="text-sm text-gray-600">On target</div>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">Target: 80%</div>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="text-sm text-gray-600 mb-1">Post-Discharge Follow-up</div>
+                            <div class="flex items-baseline gap-2">
+                                <div class="text-2xl font-bold text-gray-900">91%</div>
+                                <div class="text-sm text-green-600">↑ 6% vs target</div>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">Target: 85%</div>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="text-sm text-gray-600 mb-1">Hand Hygiene Compliance</div>
+                            <div class="flex items-baseline gap-2">
+                                <div class="text-2xl font-bold text-gray-900">94%</div>
+                                <div class="text-sm text-green-600">↑ 4% vs target</div>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">Target: 90%</div>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="text-sm text-gray-600 mb-1">Patient Satisfaction (HCAHPS)</div>
+                            <div class="flex items-baseline gap-2">
+                                <div class="text-2xl font-bold text-gray-900">8.3</div>
+                                <div class="text-sm text-gray-600">On target</div>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">Target: 8.0</div>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                        <div class="text-sm text-gray-700 flex items-start gap-2">
+                            <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div>
+                                <p class="font-medium text-gray-900 mb-1">Need Full Metrics?</p>
+                                <p>This overview is for quick signal detection. For complete metric details, trending analysis, and compliance reporting, please use:</p>
+                                <div class="mt-2 space-y-1">
+                                    <a href="#" class="text-blue-600 hover:text-blue-700 font-medium block">→ Tableau Quality Dashboard</a>
+                                    <a href="#" class="text-blue-600 hover:text-blue-700 font-medium block">→ CQC Reporting Portal</a>
+                                    <a href="#" class="text-blue-600 hover:text-blue-700 font-medium block">→ PowerBI Operational Insights</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUICK LINKS TAB -->
+            <div id="content-links" class="tab-content hidden">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="font-semibold text-lg mb-2">Quick Access Links</h3>
                     <p class="text-sm text-gray-600 mb-6">Your most frequently used tools and dashboards</p>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <a href="#" class="border-2 border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition">
+                        <a href="#" class="group border-2 border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition">
                             <div class="flex items-center gap-3 mb-3">
-                                <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
-                                    <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+                                <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center group-hover:bg-blue-200 transition">
+                                    <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                    </svg>
                                 </div>
                                 <div>
                                     <h4 class="font-medium text-gray-900">Tableau Dashboard</h4>
                                     <p class="text-xs text-gray-500">Quality Metrics</p>
                                 </div>
                             </div>
-                            <span class="text-sm text-blue-600">Open Dashboard →</span>
+                            <span class="text-sm text-blue-600 group-hover:text-blue-700">Open Dashboard →</span>
                         </a>
 
-                        <a href="#" class="border-2 border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition">
+                        <a href="#" class="group border-2 border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition">
                             <div class="flex items-center gap-3 mb-3">
-                                <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center">
-                                    <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                                <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center group-hover:bg-green-200 transition">
+                                    <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
                                 </div>
                                 <div>
-                                    <h4 class="font-medium text-gray-900">PowerBI Reports</h4>
-                                    <p class="text-xs text-gray-500">Operational Insights</p>
+                                    <h4 class="font-medium text-gray-900">Insight Scheduling</h4>
+                                    <p class="text-xs text-gray-500">Staffing Management</p>
                                 </div>
                             </div>
-                            <span class="text-sm text-blue-600">Open Dashboard →</span>
+                            <span class="text-sm text-blue-600 group-hover:text-blue-700">Open System →</span>
                         </a>
 
-                        <a href="#" class="border-2 border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition">
+                        <a href="#" class="group border-2 border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition">
                             <div class="flex items-center gap-3 mb-3">
-                                <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
-                                    <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                                <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center group-hover:bg-purple-200 transition">
+                                    <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
                                 </div>
                                 <div>
-                                    <h4 class="font-medium text-gray-900">Regulatory Checklist</h4>
-                                    <p class="text-xs text-gray-500">Compliance Items</p>
+                                    <h4 class="font-medium text-gray-900">EPIC</h4>
+                                    <p class="text-xs text-gray-500">Patient Records</p>
                                 </div>
                             </div>
-                            <span class="text-sm text-blue-600">View Checklist →</span>
+                            <span class="text-sm text-blue-600 group-hover:text-blue-700">Launch EPIC →</span>
                         </a>
 
-                        <a href="#" class="border-2 border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition">
+                        <a href="#" class="group border-2 border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition">
                             <div class="flex items-center gap-3 mb-3">
-                                <div class="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center">
-                                    <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+                                <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center group-hover:bg-red-200 transition">
+                                    <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                    </svg>
                                 </div>
                                 <div>
-                                    <h4 class="font-medium text-gray-900">Work Order System</h4>
-                                    <p class="text-xs text-gray-500">Facilities Requests</p>
+                                    <h4 class="font-medium text-gray-900">CQC Portal</h4>
+                                    <p class="text-xs text-gray-500">Compliance Reporting</p>
                                 </div>
                             </div>
-                            <span class="text-sm text-blue-600">Submit Request →</span>
+                            <span class="text-sm text-blue-600 group-hover:text-blue-700">Open Portal →</span>
                         </a>
 
-                        <a href="#" class="border-2 border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition">
+                        <a href="#" class="group border-2 border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition">
                             <div class="flex items-center gap-3 mb-3">
-                                <div class="w-10 h-10 rounded-lg bg-teal-100 flex items-center justify-center">
-                                    <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                                </div>
-                                <div>
-                                    <h4 class="font-medium text-gray-900">PTO Approval</h4>
-                                    <p class="text-xs text-gray-500">Time Off Requests</p>
-                                </div>
-                            </div>
-                            <span class="text-sm text-blue-600">Manage PTO →</span>
-                        </a>
-
-                        <a href="#" class="border-2 border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition">
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="w-10 h-10 rounded-lg bg-orange-100 flex items-center justify-center">
-                                    <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+                                <div class="w-10 h-10 rounded-lg bg-orange-100 flex items-center justify-center group-hover:bg-orange-200 transition">
+                                    <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                                    </svg>
                                 </div>
                                 <div>
                                     <h4 class="font-medium text-gray-900">SAP Ordering</h4>
-                                    <p class="text-xs text-gray-500">Supply Orders</p>
+                                    <p class="text-xs text-gray-500">Supply Management</p>
                                 </div>
                             </div>
-                            <span class="text-sm text-blue-600">Place Order →</span>
+                            <span class="text-sm text-blue-600 group-hover:text-blue-700">Place Order →</span>
+                        </a>
+
+                        <a href="#" class="group border-2 border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-lg bg-teal-100 flex items-center justify-center group-hover:bg-teal-200 transition">
+                                    <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-900">PTO System</h4>
+                                    <p class="text-xs text-gray-500">Time Off Management</p>
+                                </div>
+                            </div>
+                            <span class="text-sm text-blue-600 group-hover:text-blue-700">Manage PTO →</span>
+                        </a>
+
+                        <a href="#" class="group border-2 border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center group-hover:bg-indigo-200 transition">
+                                    <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-900">Facilities Request</h4>
+                                    <p class="text-xs text-gray-500">Maintenance & Repairs</p>
+                                </div>
+                            </div>
+                            <span class="text-sm text-blue-600 group-hover:text-blue-700">Submit Request →</span>
+                        </a>
+
+                        <a href="#" class="group border-2 border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-lg bg-pink-100 flex items-center justify-center group-hover:bg-pink-200 transition">
+                                    <svg class="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-900">Learning Hub</h4>
+                                    <p class="text-xs text-gray-500">Training & Education</p>
+                                </div>
+                            </div>
+                            <span class="text-sm text-blue-600 group-hover:text-blue-700">Access Courses →</span>
+                        </a>
+
+                        <a href="#" class="group border-2 border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-lg bg-yellow-100 flex items-center justify-center group-hover:bg-yellow-200 transition">
+                                    <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-900">PowerBI</h4>
+                                    <p class="text-xs text-gray-500">Operations Analytics</p>
+                                </div>
+                            </div>
+                            <span class="text-sm text-blue-600 group-hover:text-blue-700">View Reports →</span>
                         </a>
                     </div>
                 </div>
             </div>
 
-           <div id="content-tasks" class="tab-content hidden">
-    <div class="space-y-6">
-        <div class="bg-white rounded-lg shadow p-4">
-            <div class="flex gap-4 flex-wrap">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Timeframe</label>
-                    <div class="flex gap-2">
-                        <button onclick="filterTimeframe('today')" id="filter-today" class="filter-btn px-4 py-2 rounded-lg text-sm font-medium bg-blue-600 text-white">Today</button>
-                        <button onclick="filterTimeframe('week')" id="filter-week" class="filter-btn px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 text-gray-700">This Week</button>
-                        <button onclick="filterTimeframe('all')" id="filter-all" class="filter-btn px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 text-gray-700">All</button>
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Priority</label>
-                    <div class="flex gap-2">
-                        <button onclick="filterPriority('all')" id="priority-all" class="priority-btn px-4 py-2 rounded-lg text-sm font-medium bg-blue-600 text-white">All</button>
-                        <button onclick="filterPriority('critical')" id="priority-critical" class="priority-btn px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 text-gray-700">Critical</button>
-                        <button onclick="filterPriority('high')" id="priority-high" class="priority-btn px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 text-gray-700">High</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="bg-white rounded-lg shadow">
-            <div class="p-4 border-b border-gray-200">
-                <h3 class="font-semibold text-lg">Priority Queue (8 tasks)</h3>
-                <p class="text-sm text-gray-600">Automatically sorted by urgency, impact, and due date</p>
-            </div>
-            <div class="divide-y divide-gray-200">
-                <div class="p-4">
-                    <div class="flex items-start gap-4">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold flex-shrink-0">1</div>
-                        <div class="flex-1">
-                            <h4 class="font-medium text-gray-900 mb-1">Diabetic A1C outreach - 15 patients overdue</h4>
-                            <div class="flex gap-4 text-sm text-gray-600">
-                                <span>Due: 2026-01-16</span>
-                                <span>Time: 45 min</span>
-                                <span>Impact: high</span>
-                            </div>
-                        </div>
-                        <span class="px-3 py-1 rounded-full text-xs font-medium border bg-red-100 text-red-800 border-red-300">critical</span>
-                        <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Complete</button>
-                    </div>
-                </div>
-                <div class="p-4">
-                    <div class="flex items-start gap-4">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold flex-shrink-0">2</div>
-                        <div class="flex-1">
-                            <h4 class="font-medium text-gray-900 mb-1">Medication adherence pending (12)</h4>
-                            <div class="flex gap-4 text-sm text-gray-600">
-                                <span>Due: 2026-01-16</span>
-                                <span>Time: 90 min</span>
-                                <span>Impact: high</span>
-                            </div>
-                        </div>
-                        <span class="px-3 py-1 rounded-full text-xs font-medium border bg-red-100 text-red-800 border-red-300">critical</span>
-                        <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Complete</button>
-                    </div>
-                </div>
-                <div class="p-4">
-                    <div class="flex items-start gap-4">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold flex-shrink-0">3</div>
-                        <div class="flex-1">
-                            <h4 class="font-medium text-gray-900 mb-1">PM shift coverage gap - 1 RN needed</h4>
-                            <div class="flex gap-4 text-sm text-gray-600">
-                                <span>Due: 2026-01-16</span>
-                                <span>Time: 20 min</span>
-                                <span>Impact: critical</span>
-                            </div>
-                        </div>
-                        <span class="px-3 py-1 rounded-full text-xs font-medium border bg-red-100 text-red-800 border-red-300">critical</span>
-                        <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Complete</button>
-                    </div>
-                </div>
-                <div class="p-4">
-                    <div class="flex items-start gap-4">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold flex-shrink-0">4</div>
-                        <div class="flex-1">
-                            <h4 class="font-medium text-gray-900 mb-1">Post-discharge follow-up calls (8 patients)</h4>
-                            <div class="flex gap-4 text-sm text-gray-600">
-                                <span>Due: 2026-01-16</span>
-                                <span>Time: 60 min</span>
-                                <span>Impact: high</span>
-                            </div>
-                        </div>
-                        <span class="px-3 py-1 rounded-full text-xs font-medium border bg-orange-100 text-orange-800 border-orange-300">high</span>
-                        <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Complete</button>
-                    </div>
-                </div>
-                <div class="p-4">
-                    <div class="flex items-start gap-4">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold flex-shrink-0">5</div>
-                        <div class="flex-1">
-                            <h4 class="font-medium text-gray-900 mb-1">Team STEPPS training completion report due</h4>
-                            <div class="flex gap-4 text-sm text-gray-600">
-                                <span>Due: 2026-01-16</span>
-                                <span>Time: 20 min</span>
-                                <span>Impact: medium</span>
-                            </div>
-                        </div>
-                        <span class="px-3 py-1 rounded-full text-xs font-medium border bg-orange-100 text-orange-800 border-orange-300">high</span>
-                        <button onclick="completeTask(this)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Complete</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-            <div id="content-inventory" class="tab-content hidden">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                    <div class="bg-red-50 border-2 border-red-300 rounded-lg p-4 text-center">
-                        <div class="text-sm font-medium text-red-900 mb-1">Expired</div>
-                        <div class="text-3xl font-bold text-red-600">3</div>
-                        <div class="text-xs text-red-700 mt-1">Items</div>
-                    </div>
-                    <div class="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-4 text-center">
-                        <div class="text-sm font-medium text-yellow-900 mb-1">Expiring This Week</div>
-                        <div class="text-3xl font-bold text-yellow-600">7</div>
-                        <div class="text-xs text-yellow-700 mt-1">Items</div>
-                    </div>
-                    <div class="bg-blue-50 border-2 border-blue-300 rounded-lg p-4 text-center">
-                        <div class="text-sm font-medium text-blue-900 mb-1">Total Items</div>
-                        <div class="text-3xl font-bold text-blue-600">47</div>
-                        <div class="text-xs text-blue-700 mt-1">Tracked</div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow p-6">
-                    <h3 class="font-semibold text-lg mb-4">Medications & Supplies</h3>
-                    <div class="space-y-4">
-                        <div class="border-l-4 border-red-500 pl-4 py-2">
-                            <h4 class="font-medium text-gray-900">Flu Vaccine (Quadrivalent) - EXPIRED</h4>
-                            <div class="text-sm text-gray-600 mt-1">Qty: 15 doses | Exp: 2026-01-15 | Location: Fridge A-2 | Last Order: 2025-09-12</div>
-                            <div class="flex gap-2 mt-2">
-                                <button onclick="handleInventory(this,'reorder')" class="px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700">Reorder</button>
-                                <button onclick="handleInventory(this,'discard')" class="px-3 py-1 bg-red-600 text-white text-sm rounded hover:bg-red-700">Discard</button>
-                                <button onclick="handleInventory(this,'review')" class="px-3 py-1 bg-gray-600 text-white text-sm rounded hover:bg-gray-700">Mark Reviewed</button>
-                            </div>
-                        </div>
-                        <div class="border-l-4 border-yellow-500 pl-4 py-2">
-                            <h4 class="font-medium text-gray-900">RSV Vaccine - Expires in 5 days</h4>
-                            <div class="text-sm text-gray-600 mt-1">Qty: 12 doses | Exp: 2026-01-21 | Location: Fridge A-3 | Last Order: 2025-12-15</div>
-                            <div class="flex gap-2 mt-2">
-                                <button onclick="handleInventory(this,'reorder')" class="px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700">Reorder</button>
-                                <button onclick="handleInventory(this,'discard')" class="px-3 py-1 bg-red-600 text-white text-sm rounded hover:bg-red-700">Discard</button>
-                                <button onclick="handleInventory(this,'review')" class="px-3 py-1 bg-gray-600 text-white text-sm rounded hover:bg-gray-700">Mark Reviewed</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="content-metrics" class="tab-content hidden">
-    <div class="bg-white rounded-lg shadow p-6">
-        <h3 class="font-semibold text-lg mb-4">Consolidated Quality Metrics</h3>
-        <p class="text-sm text-gray-600 mb-6">All your metrics in one place - no more jumping between Tableau, PowerBI, and Insight</p>
-        <div class="space-y-4">
-            <div class="border-2 border-gray-200 rounded-lg p-4">
-                <div class="flex items-center justify-between mb-3">
-                    <h4 class="font-medium text-gray-900">Diabetic A1C Testing</h4>
-                    <span class="px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">Needs Attention</span>
-                </div>
-                <div class="flex items-center gap-4">
-                    <div class="flex-1">
-                        <div class="flex justify-between text-sm mb-2">
-                            <span class="text-gray-600">Current: 68%</span>
-                            <span class="text-gray-600">Target: 80%</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-3">
-                            <div class="h-3 rounded-full bg-red-500" style="width: 68%"></div>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-xs text-gray-500">Trend</div>
-                        <div class="text-sm font-medium text-red-600">↓ Declining</div>
-                    </div>
-                </div>
-            </div>
-            <div class="border-2 border-gray-200 rounded-lg p-4">
-                <div class="flex items-center justify-between mb-3">
-                    <h4 class="font-medium text-gray-900">Post-Discharge Follow-up</h4>
-                    <span class="px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">On Track</span>
-                </div>
-                <div class="flex items-center gap-4">
-                    <div class="flex-1">
-                        <div class="flex justify-between text-sm mb-2">
-                            <span class="text-gray-600">Current: 85%</span>
-                            <span class="text-gray-600">Target: 90%</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-3">
-                            <div class="h-3 rounded-full bg-blue-500" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-xs text-gray-500">Trend</div>
-                        <div class="text-sm font-medium text-green-600">↑ Improving</div>
-                    </div>
-                </div>
-            </div>
-            <div class="border-2 border-gray-200 rounded-lg p-4">
-                <div class="flex items-center justify-between mb-3">
-                    <h4 class="font-medium text-gray-900">Medication Adherence</h4>
-                    <span class="px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">Needs Attention</span>
-                </div>
-                <div class="flex items-center gap-4">
-                    <div class="flex-1">
-                        <div class="flex justify-between text-sm mb-2">
-                            <span class="text-gray-600">Current: 72%</span>
-                            <span class="text-gray-600">Target: 85%</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-3">
-                            <div class="h-3 rounded-full bg-red-500" style="width: 72%"></div>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-xs text-gray-500">Trend</div>
-                        <div class="text-sm font-medium text-gray-600">→ Stable</div>
-                    </div>
-                </div>
-            </div>
-            <div class="border-2 border-gray-200 rounded-lg p-4">
-                <div class="flex items-center justify-between mb-3">
-                    <h4 class="font-medium text-gray-900">Preventive Care Completion</h4>
-                    <span class="px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">Exceeds Target</span>
-                </div>
-                <div class="flex items-center gap-4">
-                    <div class="flex-1">
-                        <div class="flex justify-between text-sm mb-2">
-                            <span class="text-gray-600">Current: 91%</span>
-                            <span class="text-gray-600">Target: 90%</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-3">
-                            <div class="h-3 rounded-full bg-green-500" style="width: 91%"></div>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-xs text-gray-500">Trend</div>
-                        <div class="text-sm font-medium text-green-600">↑ Improving</div>
-                    </div>
-                </div>
-            </div>
-            <div class="border-2 border-gray-200 rounded-lg p-4">
-                <div class="flex items-center justify-between mb-3">
-                    <h4 class="font-medium text-gray-900">In-basket Response Time</h4>
-                    <span class="px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">Needs Attention</span>
-                </div>
-                <div class="flex items-center gap-4">
-                    <div class="flex-1">
-                        <div class="flex justify-between text-sm mb-2">
-                            <span class="text-gray-600">Current: 78%</span>
-                            <span class="text-gray-600">Target: 95%</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-3">
-                            <div class="h-3 rounded-full bg-red-500" style="width: 78%"></div>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-xs text-gray-500">Trend</div>
-                        <div class="text-sm font-medium text-red-600">↓ Declining</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-           <div id="content-staffing" class="tab-content hidden">
-    <div class="bg-white rounded-lg shadow p-6">
-        <h3 class="font-semibold text-lg mb-4">Today's Staffing Snapshot</h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            <div class="text-center p-4 bg-blue-50 rounded-lg">
-                <div class="text-2xl font-bold text-blue-600">12</div>
-                <div class="text-sm text-gray-600">Scheduled</div>
-            </div>
-            <div class="text-center p-4 bg-red-50 rounded-lg">
-                <div class="text-2xl font-bold text-red-600">2</div>
-                <div class="text-sm text-gray-600">Call-Outs</div>
-            </div>
-            <div class="text-center p-4 bg-orange-50 rounded-lg">
-                <div class="text-2xl font-bold text-orange-600">10</div>
-                <div class="text-sm text-gray-600">Actual Coverage</div>
-            </div>
-            <div class="text-center p-4 bg-green-50 rounded-lg">
-                <div class="text-2xl font-bold text-green-600">11</div>
-                <div class="text-sm text-gray-600">Needed</div>
-            </div>
-        </div>
-        <div class="p-4 rounded-lg mb-6 bg-red-50 border-2 border-red-300">
-            <div class="flex items-center gap-3">
-                <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="12" y1="8" x2="12" y2="12"></line>
-                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                </svg>
-                <div>
-                    <div class="font-semibold text-red-900">Staffing Alert: Short 1 RN</div>
-                    <div class="text-sm text-gray-700">Immediate action needed - Check float pool or adjust schedules</div>
-                </div>
-            </div>
-        </div>
-        <h4 class="font-medium mb-3">Coverage by Shift</h4>
-        <div class="space-y-3">
-            <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
-                <div class="w-32 font-medium text-gray-900">AM (7a-3p)</div>
-                <div class="flex-1">
-                    <div class="flex justify-between text-sm mb-1">
-                        <span>Coverage: 3/4</span>
-                        <span class="text-red-600 font-medium">Short 1</span>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="h-2 rounded-full bg-red-500" style="width: 75%"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
-                <div class="w-32 font-medium text-gray-900">PM (3p-11p)</div>
-                <div class="flex-1">
-                    <div class="flex justify-between text-sm mb-1">
-                        <span>Coverage: 3/4</span>
-                        <span class="text-red-600 font-medium">Short 1</span>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="h-2 rounded-full bg-red-500" style="width: 75%"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
-                <div class="w-32 font-medium text-gray-900">Night (11p-7a)</div>
-                <div class="flex-1">
-                    <div class="flex justify-between text-sm mb-1">
-                        <span>Coverage: 4/3</span>
-                        <span class="text-green-600 font-medium">OK</span>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="h-2 rounded-full bg-green-500" style="width: 100%"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
+            <!-- Footer -->
             <div class="mt-8 text-center text-sm text-gray-500">
-                <p>NexoNurse - Prototype v1.2 | Powered by your feedback</p>
+                <p>NexoNurse Clinical Operations Hub • Version 2.0 • Built with your feedback</p>
             </div>
         </div>
     </div>
 
     <script>
         function showTab(tabName) {
+            // Hide all tab content
             document.querySelectorAll('.tab-content').forEach(content => {
                 content.classList.add('hidden');
             });
             
+            // Reset all tab buttons
             document.querySelectorAll('.tab-button').forEach(button => {
                 button.classList.remove('border-blue-600', 'text-blue-600', 'font-medium');
                 button.classList.add('border-transparent', 'text-gray-600');
             });
             
+            // Show selected tab content
             document.getElementById('content-' + tabName).classList.remove('hidden');
             
+            // Highlight active tab button
             const activeTab = document.getElementById('tab-' + tabName);
             activeTab.classList.add('border-blue-600', 'text-blue-600', 'font-medium');
             activeTab.classList.remove('border-transparent', 'text-gray-600');
         }
 
-        function completeTask(button) {
-            const taskDiv = button.closest('.bg-gray-50') || button.closest('.p-4');
-            if (taskDiv) {
-                taskDiv.style.opacity = '0.5';
-                taskDiv.style.transition = 'opacity 0.3s';
-            }
-            button.innerHTML = '✓ Completed';
-            button.disabled = true;
-            button.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-            button.classList.add('bg-green-600', 'cursor-not-allowed');
+        function changeWeek(direction) {
+            // This would be connected to actual data in production
+            // For demo purposes, just showing the concept
+            console.log('Changing week by', direction);
             
-            const msg = document.createElement('div');
-            msg.className = 'fixed top-4 right-4 bg-green-100 border-2 border-green-400 text-green-800 px-6 py-3 rounded-lg shadow-lg z-50';
-            msg.innerHTML = '✓ Task marked as complete!';
-            document.body.appendChild(msg);
-            
-            setTimeout(() => {
-                msg.style.opacity = '0';
-                msg.style.transition = 'opacity 0.5s';
-                setTimeout(() => msg.remove(), 500);
-            }, 2000);
+            // In production, this would:
+            // 1. Update the date range display
+            // 2. Fetch data for the new week from backend
+            // 3. Update the calendar grid
+            // 4. Update the stats (completed, pending, etc.)
+            // 5. Update the trend chart
         }
 
-        function handleInventory(button, action) {
-            const item = button.closest('.border-l-4');
-            const itemName = item.querySelector('h4').textContent;
-            let msg = '';
+        function jumpToWeek(target) {
+            // Quick navigation to specific time periods
+            console.log('Jumping to:', target);
             
-            if (action === 'reorder') {
-                msg = `✓ ${itemName} added to reorder queue`;
-            } else if (action === 'discard') {
-                msg = `✓ ${itemName} marked for disposal`;
-            } else {
-                msg = `✓ ${itemName} marked as reviewed`;
-            }item.style.opacity = '0.5';function filterTimeframe(timeframe) {
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.classList.remove('bg-blue-600', 'text-white');
-        btn.classList.add('bg-gray-100', 'text-gray-700');
-    });
-    document.getElementById('filter-' + timeframe).classList.add('bg-blue-600', 'text-white');
-    document.getElementById('filter-' + timeframe).classList.remove('bg-gray-100', 'text-gray-700');
-}
-
-function filterPriority(priority) {
-    document.querySelectorAll('.priority-btn').forEach(btn => {
-        btn.classList.remove('bg-blue-600', 'text-white');
-        btn.classList.add('bg-gray-100', 'text-gray-700');
-    });
-    document.getElementById('priority-' + priority).classList.add('bg-blue-600', 'text-white');
-    document.getElementById('priority-' + priority).classList.remove('bg-gray-100', 'text-gray-700');
-}
-button.disabled = true;
-button.classList.add('cursor-not-allowed', 'opacity-50');const notification = document.createElement('div');
-        notification.className = 'fixed top-4 right-4 bg-blue-100 border-2 border-blue-400 text-blue-800 px-6 py-3 rounded-lg shadow-lg z-50';
-        notification.innerHTML = msg;
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.style.opacity = '0';
-            notification.style.transition = 'opacity 0.5s';
-            setTimeout(() => notification.remove(), 500);
-        }, 2000);
-    }
-</script>
+            // In production, this would:
+            // - 'prev-month': Jump to same week in previous month
+            // - 'today': Jump to current week
+            // - 'next-month': Jump to same week in next month
+        }
+    </script>
 </body>
 </html>
-````
