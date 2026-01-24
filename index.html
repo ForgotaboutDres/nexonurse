@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexoNurse - Clinical Operations Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen">
+        <!-- Header with Role Selector -->
+        <div class="bg-white border-b border-gray-200 sticky top-0 z-10 shadow-sm">
+            <div class="max-w-7xl mx-auto px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div>
+                            <h1 class="text-2xl font-bold text-gray-900">NexoNurse</h1>
+                            <p class="text-sm text-gray-600">Clinical Operations Hub</p>
+                        </div>
+                        
+                        <!-- View Selector - NEW -->
+                        <div class="ml-6 border-l border-gray-300 pl-6">
+                            <label class="text-xs text-gray-500 block mb-1">Role View:</label>
+                            <select id="role-view-selector" onchange="toggleRoleView()" class="border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="director">Director/VP Dashboard</option>
+                                <option value="manager">Frontline Manager Dashboard</option>
+                            </select>
+                        </div>
+                        
+                        <div class="ml-4 border-l border-gray-300 pl-4">
+                            <label class="text-xs text-gray-500 block mb-1">Org Level:</label>
+                            <select id="view-selector" onchange="changeView()" class="border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="unit">Unit Manager - 4 West</option>
+                                <option value="service">Service Line Director - Primary Care</option>
+                                <option value="geography">Regional Director - Columbia Medical Center</option>
+                                <option value="enterprise">System Director - Mid-Atlantic Region</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="text-right text-sm">
+                        <div class="font-medium text-gray-900">Sarah Chen, RN</div>
+                        <div class="text-gray-600">Nurse Manager</div>
+                        <div class="text-xs text-gray-500 mt-1">Last login: Today, 7:45 AM</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto p-6">
+            
+            <!-- Breadcrumb Navigation - NEW -->
+            <div class="mb-4 flex items-center gap-2 text-sm">
+                <a href="#" class="text-blue-600 hover:text-blue-700">Mid-Atlantic Region</a>
+                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                <a href="#" class="text-blue-600 hover:text-blue-700">Columbia Medical Center</a>
+                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                <a href="#" class="text-blue-600 hover:text-blue-700">Primary Care</a>
+                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                <span class="text-gray-900 font-medium">4 West</span>
+            </div>
+            
+            <!-- Leadership Weekly Priorities -->
+            <div class="mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 rounded-r-lg p-6 shadow-sm">
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex items-center gap-3 mb-2">
+                            <h2 class="text-lg font-semibold text-gray-900">This Week's Priorities</h2>
+                            <span class="text-xs text-gray-600">From Director Martinez • Posted Monday 8:00 AM</span>
+                        </div>
+                        <div class="space-y-3 text-gray-800">
+                            <p class="leading-relaxed"><strong>Primary Focus:</strong> Diabetic care outreach needs our attention this week. We're at 68% A1C completion and need to reach 75% by Friday. Let's aim for 15-20 patient contacts per day across the team.</p>
+                            <p class="leading-relaxed"><strong>Urgent Reminder:</strong> RSV vaccines in Fridge A-3 expire on January 25th (Friday). Please prioritize administration or coordinate transfer with pharmacy by Wednesday EOD.</p>
+                            <p class="leading-relaxed"><strong>Staffing Note:</strong> Next week's schedule has some gaps for PM shifts (Tue/Thu). If you're available for extra shifts or know someone in the float pool, please coordinate with scheduling by Thursday.</p>
+                            <p class="text-sm text-blue-700 mt-3">Great work last week on preventive care screenings - we exceeded our target by 12%! 🎉</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="flex gap-2 mb-6 border-b border-gray-200 overflow-x-auto bg-white rounded-t-lg px-2 pt-2">
+                <button onclick="showTab('overview')" id="tab-overview" class="tab-button px-4 py-3 border-b-2 border-blue-600 text-blue-600 font-medium whitespace-nowrap">Overview</button>
+                <button onclick="showTab('planning')" id="tab-planning" class="tab-button px-4 py-3 border-b-2 border-transparent text-gray-600 whitespace-nowrap">Weekly Planning</button>
+                <button onclick="showTab('hierarchy')" id="tab-hierarchy" class="tab-button px-4 py-3 border-b-2 border-transparent text-gray-600 whitespace-nowrap">
+                    <span class="flex items-center gap-2">
+                        <span>Team Hierarchy</span>
+                        <span class="px-2 py-0.5 bg-purple-100 text-purple-700 text-xs rounded-full font-semibold">NEW</span>
+                    </span>
+                </button>
+                <button onclick="showTab('productivity')" id="tab-productivity" class="tab-button px-4 py-3 border-b-2 border-transparent text-gray-600 whitespace-nowrap">
+                    <span class="flex items-center gap-2">
+                        <span>Productivity & Reports</span>
+                        <span class="px-2 py-0.5 bg-purple-100 text-purple-700 text-xs rounded-full font-semibold">NEW</span>
+                    </span>
+                </button>
+                <button onclick="showTab('staffing')" id="tab-staffing" class="tab-button px-4 py-3 border-b-2 border-transparent text-gray-600 whitespace-nowrap">Staffing</button>
+                <button onclick="showTab('compliance')" id="tab-compliance" class="tab-button px-4 py-3 border-b-2 border-transparent text-gray-600 whitespace-nowrap">Monthly Checklist</button>
+                <button onclick="showTab('quality')" id="tab-quality" class="tab-button px-4 py-3 border-b-2 border-transparent text-gray-600 whitespace-nowrap">Quality Metrics</button>
+            </div>
+
+            <!-- OVERVIEW TAB -->
+            <div id="content-overview" class="tab-content">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Critical Items Card -->
+                    <div class="bg-white rounded-lg shadow border-t-4 border-red-500 p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-900">Needs Attention</h3>
+                                <p class="text-sm text-gray-600">Immediate items</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="border-l-4 border-red-500 pl-3 py-2">
+                                <div class="font-medium text-gray-900">Staffing Gap</div>
+                                <div class="text-sm text-gray-600">PM shift short 1 RN tomorrow</div>
+                                <button onclick="showTab('staffing')" class="text-xs text-blue-600 hover:text-blue-700 mt-1">View details →</button>
+                            </div>
+                            <div class="border-l-4 border-orange-500 pl-3 py-2">
+                                <div class="font-medium text-gray-900">Expiring Soon</div>
+                                <div class="text-sm text-gray-600">7 items expire this week</div>
+                                <button onclick="showTab('compliance')" class="text-xs text-blue-600 hover:text-blue-700 mt-1">View checklist →</button>
+                            </div>
+                            <div class="border-l-4 border-yellow-500 pl-3 py-2">
+                                <div class="font-medium text-gray-900">Pending Actions</div>
+                                <div class="text-sm text-gray-600">3 monthly checks due this week</div>
+                                <button onclick="showTab('compliance')" class="text-xs text-blue-600 hover:text-blue-700 mt-1">View checklist →</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Top Actions Card -->
+                    <div class="bg-white rounded-lg shadow border-t-4 border-blue-500 p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900">Your Focus Today</h3>
+                                    <p class="text-sm text-gray-600">Suggested priorities</p>
+                                </div>
+                            </div>
+                            <button onclick="showTab('planning')" class="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1">
+                                <span>View Calendar</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
+                                <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">1</div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="font-medium text-gray-900 text-sm">Diabetic A1C Outreach</div>
+                                    <div class="text-xs text-gray-600 mt-0.5">15 patients overdue • ~45 min</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+                                <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">2</div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="font-medium text-gray-900 text-sm">Med Adherence Follow-ups</div>
+                                    <div class="text-xs text-gray-600 mt-0.5">12 pending authorizations • ~90 min</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+                                <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">3</div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="font-medium text-gray-900 text-sm">Post-Discharge Calls</div>
+                                    <div class="text-xs text-gray-600 mt-0.5">8 patients • ~60 min</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-gray-200">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-gray-500 italic">Estimated: 3.25 hours</span>
+                                <span class="text-blue-600 font-medium">18/24 tasks (75%)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Integration Status Card -->
+                    <div class="bg-white rounded-lg shadow border-t-4 border-purple-500 p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-900">What This Shows</h3>
+                                <p class="text-sm text-gray-600">Data sources</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-sm">
+                            <div>
+                                <div class="font-medium text-gray-900 mb-1">Aggregated Here:</div>
+                                <ul class="text-gray-600 space-y-1 ml-4">
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-green-600 mt-0.5">✓</span>
+                                        <span>Weekly priorities</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-green-600 mt-0.5">✓</span>
+                                        <span>Monthly compliance</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-green-600 mt-0.5">✓</span>
+                                        <span>Staffing summary</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-green-600 mt-0.5">✓</span>
+                                        <span>Team productivity</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="pt-2 border-t border-gray-200">
+                                <div class="font-medium text-gray-900 mb-1">Linked to Source:</div>
+                                <ul class="text-gray-600 space-y-1 ml-4">
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <span>Quality metrics (Tableau)</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <span>Schedules (Insight)</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 mt-0.5">→</span>
+                                        <span>Patient records (EPIC)</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PLANNING TAB - Manager View Only -->
+            <div id="content-planning" class="tab-content hidden manager-only-tab">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="font-semibold text-lg mb-4">Weekly Planning & Calendar</h3>
+                    <p class="text-gray-600 mb-4">This section contains the weekly planning calendar from Version 2 with:</p>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2 mb-4">
+                        <li>Week-by-week scrolling with navigation arrows</li>
+                        <li>Quick jump to Today, Previous Month, Next Month</li>
+                        <li>4-week completion trend tracking</li>
+                        <li>Interactive 7-day calendar grid with task cards</li>
+                        <li>Color-coded tasks (Green=completed, Yellow=pending, Blue=today, Red=critical)</li>
+                        <li>Outstanding items summary</li>
+                        <li>Weekly stats (24 planned, 18 completed, 75% rate)</li>
+                    </ul>
+                    <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                        <p class="text-sm text-blue-800"><strong>Note:</strong> This is frontline manager operational view. Directors see aggregate reporting in the Productivity tab instead.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEAM HIERARCHY TAB - NEW -->
+            <div id="content-hierarchy" class="tab-content hidden">
+                <div class="space-y-6">
+                    
+                    <!-- Hierarchy Visualization -->
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <h3 class="font-semibold text-lg mb-4">Organizational Structure</h3>
+                        <p class="text-sm text-gray-600 mb-6">View and navigate your reporting structure</p>
+                        
+                        <!-- Tree View -->
+                        <div class="space-y-4">
+                            
+                            <!-- Level 1: System/Regional -->
+                            <div class="border-l-4 border-purple-500 pl-4">
+                                <div class="flex items-center gap-3 p-3 bg-purple-50 rounded-lg cursor-pointer hover:bg-purple-100 transition">
+                                    <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                    </svg>
+                                    <div class="flex-1">
+                                        <div class="font-semibold text-gray-900">Mid-Atlantic Region</div>
+                                        <div class="text-sm text-gray-600">Dr. Michael Rodriguez, System Director</div>
+                                    </div>
+                                    <div class="text-sm text-gray-600">
+                                        <span class="font-medium">8</span> Medical Centers
+                                    </div>
+                                </div>
+                                
+                                <!-- Level 2: Medical Center/Geography -->
+                                <div class="ml-6 mt-3 border-l-4 border-blue-500 pl-4">
+                                    <div class="flex items-center gap-3 p-3 bg-blue-50 rounded-lg cursor-pointer hover:bg-blue-100 transition">
+                                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                        </svg>
+                                        <div class="flex-1">
+                                            <div class="font-semibold text-gray-900">Columbia Medical Center</div>
+                                            <div class="text-sm text-gray-600">Jennifer Williams, Regional Director</div>
+                                        </div>
+                                        <div class="text-sm text-gray-600">
+                                            <span class="font-medium">5</span> Service Lines
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Level 3: Service Line -->
+                                    <div class="ml-6 mt-3 border-l-4 border-green-500 pl-4">
+                                        <div class="flex items-center gap-3 p-3 bg-green-50 rounded-lg cursor-pointer hover:bg-green-100 transition">
+                                            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                            </svg>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-gray-900">Primary Care Service Line</div>
+                                                <div class="text-sm text-gray-600">David Martinez, Service Line Director</div>
+                                            </div>
+                                            <div class="text-sm text-gray-600">
+                                                <span class="font-medium">12</span> Units
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Level 4: Units -->
+                                        <div class="ml-6 mt-3 space-y-2">
+                                            <div class="flex items-center gap-3 p-3 bg-white border-2 border-blue-300 rounded-lg">
+                                                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                                </svg>
+                                                <div class="flex-1">
+                                                    <div class="font-semibold text-gray-900">4 West (You are here)</div>
+                                                    <div class="text-sm text-gray-600">Sarah Chen, Nurse Manager</div>
+                                                </div>
+                                                <div class="text-sm text-gray-600">
+                                                    <span class="font-medium">18</span> Staff
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-100 transition">
+                                                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                                </svg>
+                                                <div class="flex-1">
+                                                    <div class="font-medium text-gray-700">4 East</div>
+                                                    <div class="text-sm text-gray-500">Marcus Johnson, Nurse Manager</div>
+                                                </div>
+                                                <div class="text-sm text-gray-500">
+                                                    <span class="font-medium">16</span> Staff
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-100 transition">
+                                                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                                </svg>
+                                                <div class="flex-1">
+                                                    <div class="font-medium text-gray-700">5 North</div>
+                                                    <div class="text-sm text-gray-500">Lisa Anderson, Nurse Manager</div>
+                                                </div>
+                                                <div class="text-sm text-gray-500">
+                                                    <span class="font-medium">20</span> Staff
+                                                </div>
+                                            </div>
+                                            
+                                            <button class="w-full text-sm text-blue-600 hover:text-blue-700 py-2 flex items-center justify-center gap-2">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                                </svg>
+                                                <span>View all 12 units</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Stats by Level -->
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <h3 class="font-semibold text-lg mb-4">Rollup Statistics</h3>
+                        <p class="text-sm text-gray-600 mb-6">Performance metrics aggregated at each level</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="text-sm text-gray-600 mb-2">Your Unit (4 West)</div>
+                                <div class="text-2xl font-bold text-gray-900">75%</div>
+                                <div class="text-sm text-green-600 mt-1">Task completion rate</div>
+                            </div>
+                            
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="text-sm text-gray-600 mb-2">Primary Care Service Line</div>
+                                <div class="text-2xl font-bold text-gray-900">79%</div>
+                                <div class="text-sm text-blue-600 mt-1">Avg across 12 units</div>
+                            </div>
+                            
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="text-sm text-gray-600 mb-2">Columbia Medical Center</div>
+                                <div class="text-2xl font-bold text-gray-900">82%</div>
+                                <div class="text-sm text-purple-600 mt-1">Avg across 5 service lines</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- PRODUCTIVITY & REPORTS TAB - NEW (Role-Aware) -->
+            <div id="content-productivity" class="tab-content hidden">
+                
+                <!-- EXECUTIVE DASHBOARD (For Directors/Managers viewing aggregates) -->
+                <div id="executive-dashboard" class="space-y-6">
+                    
+                    <!-- Header with Time Period Selector -->
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <div>
+                                <h3 class="font-semibold text-xl text-gray-900">Executive Performance Dashboard</h3>
+                                <p class="text-sm text-gray-600 mt-1">Service Line Director View - Primary Care</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <select class="border border-gray-300 rounded-lg px-3 py-2 text-sm">
+                                    <option>January 2026</option>
+                                    <option>Q4 2025</option>
+                                    <option>Last 6 Months</option>
+                                    <option>2025 YTD</option>
+                                </select>
+                                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-medium">
+                                    Export Report
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- High-Level KPIs -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div class="bg-white rounded-lg shadow p-6 border-l-4 border-green-500">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="text-sm font-medium text-gray-600">Service Line Average</h4>
+                                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                                </svg>
+                            </div>
+                            <div class="text-3xl font-bold text-gray-900">84%</div>
+                            <div class="text-sm text-green-600 mt-1">↑ 6% vs last month</div>
+                            <div class="text-xs text-gray-500 mt-2">Task completion across 12 units</div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow p-6 border-l-4 border-blue-500">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="text-sm font-medium text-gray-600">Units On Track</h4>
+                                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div class="text-3xl font-bold text-gray-900">9/12</div>
+                            <div class="text-sm text-blue-600 mt-1">75% of units</div>
+                            <div class="text-xs text-gray-500 mt-2">Meeting or exceeding targets</div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow p-6 border-l-4 border-yellow-500">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="text-sm font-medium text-gray-600">Needs Attention</h4>
+                                <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                </svg>
+                            </div>
+                            <div class="text-3xl font-bold text-gray-900">3</div>
+                            <div class="text-sm text-yellow-600 mt-1">Units below 75%</div>
+                            <div class="text-xs text-gray-500 mt-2">Requires intervention</div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow p-6 border-l-4 border-purple-500">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="text-sm font-medium text-gray-600">Upcoming Milestones</h4>
+                                <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div class="text-3xl font-bold text-gray-900">5</div>
+                            <div class="text-sm text-purple-600 mt-1">Next 30 days</div>
+                            <div class="text-xs text-gray-500 mt-2">Critical deadlines approaching</div>
+                        </div>
+                    </div>
+
+                    <!-- Performance Scatter Plot Visualization -->
+                    <div class="bg-white rounded-lg shadow p-6 mb-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <h3 class="font-semibold text-lg text-gray-900">Performance Distribution Analysis</h3>
+                                <p class="text-sm text-gray-600 mt-1">Visualize unit performance across two dimensions</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <select id="scatter-x-axis" class="border border-gray-300 rounded-lg px-3 py-2 text-sm" onchange="updateScatterPlot()">
+                                    <option value="overall">X: Overall Score</option>
+                                    <option value="staffing">X: Staffing</option>
+                                    <option value="quality">X: Quality</option>
+                                    <option value="supplies">X: Supplies</option>
+                                    <option value="training">X: Training</option>
+                                    <option value="compliance">X: Compliance</option>
+                                </select>
+                                <select id="scatter-y-axis" class="border border-gray-300 rounded-lg px-3 py-2 text-sm" onchange="updateScatterPlot()">
+                                    <option value="trend">Y: Month-over-Month Trend</option>
+                                    <option value="staffing">Y: Staffing</option>
+                                    <option value="quality" selected>Y: Quality</option>
+                                    <option value="supplies">Y: Supplies</option>
+                                    <option value="training">Y: Training</option>
+                                    <option value="compliance">Y: Compliance</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- SVG Scatter Plot -->
+                        <div class="relative bg-gray-50 rounded-lg p-6" style="height: 500px;">
+                            <svg id="scatter-plot" width="100%" height="100%" viewBox="0 0 800 450">
+                                <!-- Grid Lines -->
+                                <g id="grid-lines">
+                                    <!-- Vertical grid lines -->
+                                    <line x1="80" y1="400" x2="80" y2="50" stroke="#e5e7eb" stroke-width="1"/>
+                                    <line x1="220" y1="400" x2="220" y2="50" stroke="#e5e7eb" stroke-width="1"/>
+                                    <line x1="360" y1="400" x2="360" y2="50" stroke="#e5e7eb" stroke-width="1"/>
+                                    <line x1="500" y1="400" x2="500" y2="50" stroke="#e5e7eb" stroke-width="1"/>
+                                    <line x1="640" y1="400" x2="640" y2="50" stroke="#e5e7eb" stroke-width="1"/>
+                                    <line x1="780" y1="400" x2="780" y2="50" stroke="#e5e7eb" stroke-width="1"/>
+                                    
+                                    <!-- Horizontal grid lines -->
+                                    <line x1="80" y1="400" x2="780" y2="400" stroke="#e5e7eb" stroke-width="1"/>
+                                    <line x1="80" y1="312" x2="780" y2="312" stroke="#e5e7eb" stroke-width="1"/>
+                                    <line x1="80" y1="224" x2="780" y2="224" stroke="#e5e7eb" stroke-width="1"/>
+                                    <line x1="80" y1="136" x2="780" y2="136" stroke="#e5e7eb" stroke-width="1"/>
+                                    <line x1="80" y1="50" x2="780" y2="50" stroke="#e5e7eb" stroke-width="1"/>
+                                </g>
+
+                                <!-- Axes -->
+                                <line x1="80" y1="400" x2="780" y2="400" stroke="#374151" stroke-width="2"/>
+                                <line x1="80" y1="400" x2="80" y2="50" stroke="#374151" stroke-width="2"/>
+
+                                <!-- Axis Labels -->
+                                <text x="430" y="440" text-anchor="middle" class="text-sm fill-gray-700 font-medium">Overall Performance Score (%)</text>
+                                <text x="30" y="225" text-anchor="middle" transform="rotate(-90 30 225)" class="text-sm fill-gray-700 font-medium">Quality Metrics Score (%)</text>
+
+                                <!-- X-axis tick labels -->
+                                <text x="80" y="420" text-anchor="middle" class="text-xs fill-gray-600">50</text>
+                                <text x="220" y="420" text-anchor="middle" class="text-xs fill-gray-600">60</text>
+                                <text x="360" y="420" text-anchor="middle" class="text-xs fill-gray-600">70</text>
+                                <text x="500" y="420" text-anchor="middle" class="text-xs fill-gray-600">80</text>
+                                <text x="640" y="420" text-anchor="middle" class="text-xs fill-gray-600">90</text>
+                                <text x="780" y="420" text-anchor="middle" class="text-xs fill-gray-600">100</text>
+
+                                <!-- Y-axis tick labels -->
+                                <text x="70" y="405" text-anchor="end" class="text-xs fill-gray-600">50</text>
+                                <text x="70" y="317" text-anchor="end" class="text-xs fill-gray-600">60</text>
+                                <text x="70" y="229" text-anchor="end" class="text-xs fill-gray-600">70</text>
+                                <text x="70" y="141" text-anchor="end" class="text-xs fill-gray-600">80</text>
+                                <text x="70" y="55" text-anchor="end" class="text-xs fill-gray-600">90</text>
+
+                                <!-- Reference Lines (75% threshold) -->
+                                <line x1="430" y1="400" x2="430" y2="50" stroke="#fbbf24" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
+                                <line x1="80" y1="225" x2="780" y2="225" stroke="#fbbf24" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
+                                <text x="435" y="45" class="text-xs fill-yellow-600 font-medium">Target: 75%</text>
+
+                                <!-- Data Points -->
+                                <!-- 5 North (91, 89) - Top Performer -->
+                                <circle cx="668" cy="61" r="10" fill="#10b981" stroke="#065f46" stroke-width="2" opacity="0.8" class="cursor-pointer hover:opacity-100" onclick="showUnitDetail('5-north')">
+                                    <title>5 North: Overall 91%, Quality 89%</title>
+                                </circle>
+                                <text x="668" y="48" text-anchor="middle" class="text-xs fill-gray-900 font-semibold pointer-events-none">5N</text>
+
+                                <!-- 4 West (88, 91) - Strong -->
+                                <circle cx="626" cy="47" r="10" fill="#10b981" stroke="#065f46" stroke-width="2" opacity="0.8" class="cursor-pointer hover:opacity-100" onclick="showUnitDetail('4-west')">
+                                    <title>4 West: Overall 88%, Quality 91%</title>
+                                </circle>
+                                <text x="626" y="34" text-anchor="middle" class="text-xs fill-gray-900 font-semibold pointer-events-none">4W</text>
+
+                                <!-- 4 East (85, 84) - Strong -->
+                                <circle cx="584" cy="106" r="10" fill="#10b981" stroke="#065f46" stroke-width="2" opacity="0.8" class="cursor-pointer hover:opacity-100" onclick="showUnitDetail('4-east')">
+                                    <title>4 East: Overall 85%, Quality 84%</title>
+                                </circle>
+                                <text x="584" y="93" text-anchor="middle" class="text-xs fill-gray-900 font-semibold pointer-events-none">4E</text>
+
+                                <!-- 6 West (82, 78) - On Track -->
+                                <circle cx="528" cy="155" r="9" fill="#3b82f6" stroke="#1e40af" stroke-width="2" opacity="0.8" class="cursor-pointer hover:opacity-100" onclick="showUnitDetail('6-west')">
+                                    <title>6 West: Overall 82%, Quality 78%</title>
+                                </circle>
+                                <text x="528" y="143" text-anchor="middle" class="text-xs fill-gray-900 font-semibold pointer-events-none">6W</text>
+
+                                <!-- 2 South (81, 82) - On Track -->
+                                <circle cx="514" cy="113" r="9" fill="#3b82f6" stroke="#1e40af" stroke-width="2" opacity="0.8" class="cursor-pointer hover:opacity-100" onclick="showUnitDetail('2-south')">
+                                    <title>2 South: Overall 81%, Quality 82%</title>
+                                </circle>
+                                <text x="514" y="101" text-anchor="middle" class="text-xs fill-gray-900 font-semibold pointer-events-none">2S</text>
+
+                                <!-- 7 East (79, 76) - On Track -->
+                                <circle cx="486" cy="169" r="9" fill="#3b82f6" stroke="#1e40af" stroke-width="2" opacity="0.8" class="cursor-pointer hover:opacity-100" onclick="showUnitDetail('7-east')">
+                                    <title>7 East: Overall 79%, Quality 76%</title>
+                                </circle>
+                                <text x="486" y="157" text-anchor="middle" class="text-xs fill-gray-900 font-semibold pointer-events-none">7E</text>
+
+                                <!-- 3 South (73, 75) - Below Target -->
+                                <circle cx="402" cy="176" r="9" fill="#f59e0b" stroke="#d97706" stroke-width="2" opacity="0.8" class="cursor-pointer hover:opacity-100" onclick="showUnitDetail('3-south')">
+                                    <title>3 South: Overall 73%, Quality 75%</title>
+                                </circle>
+                                <text x="402" y="164" text-anchor="middle" class="text-xs fill-gray-900 font-semibold pointer-events-none">3S</text>
+
+                                <!-- 10 West (68, 71) - Critical -->
+                                <circle cx="332" cy="204" r="10" fill="#ef4444" stroke="#b91c1c" stroke-width="2" opacity="0.8" class="cursor-pointer hover:opacity-100" onclick="showUnitDetail('10-west')">
+                                    <title>10 West: Overall 68%, Quality 71%</title>
+                                </circle>
+                                <text x="332" y="191" text-anchor="middle" class="text-xs fill-gray-900 font-semibold pointer-events-none">10W</text>
+
+                                <!-- 11 East (64, 67) - Critical -->
+                                <circle cx="276" cy="232" r="10" fill="#ef4444" stroke="#b91c1c" stroke-width="2" opacity="0.8" class="cursor-pointer hover:opacity-100" onclick="showUnitDetail('11-east')">
+                                    <title>11 East: Overall 64%, Quality 67%</title>
+                                </circle>
+                                <text x="276" y="219" text-anchor="middle" class="text-xs fill-gray-900 font-semibold pointer-events-none">11E</text>
+
+                                <!-- Quadrant Labels -->
+                                <text x="650" y="120" text-anchor="middle" class="text-sm fill-green-600 font-semibold opacity-30">High Performance</text>
+                                <text x="250" y="120" text-anchor="middle" class="text-sm fill-red-600 font-semibold opacity-30">Needs Improvement</text>
+                            </svg>
+
+                            <!-- Legend -->
+                            <div class="absolute bottom-6 right-6 bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
+                                <div class="text-xs font-medium text-gray-700 mb-2">Performance Level</div>
+                                <div class="space-y-1">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-3 h-3 rounded-full bg-green-500 border-2 border-green-700"></div>
+                                        <span class="text-xs text-gray-600">Excellent (≥85%)</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-3 h-3 rounded-full bg-blue-500 border-2 border-blue-700"></div>
+                                        <span class="text-xs text-gray-600">On Track (75-84%)</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-3 h-3 rounded-full bg-yellow-500 border-2 border-yellow-700"></div>
+                                        <span class="text-xs text-gray-600">Below Target (70-74%)</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-3 h-3 rounded-full bg-red-500 border-2 border-red-700"></div>
+                                        <span class="text-xs text-gray-600">Critical (<70%)</span>
+                                    </div>
+                                </div>
+                                <div class="mt-2 pt-2 border-t border-gray-200 text-xs text-gray-500">
+                                    Click any point for details
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Insights -->
+                        <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <div class="p-3 bg-green-50 border border-green-200 rounded-lg">
+                                <div class="text-xs text-green-700 font-medium mb-1">High Performers (Top Right)</div>
+                                <div class="text-xs text-gray-600">3 units excel in both overall and quality metrics</div>
+                            </div>
+                            <div class="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                                <div class="text-xs text-yellow-700 font-medium mb-1">Opportunity Zone (Middle)</div>
+                                <div class="text-xs text-gray-600">4 units close to targets, need focused support</div>
+                            </div>
+                            <div class="p-3 bg-red-50 border border-red-200 rounded-lg">
+                                <div class="text-xs text-red-700 font-medium mb-1">Intervention Required (Bottom Left)</div>
+                                <div class="text-xs text-gray-600">2 units need immediate leadership attention</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Performance Heat Map with Filters -->
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <h3 class="font-semibold text-lg text-gray-900">Multi-Dimensional Performance Matrix</h3>
+                                <p class="text-sm text-gray-600 mt-1">Visual snapshot across operational domains - January 2026</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button onclick="toggleHeatMapView('grid')" id="view-grid" class="px-3 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium">
+                                    Grid View
+                                </button>
+                                <button onclick="toggleHeatMapView('table')" id="view-table" class="px-3 py-2 bg-gray-200 text-gray-700 rounded-lg text-sm font-medium">
+                                    Table View
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Filter Controls -->
+                        <div class="mb-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <div class="flex items-center gap-2 mb-3">
+                                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                                </svg>
+                                <h4 class="font-medium text-gray-900">Filter Performance View</h4>
+                            </div>
+                            <div class="grid grid-cols-2 md:grid-cols-6 gap-2">
+                                <button onclick="filterDomain('overall')" id="filter-overall" class="domain-filter px-3 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700">
+                                    Overall Score
+                                </button>
+                                <button onclick="filterDomain('staffing')" id="filter-staffing" class="domain-filter px-3 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50">
+                                    Staffing
+                                </button>
+                                <button onclick="filterDomain('quality')" id="filter-quality" class="domain-filter px-3 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50">
+                                    Quality Metrics
+                                </button>
+                                <button onclick="filterDomain('supplies')" id="filter-supplies" class="domain-filter px-3 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50">
+                                    Supplies
+                                </button>
+                                <button onclick="filterDomain('training')" id="filter-training" class="domain-filter px-3 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50">
+                                    Training
+                                </button>
+                                <button onclick="filterDomain('compliance')" id="filter-compliance" class="domain-filter px-3 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50">
+                                    Compliance
+                                </button>
+                            </div>
+                            <div class="mt-3 text-xs text-gray-600">
+                                <strong>Currently viewing:</strong> <span id="current-domain">Overall Performance Score</span>
+                            </div>
+                        </div>
+
+                        <!-- Grid View -->
+                        <div id="heat-map-grid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                        <!-- Grid View -->
+                        <div id="heat-map-grid">
+                            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                            
+                            <!-- Unit Card Template - 5 North (Top Performer) -->
+                            <div class="unit-card border-2 border-green-500 rounded-lg p-4 bg-green-50 cursor-pointer hover:shadow-lg transition" onclick="showUnitDetail('5-north')" data-overall="91" data-staffing="94" data-quality="89" data-supplies="92" data-training="88" data-compliance="95">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">5 North</h4>
+                                    <span class="unit-score px-2 py-1 bg-green-600 text-white text-xs font-bold rounded-full">91%</span>
+                                </div>
+                                <div class="text-xs text-gray-600 mb-3">Lisa Anderson • 20 staff</div>
+                                
+                                <!-- Mini Performance Breakdown -->
+                                <div class="space-y-1 mb-3">
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Staffing</span>
+                                        <span class="font-medium text-green-700">94%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Quality</span>
+                                        <span class="font-medium text-green-700">89%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Supplies</span>
+                                        <span class="font-medium text-green-700">92%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Training</span>
+                                        <span class="font-medium text-green-700">88%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Compliance</span>
+                                        <span class="font-medium text-green-700">95%</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center gap-1 text-xs text-green-700 font-medium mb-2">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>Top Performer • ↑ 3%</span>
+                                </div>
+                                <div class="text-xs text-gray-500">Click for details →</div>
+                            </div>
+
+                            <!-- 4 West -->
+                            <div class="unit-card border-2 border-green-500 rounded-lg p-4 bg-green-50 cursor-pointer hover:shadow-lg transition" onclick="showUnitDetail('4-west')" data-overall="88" data-staffing="86" data-quality="91" data-supplies="87" data-training="82" data-compliance="92">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">4 West</h4>
+                                    <span class="unit-score px-2 py-1 bg-green-600 text-white text-xs font-bold rounded-full">88%</span>
+                                </div>
+                                <div class="text-xs text-gray-600 mb-3">Sarah Chen • 18 staff</div>
+                                <div class="space-y-1 mb-3">
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Staffing</span>
+                                        <span class="font-medium text-green-700">86%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Quality</span>
+                                        <span class="font-medium text-green-700">91%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Supplies</span>
+                                        <span class="font-medium text-green-700">87%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Training</span>
+                                        <span class="font-medium text-yellow-700">82%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Compliance</span>
+                                        <span class="font-medium text-green-700">92%</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-1 text-xs text-green-700 font-medium mb-2">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>Strong • ↑ 5%</span>
+                                </div>
+                                <div class="text-xs text-gray-500">Click for details →</div>
+                            </div>
+
+                            <!-- 4 East -->
+                            <div class="unit-card border-2 border-green-500 rounded-lg p-4 bg-green-50 cursor-pointer hover:shadow-lg transition" onclick="showUnitDetail('4-east')" data-overall="85" data-staffing="89" data-quality="84" data-supplies="83" data-training="86" data-compliance="85">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">4 East</h4>
+                                    <span class="unit-score px-2 py-1 bg-green-600 text-white text-xs font-bold rounded-full">85%</span>
+                                </div>
+                                <div class="text-xs text-gray-600 mb-3">Marcus Johnson • 16 staff</div>
+                                <div class="space-y-1 mb-3">
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Staffing</span>
+                                        <span class="font-medium text-green-700">89%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Quality</span>
+                                        <span class="font-medium text-green-700">84%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Supplies</span>
+                                        <span class="font-medium text-blue-700">83%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Training</span>
+                                        <span class="font-medium text-green-700">86%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Compliance</span>
+                                        <span class="font-medium text-green-700">85%</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-1 text-xs text-green-700 font-medium mb-2">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>Strong • ↑ 7%</span>
+                                </div>
+                                <div class="text-xs text-gray-500">Click for details →</div>
+                            </div>
+
+                            <!-- 6 West (On Track) -->
+                            <div class="unit-card border-2 border-blue-400 rounded-lg p-4 bg-blue-50 cursor-pointer hover:shadow-lg transition" onclick="showUnitDetail('6-west')" data-overall="82" data-staffing="85" data-quality="78" data-supplies="84" data-training="80" data-compliance="83">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">6 West</h4>
+                                    <span class="unit-score px-2 py-1 bg-blue-500 text-white text-xs font-bold rounded-full">82%</span>
+                                </div>
+                                <div class="text-xs text-gray-600 mb-3">Robert Davis • 19 staff</div>
+                                <div class="space-y-1 mb-3">
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Staffing</span>
+                                        <span class="font-medium text-green-700">85%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Quality</span>
+                                        <span class="font-medium text-blue-700">78%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Supplies</span>
+                                        <span class="font-medium text-green-700">84%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Training</span>
+                                        <span class="font-medium text-blue-700">80%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Compliance</span>
+                                        <span class="font-medium text-blue-700">83%</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-1 text-xs text-blue-700 font-medium mb-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
+                                    </svg>
+                                    <span>On Track</span>
+                                </div>
+                                <div class="text-xs text-gray-500">Click for details →</div>
+                            </div>
+
+                            <!-- 2 South -->
+                            <div class="unit-card border-2 border-blue-400 rounded-lg p-4 bg-blue-50 cursor-pointer hover:shadow-lg transition" onclick="showUnitDetail('2-south')" data-overall="81" data-staffing="83" data-quality="82" data-supplies="79" data-training="77" data-compliance="84">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">2 South</h4>
+                                    <span class="unit-score px-2 py-1 bg-blue-500 text-white text-xs font-bold rounded-full">81%</span>
+                                </div>
+                                <div class="text-xs text-gray-600 mb-3">Amanda Foster • 17 staff</div>
+                                <div class="space-y-1 mb-3">
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Staffing</span>
+                                        <span class="font-medium text-blue-700">83%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Quality</span>
+                                        <span class="font-medium text-blue-700">82%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Supplies</span>
+                                        <span class="font-medium text-blue-700">79%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Training</span>
+                                        <span class="font-medium text-blue-700">77%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Compliance</span>
+                                        <span class="font-medium text-green-700">84%</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-1 text-xs text-blue-700 font-medium mb-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
+                                    </svg>
+                                    <span>On Track • ↑ 4%</span>
+                                </div>
+                                <div class="text-xs text-gray-500">Click for details →</div>
+                            </div>
+
+                            <!-- 7 East -->
+                            <div class="unit-card border-2 border-blue-400 rounded-lg p-4 bg-blue-50 cursor-pointer hover:shadow-lg transition" onclick="showUnitDetail('7-east')" data-overall="79" data-staffing="81" data-quality="76" data-supplies="82" data-training="79" data-compliance="77">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">7 East</h4>
+                                    <span class="unit-score px-2 py-1 bg-blue-500 text-white text-xs font-bold rounded-full">79%</span>
+                                </div>
+                                <div class="text-xs text-gray-600 mb-3">Kevin Park • 21 staff</div>
+                                <div class="space-y-1 mb-3">
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Staffing</span>
+                                        <span class="font-medium text-blue-700">81%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Quality</span>
+                                        <span class="font-medium text-blue-700">76%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Supplies</span>
+                                        <span class="font-medium text-blue-700">82%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Training</span>
+                                        <span class="font-medium text-blue-700">79%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Compliance</span>
+                                        <span class="font-medium text-blue-700">77%</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-1 text-xs text-blue-700 font-medium mb-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
+                                    </svg>
+                                    <span>On Track</span>
+                                </div>
+                                <div class="text-xs text-gray-500">Click for details →</div>
+                            </div>
+
+                            <!-- 3 South (Below Target - Weak in Training) -->
+                            <div class="unit-card border-2 border-yellow-500 rounded-lg p-4 bg-yellow-50 cursor-pointer hover:shadow-lg transition" onclick="showUnitDetail('3-south')" data-overall="73" data-staffing="76" data-quality="75" data-supplies="74" data-training="65" data-compliance="75">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">3 South</h4>
+                                    <span class="unit-score px-2 py-1 bg-yellow-500 text-white text-xs font-bold rounded-full">73%</span>
+                                </div>
+                                <div class="text-xs text-gray-600 mb-3">Patricia Kim • 22 staff</div>
+                                <div class="space-y-1 mb-3">
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Staffing</span>
+                                        <span class="font-medium text-blue-700">76%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Quality</span>
+                                        <span class="font-medium text-blue-700">75%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Supplies</span>
+                                        <span class="font-medium text-yellow-700">74%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Training</span>
+                                        <span class="font-medium text-red-700">65% ⚠</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Compliance</span>
+                                        <span class="font-medium text-blue-700">75%</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-1 text-xs text-yellow-700 font-medium mb-2">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>Below Target • ↓ 3%</span>
+                                </div>
+                                <div class="text-xs text-gray-500">Click for details →</div>
+                            </div>
+
+                            <!-- 10 West (Critical - Weak in Supplies & Staffing) -->
+                            <div class="unit-card border-2 border-red-500 rounded-lg p-4 bg-red-50 cursor-pointer hover:shadow-lg transition" onclick="showUnitDetail('10-west')" data-overall="68" data-staffing="62" data-quality="71" data-supplies="64" data-training="76" data-compliance="67">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">10 West</h4>
+                                    <span class="unit-score px-2 py-1 bg-red-600 text-white text-xs font-bold rounded-full">68%</span>
+                                </div>
+                                <div class="text-xs text-gray-600 mb-3">James Taylor • 14 staff</div>
+                                <div class="space-y-1 mb-3">
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Staffing</span>
+                                        <span class="font-medium text-red-700">62% ⚠</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Quality</span>
+                                        <span class="font-medium text-yellow-700">71%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Supplies</span>
+                                        <span class="font-medium text-red-700">64% ⚠</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Training</span>
+                                        <span class="font-medium text-blue-700">76%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Compliance</span>
+                                        <span class="font-medium text-red-700">67%</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-1 text-xs text-red-700 font-medium mb-2">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>Critical • ↓ 6%</span>
+                                </div>
+                                <div class="text-xs text-gray-500">Click for details →</div>
+                            </div>
+
+                            <!-- 11 East (Critical - Weak across board) -->
+                            <div class="unit-card border-2 border-red-500 rounded-lg p-4 bg-red-50 cursor-pointer hover:shadow-lg transition" onclick="showUnitDetail('11-east')" data-overall="64" data-staffing="58" data-quality="67" data-supplies="61" data-training="69" data-compliance="65">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">11 East</h4>
+                                    <span class="unit-score px-2 py-1 bg-red-600 text-white text-xs font-bold rounded-full">64%</span>
+                                </div>
+                                <div class="text-xs text-gray-600 mb-3">Nicole Brown • 12 staff</div>
+                                <div class="space-y-1 mb-3">
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Staffing</span>
+                                        <span class="font-medium text-red-700">58% ⚠</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Quality</span>
+                                        <span class="font-medium text-red-700">67%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Supplies</span>
+                                        <span class="font-medium text-red-700">61% ⚠</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Training</span>
+                                        <span class="font-medium text-red-700">69%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-600">Compliance</span>
+                                        <span class="font-medium text-red-700">65%</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-1 text-xs text-red-700 font-medium mb-2">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>Critical • ↓ 9%</span>
+                                </div>
+                                <div class="text-xs text-gray-500">Click for details →</div>
+                            </div>
+
+                            <!-- Additional units would continue with similar structure -->
+                            </div>
+                        </div>
+
+                        <!-- Table View (Alternative Display) -->
+                        <div id="heat-map-table" class="hidden overflow-x-auto">
+                            <table class="w-full">
+                                <thead class="bg-gray-50 border-b-2 border-gray-300">
+                                    <tr>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase sticky left-0 bg-gray-50">Unit</th>
+                                        <th class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Overall</th>
+                                        <th class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Staffing</th>
+                                        <th class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Quality</th>
+                                        <th class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Supplies</th>
+                                        <th class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Training</th>
+                                        <th class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Compliance</th>
+                                        <th class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Trend</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-3 sticky left-0 bg-white">
+                                            <div class="font-medium text-gray-900">5 North</div>
+                                            <div class="text-xs text-gray-500">Lisa Anderson</div>
+                                        </td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">91%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">94%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">89%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">92%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">88%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">95%</span></td>
+                                        <td class="px-4 py-3 text-center text-sm text-green-600 font-medium">↑ 3%</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-3 sticky left-0 bg-white">
+                                            <div class="font-medium text-gray-900">4 West</div>
+                                            <div class="text-xs text-gray-500">Sarah Chen</div>
+                                        </td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">88%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">86%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">91%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">87%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">82%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">92%</span></td>
+                                        <td class="px-4 py-3 text-center text-sm text-green-600 font-medium">↑ 5%</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-3 sticky left-0 bg-white">
+                                            <div class="font-medium text-gray-900">3 South</div>
+                                            <div class="text-xs text-gray-500">Patricia Kim</div>
+                                        </td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-semibold rounded-full">73%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">76%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">75%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-semibold rounded-full">74%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-red-100 text-red-800 text-xs font-semibold rounded-full">65%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">75%</span></td>
+                                        <td class="px-4 py-3 text-center text-sm text-red-600 font-medium">↓ 3%</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50 bg-red-50">
+                                        <td class="px-4 py-3 sticky left-0 bg-red-50">
+                                            <div class="font-medium text-gray-900">10 West</div>
+                                            <div class="text-xs text-gray-500">James Taylor</div>
+                                        </td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-red-100 text-red-800 text-xs font-semibold rounded-full">68%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-red-100 text-red-800 text-xs font-semibold rounded-full">62%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-semibold rounded-full">71%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-red-100 text-red-800 text-xs font-semibold rounded-full">64%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">76%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-red-100 text-red-800 text-xs font-semibold rounded-full">67%</span></td>
+                                        <td class="px-4 py-3 text-center text-sm text-red-600 font-medium">↓ 6%</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50 bg-red-50">
+                                        <td class="px-4 py-3 sticky left-0 bg-red-50">
+                                            <div class="font-medium text-gray-900">11 East</div>
+                                            <div class="text-xs text-gray-500">Nicole Brown</div>
+                                        </td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-red-100 text-red-800 text-xs font-semibold rounded-full">64%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-red-100 text-red-800 text-xs font-semibold rounded-full">58%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-red-100 text-red-800 text-xs font-semibold rounded-full">67%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-red-100 text-red-800 text-xs font-semibold rounded-full">61%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-red-100 text-red-800 text-xs font-semibold rounded-full">69%</span></td>
+                                        <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-red-100 text-red-800 text-xs font-semibold rounded-full">65%</span></td>
+                                        <td class="px-4 py-3 text-center text-sm text-red-600 font-medium">↓ 9%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">5 North</h4>
+                                    <span class="px-2 py-1 bg-green-600 text-white text-xs font-bold rounded-full">91%</span>
+                                </div>
+                                <div class="text-xs text-gray-600 mb-2">Lisa Anderson</div>
+                                <div class="flex items-center gap-1 text-xs text-green-700 font-medium">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>Top Performer</span>
+                                </div>
+                                <div class="mt-2 pt-2 border-t border-green-200 text-xs text-gray-600">
+                                    20 staff • 3.8 avg days
+                                </div>
+                            </div>
+
+                            <div class="border-2 border-green-500 rounded-lg p-4 bg-green-50 cursor-pointer hover:shadow-lg transition">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">4 West</h4>
+                                    <span class="px-2 py-1 bg-green-600 text-white text-xs font-bold rounded-full">88%</span>
+                                </div>
+                                <div class="text-xs text-gray-600 mb-2">Sarah Chen</div>
+                                <div class="flex items-center gap-1 text-xs text-green-700 font-medium">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>Strong • ↑ 5%</span>
+                                </div>
+                                <div class="mt-2 pt-2 border-t border-green-200 text-xs text-gray-600">
+                                    18 staff • 4.2 avg days
+                                </div>
+                            </div>
+
+                            <div class="border-2 border-green-500 rounded-lg p-4 bg-green-50 cursor-pointer hover:shadow-lg transition">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">4 East</h4>
+                                    <span class="px-2 py-1 bg-green-600 text-white text-xs font-bold rounded-full">85%</span>
+                                </div>
+                                <div class="text-xs text-gray-600 mb-2">Marcus Johnson</div>
+                                <div class="flex items-center gap-1 text-xs text-green-700 font-medium">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>Strong • ↑ 7%</span>
+                                </div>
+                                <div class="mt-2 pt-2 border-t border-green-200 text-xs text-gray-600">
+                                    16 staff • 4.5 avg days
+                                </div>
+                            </div>
+
+                            <!-- Good Performance (75-84%) -->
+                            <div class="border-2 border-blue-400 rounded-lg p-4 bg-blue-50 cursor-pointer hover:shadow-lg transition">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">6 West</h4>
+                                    <span class="px-2 py-1 bg-blue-500 text-white text-xs font-bold rounded-full">82%</span>
+                                </div>
+                                <div class="text-xs text-gray-600 mb-2">Robert Davis</div>
+                                <div class="flex items-center gap-1 text-xs text-blue-700 font-medium">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
+                                    </svg>
+                                    <span>On Track</span>
+                                </div>
+                                <div class="mt-2 pt-2 border-t border-blue-200 text-xs text-gray-600">
+                                    19 staff • 4.7 avg days
+                                </div>
+                            </div>
+
+                            <div class="border-2 border-blue-400 rounded-lg p-4 bg-blue-50 cursor-pointer hover:shadow-lg transition">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">2 South</h4>
+                                    <span class="px-2 py-1 bg-blue-500 text-white text-xs font-bold rounded-full">81%</span>
+                                </div>
+                                <div class="text-xs text-gray-600 mb-2">Amanda Foster</div>
+                                <div class="flex items-center gap-1 text-xs text-blue-700 font-medium">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
+                                    </svg>
+                                    <span>On Track • ↑ 4%</span>
+                                </div>
+                                <div class="mt-2 pt-2 border-t border-blue-200 text-xs text-gray-600">
+                                    17 staff • 4.9 avg days
+                                </div>
+                            </div>
+
+                            <div class="border-2 border-blue-400 rounded-lg p-4 bg-blue-50 cursor-pointer hover:shadow-lg transition">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">7 East</h4>
+                                    <span class="px-2 py-1 bg-blue-500 text-white text-xs font-bold rounded-full">79%</span>
+                                </div>
+                                <div class="text-xs text-gray-600 mb-2">Kevin Park</div>
+                                <div class="flex items-center gap-1 text-xs text-blue-700 font-medium">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
+                                    </svg>
+                                    <span>On Track</span>
+                                </div>
+                                <div class="mt-2 pt-2 border-t border-blue-200 text-xs text-gray-600">
+                                    21 staff • 5.1 avg days
+                                </div>
+                            </div>
+
+                            <div class="border-2 border-blue-400 rounded-lg p-4 bg-blue-50 cursor-pointer hover:shadow-lg transition">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">8 North</h4>
+                                    <span class="px-2 py-1 bg-blue-500 text-white text-xs font-bold rounded-full">78%</span>
+                                </div>
+                                <div class="text-xs text-gray-600 mb-2">Rachel Green</div>
+                                <div class="flex items-center gap-1 text-xs text-blue-700 font-medium">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
+                                    </svg>
+                                    <span>On Track • ↑ 2%</span>
+                                </div>
+                                <div class="mt-2 pt-2 border-t border-blue-200 text-xs text-gray-600">
+                                    15 staff • 5.3 avg days
+                                </div>
+                            </div>
+
+                            <div class="border-2 border-blue-400 rounded-lg p-4 bg-blue-50 cursor-pointer hover:shadow-lg transition">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">1 West</h4>
+                                    <span class="px-2 py-1 bg-blue-500 text-white text-xs font-bold rounded-full">77%</span>
+                                </div>
+                                <div class="text-xs text-gray-600 mb-2">Thomas Wright</div>
+                                <div class="flex items-center gap-1 text-xs text-blue-700 font-medium">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
+                                    </svg>
+                                    <span>On Track</span>
+                                </div>
+                                <div class="mt-2 pt-2 border-t border-blue-200 text-xs text-gray-600">
+                                    18 staff • 5.2 avg days
+                                </div>
+                            </div>
+
+                            <div class="border-2 border-blue-400 rounded-lg p-4 bg-blue-50 cursor-pointer hover:shadow-lg transition">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">9 South</h4>
+                                    <span class="px-2 py-1 bg-blue-500 text-white text-xs font-bold rounded-full">76%</span>
+                                </div>
+                                <div class="text-xs text-gray-600 mb-2">Diane Miller</div>
+                                <div class="flex items-center gap-1 text-xs text-blue-700 font-medium">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
+                                    </svg>
+                                    <span>On Track • ↑ 8%</span>
+                                </div>
+                                <div class="mt-2 pt-2 border-t border-blue-200 text-xs text-gray-600">
+                                    19 staff • 5.4 avg days
+                                </div>
+                            </div>
+
+                            <!-- Needs Attention (<75%) -->
+                            <div class="border-2 border-yellow-500 rounded-lg p-4 bg-yellow-50 cursor-pointer hover:shadow-lg transition">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">3 South</h4>
+                                    <span class="px-2 py-1 bg-yellow-500 text-white text-xs font-bold rounded-full">73%</span>
+                                </div>
+                                <div class="text-xs text-gray-600 mb-2">Patricia Kim</div>
+                                <div class="flex items-center gap-1 text-xs text-yellow-700 font-medium">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>Below Target • ↓ 3%</span>
+                                </div>
+                                <div class="mt-2 pt-2 border-t border-yellow-200 text-xs text-gray-600">
+                                    22 staff • 6.1 avg days
+                                </div>
+                            </div>
+
+                            <div class="border-2 border-red-500 rounded-lg p-4 bg-red-50 cursor-pointer hover:shadow-lg transition">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">10 West</h4>
+                                    <span class="px-2 py-1 bg-red-600 text-white text-xs font-bold rounded-full">68%</span>
+                                </div>
+                                <div class="text-xs text-gray-600 mb-2">James Taylor</div>
+                                <div class="flex items-center gap-1 text-xs text-red-700 font-medium">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>Critical • ↓ 6%</span>
+                                </div>
+                                <div class="mt-2 pt-2 border-t border-red-200 text-xs text-gray-600">
+                                    14 staff • 7.2 avg days
+                                </div>
+                            </div>
+
+                            <div class="border-2 border-red-500 rounded-lg p-4 bg-red-50 cursor-pointer hover:shadow-lg transition">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">11 East</h4>
+                                    <span class="px-2 py-1 bg-red-600 text-white text-xs font-bold rounded-full">64%</span>
+                                </div>
+                                <div class="text-xs text-gray-600 mb-2">Nicole Brown</div>
+                                <div class="flex items-center gap-1 text-xs text-red-700 font-medium">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>Critical • ↓ 9%</span>
+                                </div>
+                                <div class="mt-2 pt-2 border-t border-red-200 text-xs text-gray-600">
+                                    12 staff • 8.3 avg days
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Legend -->
+                        <div class="mt-6 pt-4 border-t border-gray-200 flex items-center justify-center gap-8 text-sm">
+                            <div class="flex items-center gap-2">
+                                <div class="w-4 h-4 bg-green-500 rounded"></div>
+                                <span class="text-gray-600">Excellent (≥85%)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-4 h-4 bg-blue-500 rounded"></div>
+                                <span class="text-gray-600">On Track (75-84%)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-4 h-4 bg-yellow-500 rounded"></div>
+                                <span class="text-gray-600">Below Target (70-74%)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-4 h-4 bg-red-500 rounded"></div>
+                                <span class="text-gray-600">Critical (<70%)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Areas of Concern -->
+                    <div class="bg-white rounded-lg shadow p-6 border-l-4 border-red-500">
+                        <h3 class="font-semibold text-lg text-gray-900 mb-4 flex items-center gap-2">
+                            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                            <span>Areas of Concern - Requires Leadership Attention</span>
+                        </h3>
+                        
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-red-500 pl-4 py-3 bg-red-50 rounded-r-lg">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">11 East - Critical Performance Decline</h4>
+                                        <div class="text-sm text-gray-600 mt-1">Manager: Nicole Brown • 12 Staff Members</div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-red-600 text-white text-sm font-bold rounded-full">64%</span>
+                                </div>
+                                <div class="text-sm text-gray-700 mb-2">
+                                    <strong>Issue:</strong> 9% decline in completion rate over past month. Average task completion time has increased from 5.2 to 8.3 days. 23 overdue items.
+                                </div>
+                                <div class="text-sm text-gray-700 mb-3">
+                                    <strong>Contributing Factors:</strong> Recent staffing shortage (3 nurses on extended leave), high patient volume, delayed equipment maintenance.
+                                </div>
+                                <div class="flex gap-2">
+                                    <button class="px-3 py-1 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700">Schedule 1-on-1</button>
+                                    <button class="px-3 py-1 bg-white border border-red-600 text-red-600 text-sm rounded-lg hover:bg-red-50">Request Float Support</button>
+                                    <button class="px-3 py-1 bg-white border border-gray-300 text-gray-700 text-sm rounded-lg hover:bg-gray-50">View Details →</button>
+                                </div>
+                            </div>
+
+                            <div class="border-l-4 border-yellow-500 pl-4 py-3 bg-yellow-50 rounded-r-lg">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">10 West - Below Target</h4>
+                                        <div class="text-sm text-gray-600 mt-1">Manager: James Taylor • 14 Staff Members</div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-yellow-600 text-white text-sm font-bold rounded-full">68%</span>
+                                </div>
+                                <div class="text-sm text-gray-700 mb-2">
+                                    <strong>Issue:</strong> Consistent underperformance for 2 consecutive months. Compliance checks frequently delayed.
+                                </div>
+                                <div class="text-sm text-gray-700 mb-3">
+                                    <strong>Contributing Factors:</strong> New manager (3 months tenure), need for additional training on system processes.
+                                </div>
+                                <div class="flex gap-2">
+                                    <button class="px-3 py-1 bg-yellow-600 text-white text-sm rounded-lg hover:bg-yellow-700">Assign Mentor</button>
+                                    <button class="px-3 py-1 bg-white border border-yellow-600 text-yellow-600 text-sm rounded-lg hover:bg-yellow-50">Training Plan</button>
+                                    <button class="px-3 py-1 bg-white border border-gray-300 text-gray-700 text-sm rounded-lg hover:bg-gray-50">View Details →</button>
+                                </div>
+                            </div>
+
+                            <div class="border-l-4 border-yellow-500 pl-4 py-3 bg-yellow-50 rounded-r-lg">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">3 South - Trending Downward</h4>
+                                        <div class="text-sm text-gray-600 mt-1">Manager: Patricia Kim • 22 Staff Members</div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-yellow-600 text-white text-sm font-bold rounded-full">73%</span>
+                                </div>
+                                <div class="text-sm text-gray-700 mb-2">
+                                    <strong>Issue:</strong> Performance declining for 3 weeks straight (79% → 76% → 73%). Watch closely.
+                                </div>
+                                <div class="text-sm text-gray-700 mb-3">
+                                    <strong>Contributing Factors:</strong> Staffing coordination issues, delayed handoffs between shifts.
+                                </div>
+                                <div class="flex gap-2">
+                                    <button class="px-3 py-1 bg-yellow-600 text-white text-sm rounded-lg hover:bg-yellow-700">Monitor Closely</button>
+                                    <button class="px-3 py-1 bg-white border border-gray-300 text-gray-700 text-sm rounded-lg hover:bg-gray-50">View Details →</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Areas Doing Well -->
+                    <div class="bg-white rounded-lg shadow p-6 border-l-4 border-green-500">
+                        <h3 class="font-semibold text-lg text-gray-900 mb-4 flex items-center gap-2">
+                            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>Success Stories - Best Practices to Share</span>
+                        </h3>
+                        
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-green-500 pl-4 py-3 bg-green-50 rounded-r-lg">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">5 North - Top Performer</h4>
+                                        <div class="text-sm text-gray-600 mt-1">Manager: Lisa Anderson • 20 Staff Members</div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-green-600 text-white text-sm font-bold rounded-full">91%</span>
+                                </div>
+                                <div class="text-sm text-gray-700 mb-2">
+                                    <strong>Achievement:</strong> Highest completion rate service line-wide. 3% improvement over last month. Average completion time reduced to 3.8 days.
+                                </div>
+                                <div class="text-sm text-gray-700 mb-3">
+                                    <strong>Key Practices:</strong> Daily 5-minute standup meetings, peer task review system, proactive float pool coordination.
+                                </div>
+                                <div class="flex gap-2">
+                                    <button class="px-3 py-1 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700">Schedule Best Practice Share</button>
+                                    <button class="px-3 py-1 bg-white border border-green-600 text-green-600 text-sm rounded-lg hover:bg-green-50">Recognition Email</button>
+                                    <button class="px-3 py-1 bg-white border border-gray-300 text-gray-700 text-sm rounded-lg hover:bg-gray-50">View Details →</button>
+                                </div>
+                            </div>
+
+                            <div class="border-l-4 border-green-500 pl-4 py-3 bg-green-50 rounded-r-lg">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">4 East - Biggest Improvement</h4>
+                                        <div class="text-sm text-gray-600 mt-1">Manager: Marcus Johnson • 16 Staff Members</div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-green-600 text-white text-sm font-bold rounded-full">85%</span>
+                                </div>
+                                <div class="text-sm text-gray-700 mb-2">
+                                    <strong>Achievement:</strong> 7% improvement month-over-month. Turned around from struggling (78%) to strong performance (85%).
+                                </div>
+                                <div class="text-sm text-gray-700 mb-3">
+                                    <strong>Key Practices:</strong> Implemented color-coded priority system, automated reminders for monthly checks, cross-training program.
+                                </div>
+                                <div class="flex gap-2">
+                                    <button class="px-3 py-1 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700">Highlight in Newsletter</button>
+                                    <button class="px-3 py-1 bg-white border border-green-600 text-green-600 text-sm rounded-lg hover:bg-green-50">Recognition Email</button>
+                                    <button class="px-3 py-1 bg-white border border-gray-300 text-gray-700 text-sm rounded-lg hover:bg-gray-50">View Details →</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Upcoming Major Milestones -->
+                    <div class="bg-white rounded-lg shadow p-6 border-l-4 border-purple-500">
+                        <h3 class="font-semibold text-lg text-gray-900 mb-4 flex items-center gap-2">
+                            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <span>Upcoming Major Milestones & Events - Next 30 Days</span>
+                        </h3>
+                        
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-4 p-4 border border-purple-200 rounded-lg bg-purple-50">
+                                <div class="w-16 text-center flex-shrink-0">
+                                    <div class="text-2xl font-bold text-purple-600">Jan 31</div>
+                                    <div class="text-xs text-gray-600">Friday</div>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold text-gray-900 mb-1">Q1 2026 Compliance Certification Deadline</h4>
+                                    <p class="text-sm text-gray-600 mb-2">All 12 units must complete monthly checklists and submit documentation for quarterly review.</p>
+                                    <div class="flex items-center gap-4 text-xs">
+                                        <span class="text-gray-600">Status: <span class="font-medium text-yellow-600">9 of 12 units completed</span></span>
+                                        <span class="text-gray-600">Risk: <span class="font-medium text-yellow-600">Medium</span></span>
+                                    </div>
+                                </div>
+                                <button class="px-3 py-1 bg-purple-600 text-white text-sm rounded-lg hover:bg-purple-700 flex-shrink-0">Track Progress</button>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 border border-purple-200 rounded-lg bg-purple-50">
+                                <div class="w-16 text-center flex-shrink-0">
+                                    <div class="text-2xl font-bold text-purple-600">Feb 5</div>
+                                    <div class="text-xs text-gray-600">Wednesday</div>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold text-gray-900 mb-1">Joint Commission Preliminary Site Visit</h4>
+                                    <p class="text-sm text-gray-600 mb-2">Units 4 West, 5 North, and 6 West selected for preliminary review ahead of full accreditation survey.</p>
+                                    <div class="flex items-center gap-4 text-xs">
+                                        <span class="text-gray-600">Preparation: <span class="font-medium text-green-600">On Track</span></span>
+                                        <span class="text-gray-600">Risk: <span class="font-medium text-green-600">Low</span></span>
+                                    </div>
+                                </div>
+                                <button class="px-3 py-1 bg-purple-600 text-white text-sm rounded-lg hover:bg-purple-700 flex-shrink-0">View Checklist</button>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 border border-red-300 rounded-lg bg-red-50">
+                                <div class="w-16 text-center flex-shrink-0">
+                                    <div class="text-2xl font-bold text-red-600">Feb 10</div>
+                                    <div class="text-xs text-gray-600">Monday</div>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold text-gray-900 mb-1">Annual Staffing Plan Due to Regional Office</h4>
+                                    <p class="text-sm text-gray-600 mb-2">All service lines must submit FY 2026-2027 staffing projections, budget requests, and hiring plans.</p>
+                                    <div class="flex items-center gap-4 text-xs">
+                                        <span class="text-gray-600">Status: <span class="font-medium text-red-600">4 of 12 units submitted</span></span>
+                                        <span class="text-gray-600">Risk: <span class="font-medium text-red-600">High</span></span>
+                                    </div>
+                                </div>
+                                <button class="px-3 py-1 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700 flex-shrink-0">Send Reminder</button>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 border border-purple-200 rounded-lg bg-purple-50">
+                                <div class="w-16 text-center flex-shrink-0">
+                                    <div class="text-2xl font-bold text-purple-600">Feb 15</div>
+                                    <div class="text-xs text-gray-600">Saturday</div>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold text-gray-900 mb-1">Nurse Manager Leadership Summit</h4>
+                                    <p class="text-sm text-gray-600 mb-2">Annual gathering for knowledge sharing, recognition awards, and strategic planning for H1 2026.</p>
+                                    <div class="flex items-center gap-4 text-xs">
+                                        <span class="text-gray-600">RSVPs: <span class="font-medium text-green-600">11 of 12 managers confirmed</span></span>
+                                        <span class="text-gray-600">Location: Columbia Conference Center</span>
+                                    </div>
+                                </div>
+                                <button class="px-3 py-1 bg-purple-600 text-white text-sm rounded-lg hover:bg-purple-700 flex-shrink-0">View Agenda</button>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 border border-purple-200 rounded-lg bg-purple-50">
+                                <div class="w-16 text-center flex-shrink-0">
+                                    <div class="text-2xl font-bold text-purple-600">Feb 20</div>
+                                    <div class="text-xs text-gray-600">Thursday</div>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold text-gray-900 mb-1">New EHR Module Rollout - Patient Portal Integration</h4>
+                                    <p class="text-sm text-gray-600 mb-2">Go-live date for enhanced patient communication features. All staff require training completion by Feb 18.</p>
+                                    <div class="flex items-center gap-4 text-xs">
+                                        <span class="text-gray-600">Training: <span class="font-medium text-yellow-600">156 of 218 staff completed</span></span>
+                                        <span class="text-gray-600">Risk: <span class="font-medium text-yellow-600">Medium</span></span>
+                                    </div>
+                                </div>
+                                <button class="px-3 py-1 bg-purple-600 text-white text-sm rounded-lg hover:bg-purple-700 flex-shrink-0">Training Dashboard</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- STAFFING TAB - Manager View Only -->
+            <div id="content-staffing" class="tab-content hidden manager-only-tab">
+                <div class="space-y-6">
+                    
+                    <!-- Staffing Context Banner -->
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                        <h3 class="font-semibold text-gray-900 mb-3">Staffing Context for This Week</h3>
+                        <div class="space-y-2 text-sm text-gray-700">
+                            <p><strong>Current Situation:</strong> We're running slightly short on PM shift coverage Tuesday and Thursday due to scheduled PTO and one call-out. The AM and Night shifts are adequately covered.</p>
+                            <p><strong>Hot Pool Status:</strong> 3 RNs available in the general float pool. 2 have 4 West experience, 1 is new to the unit but trained in similar specialties.</p>
+                            <p><strong>Looking Ahead:</strong> Next week (Jan 27-31) will be tighter overall. We have 4 scheduled PTOs and flu season typically brings more call-outs. Recommend locking in float coverage early.</p>
+                            <p><strong>What We're Doing:</strong> Scheduling is reaching out to float pool today. If you're interested in picking up extra shifts this week, please respond to the scheduling email by EOD Tuesday.</p>
+                        </div>
+                    </div>
+
+                    <!-- This Week's Snapshot -->
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <h3 class="font-semibold text-lg mb-4">This Week's Staffing Snapshot</h3>
+                        
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                            <div class="text-center p-4 bg-gray-50 rounded-lg border border-gray-200">
+                                <div class="text-3xl font-bold text-gray-900">48</div>
+                                <div class="text-sm text-gray-600 mt-1">Shifts Needed</div>
+                            </div>
+                            <div class="text-center p-4 bg-green-50 rounded-lg border border-green-200">
+                                <div class="text-3xl font-bold text-green-600">44</div>
+                                <div class="text-sm text-gray-600 mt-1">Confirmed</div>
+                            </div>
+                            <div class="text-center p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                                <div class="text-3xl font-bold text-yellow-600">2</div>
+                                <div class="text-sm text-gray-600 mt-1">Float Pool</div>
+                            </div>
+                            <div class="text-center p-4 bg-red-50 rounded-lg border border-red-300">
+                                <div class="text-3xl font-bold text-red-600">2</div>
+                                <div class="text-sm text-gray-600 mt-1">Open Gaps</div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+                            <div class="text-sm text-gray-600 flex items-start gap-2">
+                                <svg class="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span>For detailed scheduling, shift swaps, and PTO management, please use <a href="#" class="text-blue-600 hover:text-blue-700 font-medium">Insight Scheduling System →</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COMPLIANCE TAB - Manager View Only -->
+            <div id="content-compliance" class="tab-content hidden manager-only-tab">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="mb-6">
+                        <h3 class="font-semibold text-lg text-gray-900">January 2026 Compliance Checklist</h3>
+                        <p class="text-sm text-gray-600 mt-1">Monthly recurring safety and compliance items for 4 West</p>
+                    </div>
+
+                    <!-- Progress Overview -->
+                    <div class="mb-6 grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div class="text-center p-4 bg-green-50 rounded-lg border border-green-200">
+                            <div class="text-2xl font-bold text-green-600">18</div>
+                            <div class="text-sm text-gray-600">Completed</div>
+                        </div>
+                        <div class="text-center p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                            <div class="text-2xl font-bold text-yellow-600">5</div>
+                            <div class="text-sm text-gray-600">In Progress</div>
+                        </div>
+                        <div class="text-center p-4 bg-red-50 rounded-lg border border-red-200">
+                            <div class="text-2xl font-bold text-red-600">3</div>
+                            <div class="text-sm text-gray-600">Overdue</div>
+                        </div>
+                        <div class="text-center p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <div class="text-2xl font-bold text-gray-900">26</div>
+                            <div class="text-sm text-gray-600">Total Items</div>
+                        </div>
+                    </div>
+
+                    <!-- Sample Checklist Items -->
+                    <div class="space-y-3">
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="bg-gray-50 px-4 py-3 border-b border-gray-200">
+                                <h4 class="font-medium text-gray-900">Emergency Equipment</h4>
+                            </div>
+                            <div class="divide-y divide-gray-200">
+                                <div class="flex items-center gap-4 p-4 bg-red-50">
+                                    <input type="checkbox" class="w-5 h-5 rounded">
+                                    <div class="flex-1">
+                                        <div class="font-medium text-gray-900">Crash Cart Inspection</div>
+                                        <div class="text-sm text-gray-600 mt-0.5">Check seals, expiration dates, equipment functionality</div>
+                                        <div class="flex items-center gap-4 mt-2 text-xs">
+                                            <span class="text-red-600 font-medium">Due: Jan 15 (8 days overdue)</span>
+                                            <span class="text-gray-600">Assigned: J. Martinez</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-red-100 text-red-800 text-xs font-medium rounded-full">Overdue</span>
+                                </div>
+                                <div class="flex items-center gap-4 p-4">
+                                    <input type="checkbox" checked class="w-5 h-5 rounded">
+                                    <div class="flex-1 opacity-60">
+                                        <div class="font-medium text-gray-900">Code Cart Supplies Check</div>
+                                        <div class="text-sm text-gray-600 mt-0.5">Verify all code drugs and supplies present</div>
+                                        <div class="flex items-center gap-4 mt-2 text-xs">
+                                            <span class="text-green-600 font-medium">Completed: Jan 10</span>
+                                            <span class="text-gray-600">By: S. Chen</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 flex gap-3">
+                        <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">Export Report</button>
+                        <button class="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 font-medium">Email Reminders</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUALITY TAB - Available for Both Views -->
+            <div id="content-quality" class="tab-content hidden">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="font-semibold text-lg mb-4">Quality Metrics Overview</h3>
+                    <p class="text-sm text-gray-600 mb-6">High-level snapshot for 4 West. For detailed metrics and trending, use full dashboards.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="text-sm text-gray-600 mb-1">Diabetic A1C Testing</div>
+                            <div class="flex items-baseline gap-2">
+                                <div class="text-2xl font-bold text-gray-900">68%</div>
+                                <div class="text-sm text-red-600">↓ 7% vs target</div>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">Target: 75%</div>
+                        </div>
+                        
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="text-sm text-gray-600 mb-1">Preventive Care Screenings</div>
+                            <div class="flex items-baseline gap-2">
+                                <div class="text-2xl font-bold text-gray-900">87%</div>
+                                <div class="text-sm text-green-600">↑ 12% vs target</div>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">Target: 75%</div>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="text-sm text-gray-600 mb-1">Medication Adherence</div>
+                            <div class="flex items-baseline gap-2">
+                                <div class="text-2xl font-bold text-gray-900">82%</div>
+                                <div class="text-sm text-gray-600">On target</div>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">Target: 80%</div>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="text-sm text-gray-600 mb-1">Post-Discharge Follow-up</div>
+                            <div class="flex items-baseline gap-2">
+                                <div class="text-2xl font-bold text-gray-900">91%</div>
+                                <div class="text-sm text-green-600">↑ 6% vs target</div>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">Target: 85%</div>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="text-sm text-gray-600 mb-1">Hand Hygiene Compliance</div>
+                            <div class="flex items-baseline gap-2">
+                                <div class="text-2xl font-bold text-gray-900">94%</div>
+                                <div class="text-sm text-green-600">↑ 4% vs target</div>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">Target: 90%</div>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="text-sm text-gray-600 mb-1">Patient Satisfaction (HCAHPS)</div>
+                            <div class="flex items-baseline gap-2">
+                                <div class="text-2xl font-bold text-gray-900">8.3</div>
+                                <div class="text-sm text-gray-600">On target</div>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">Target: 8.0</div>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                        <div class="text-sm text-gray-700 flex items-start gap-2">
+                            <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div>
+                                <p class="font-medium text-gray-900 mb-1">Need Full Metrics?</p>
+                                <p>For complete metric details, trending analysis, and compliance reporting:</p>
+                                <div class="mt-2 space-y-1">
+                                    <a href="#" class="text-blue-600 hover:text-blue-700 font-medium block">→ Tableau Quality Dashboard</a>
+                                    <a href="#" class="text-blue-600 hover:text-blue-700 font-medium block">→ CQC Reporting Portal</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="mt-8 text-center text-sm text-gray-500">
+                <p>NexoNurse Clinical Operations Hub • Version 3.0 • Enterprise Edition</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('border-blue-600', 'text-blue-600', 'font-medium');
+                button.classList.add('border-transparent', 'text-gray-600');
+            });
+            
+            document.getElementById('content-' + tabName).classList.remove('hidden');
+            
+            const activeTab = document.getElementById('tab-' + tabName);
+            activeTab.classList.add('border-blue-600', 'text-blue-600', 'font-medium');
+            activeTab.classList.remove('border-transparent', 'text-gray-600');
+        }
+
+        function changeView() {
+            const view = document.getElementById('view-selector').value;
+            console.log('Changing to view:', view);
+            
+            const viewNames = {
+                'unit': 'Unit Manager - 4 West',
+                'service': 'Service Line Director - Primary Care',
+                'geography': 'Regional Director - Columbia Medical Center',
+                'enterprise': 'System Director - Mid-Atlantic Region'
+            };
+            
+            alert('View changed to: ' + viewNames[view] + '\n\nIn production, this would reload all data for the selected organizational level.');
+        }
+
+        function toggleRoleView() {
+            const roleView = document.getElementById('role-view-selector').value;
+            const directorTabs = document.querySelectorAll('.director-only-tab');
+            const managerTabs = document.querySelectorAll('.manager-only-tab');
+            const productivityTab = document.getElementById('tab-productivity');
+            const hierarchyTab = document.getElementById('tab-hierarchy');
+            const planningTab = document.getElementById('tab-planning');
+            const staffingTab = document.getElementById('tab-staffing');
+            const complianceTab = document.getElementById('tab-compliance');
+            
+            if (roleView === 'director') {
+                // Show director-specific tabs
+                if (productivityTab) productivityTab.classList.remove('hidden');
+                if (hierarchyTab) hierarchyTab.classList.remove('hidden');
+                
+                // Hide manager-specific tabs
+                if (planningTab) planningTab.classList.add('hidden');
+                if (staffingTab) staffingTab.classList.add('hidden');
+                if (complianceTab) complianceTab.classList.add('hidden');
+                
+                // Switch to overview tab
+                showTab('overview');
+                
+                console.log('Switched to Director/VP Dashboard view');
+            } else {
+                // Hide director-specific tabs
+                if (productivityTab) productivityTab.classList.add('hidden');
+                if (hierarchyTab) hierarchyTab.classList.add('hidden');
+                
+                // Show manager-specific tabs
+                if (planningTab) planningTab.classList.remove('hidden');
+                if (staffingTab) staffingTab.classList.remove('hidden');
+                if (complianceTab) complianceTab.classList.remove('hidden');
+                
+                // Switch to overview tab
+                showTab('overview');
+                
+                console.log('Switched to Frontline Manager Dashboard view');
+            }
+        }
+
+        function updateScatterPlot() {
+            const xAxis = document.getElementById('scatter-x-axis').value;
+            const yAxis = document.getElementById('scatter-y-axis').value;
+            
+            // In production, this would:
+            // 1. Fetch the appropriate data for selected dimensions
+            // 2. Recalculate point positions
+            // 3. Update axis labels
+            // 4. Redraw the scatter plot with new positions
+            // 5. Update quadrant labels and insights
+            
+            console.log('Updating scatter plot: X=' + xAxis + ', Y=' + yAxis);
+            alert('Scatter plot updated!\n\nX-Axis: ' + xAxis + '\nY-Axis: ' + yAxis + '\n\nIn production, the chart would dynamically reposition all unit points based on the selected dimensions.');
+        }
+
+        function filterDomain(domain) {
+            // Update button states
+            document.querySelectorAll('.domain-filter').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('bg-white', 'border', 'border-gray-300', 'text-gray-700');
+            });
+            document.getElementById('filter-' + domain).classList.add('bg-blue-600', 'text-white');
+            document.getElementById('filter-' + domain).classList.remove('bg-white', 'border', 'border-gray-300', 'text-gray-700');
+            
+            // Update domain label
+            const domainNames = {
+                'overall': 'Overall Performance Score',
+                'staffing': 'Staffing Performance',
+                'quality': 'Quality Metrics Performance',
+                'supplies': 'Supplies & Inventory Performance',
+                'training': 'Training & Development Performance',
+                'compliance': 'Compliance Performance'
+            };
+            document.getElementById('current-domain').textContent = domainNames[domain];
+            
+            // Update unit card scores based on selected domain
+            document.querySelectorAll('.unit-card').forEach(card => {
+                const score = card.getAttribute('data-' + domain);
+                const scoreElement = card.querySelector('.unit-score');
+                scoreElement.textContent = score + '%';
+                
+                // Update border color based on score
+                card.classList.remove('border-green-500', 'border-blue-400', 'border-yellow-500', 'border-red-500');
+                card.classList.remove('bg-green-50', 'bg-blue-50', 'bg-yellow-50', 'bg-red-50');
+                
+                const scoreNum = parseInt(score);
+                if (scoreNum >= 85) {
+                    card.classList.add('border-green-500', 'bg-green-50');
+                    scoreElement.classList.remove('bg-blue-500', 'bg-yellow-500', 'bg-red-600');
+                    scoreElement.classList.add('bg-green-600');
+                } else if (scoreNum >= 75) {
+                    card.classList.add('border-blue-400', 'bg-blue-50');
+                    scoreElement.classList.remove('bg-green-600', 'bg-yellow-500', 'bg-red-600');
+                    scoreElement.classList.add('bg-blue-500');
+                } else if (scoreNum >= 70) {
+                    card.classList.add('border-yellow-500', 'bg-yellow-50');
+                    scoreElement.classList.remove('bg-green-600', 'bg-blue-500', 'bg-red-600');
+                    scoreElement.classList.add('bg-yellow-500');
+                } else {
+                    card.classList.add('border-red-500', 'bg-red-50');
+                    scoreElement.classList.remove('bg-green-600', 'bg-blue-500', 'bg-yellow-500');
+                    scoreElement.classList.add('bg-red-600');
+                }
+            });
+        }
+
+        function toggleHeatMapView(viewType) {
+            const gridView = document.getElementById('heat-map-grid');
+            const tableView = document.getElementById('heat-map-table');
+            const gridBtn = document.getElementById('view-grid');
+            const tableBtn = document.getElementById('view-table');
+            
+            if (viewType === 'grid') {
+                gridView.classList.remove('hidden');
+                tableView.classList.add('hidden');
+                gridBtn.classList.add('bg-blue-600', 'text-white');
+                gridBtn.classList.remove('bg-gray-200', 'text-gray-700');
+                tableBtn.classList.remove('bg-blue-600', 'text-white');
+                tableBtn.classList.add('bg-gray-200', 'text-gray-700');
+            } else {
+                gridView.classList.add('hidden');
+                tableView.classList.remove('hidden');
+                tableBtn.classList.add('bg-blue-600', 'text-white');
+                tableBtn.classList.remove('bg-gray-200', 'text-gray-700');
+                gridBtn.classList.remove('bg-blue-600', 'text-white');
+                gridBtn.classList.add('bg-gray-200', 'text-gray-700');
+            }
+        }
+
+        function showUnitDetail(unitId) {
+            const unitNames = {
+                '5-north': '5 North (Lisa Anderson)',
+                '4-west': '4 West (Sarah Chen)',
+                '4-east': '4 East (Marcus Johnson)',
+                '6-west': '6 West (Robert Davis)',
+                '2-south': '2 South (Amanda Foster)',
+                '7-east': '7 East (Kevin Park)',
+                '3-south': '3 South (Patricia Kim)',
+                '10-west': '10 West (James Taylor)',
+                '11-east': '11 East (Nicole Brown)'
+            };
+            
+            alert('Drill-down to: ' + unitNames[unitId] + '\n\nThis would show:\n• Detailed performance breakdown\n• Recent activity log\n• Task completion details\n• Team roster\n• Trend charts\n• Action items\n• Comparison to peer units\n\nIn production, this opens a detailed unit dashboard.');
+        }
+
+        // Initialize with Director view on load
+        window.addEventListener('DOMContentLoaded', function() {
+            toggleRoleView();
+        });
+    </script>
+</body>
+</html>
